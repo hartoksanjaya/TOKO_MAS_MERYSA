@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Toko Mas Merysa | Premium Jewelry</title>
+<meta name="description" content="Perhiasan emas berkualitas premium. Melayani sepenuh hati.">
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- iOS Support -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MERYSA">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="apple-touch-icon-precomposed" href="/icons/icon-192.png">
+
+<!-- Theme Color -->
+<meta name="theme-color" content="#0A0A0A">
+<meta name="msapplication-TileColor" content="#0A0A0A">
+<meta name="msapplication-TileImage" content="/icons/icon-512.png">
+
+<!-- PWA Splash Screen Colors -->
+<meta name="msapplication-navbutton-color" content="#0A0A0A">
+
+<!-- Preload Critical Resources -->
+<link rel="preload" href="/icons/icon-192.png" as="image">
+<link rel="preload" href="/manifest.json" as="fetch" crossorigin="anonymous">
+
+<style>
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F3E5AB;
+  --gold-dark: #AA8C2C;
+  --black: #0A0A0A;
+  --dark-gray: #141414;
+  --glass: rgba(20, 20, 20, 0.85);
+  --glass-border: rgba(212, 175, 55, 0.2);
+  --text-white: #F5F5F5;
+  --text-gray: #A0A0A0;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --font-head: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+  --container: 1200px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--black);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Cursor (Desktop Only) */
+.cursor-dot, .cursor-outline {
+  position: fixed; top: 0; left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%; z-index: 99999; pointer-events: none;
+}
+.cursor-dot { width: 8px; height: 8px; background: var(--gold); }
+.cursor-outline { width: 40px; height: 40px; border: 1px solid var(--gold); transition: 0.15s; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+/* Preloader */
+#preloader {
+  position: fixed; inset: 0; background: var(--black);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  z-index: 100000; transition: opacity 0.6s ease;
+}
+.loader-logo {
+  font-family: var(--font-head); font-size: clamp(1.5rem, 5vw, 2.5rem); color: var(--gold);
+  letter-spacing: 2px; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s forwards 0.3s;
+}
+.loader-bar {
+  width: 150px; height: 2px; background: #333; position: relative; overflow: hidden; border-radius: 2px;
+}
+.loader-bar::after {
+  content: ''; position: absolute; left: -50%; width: 50%; height: 100%;
+  background: var(--gold); animation: loading 1.2s infinite ease-in-out;
+}
+
+/* Navigation */
+nav {
+  position: fixed; top: 0; width: 100%; padding: 15px 5%;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--glass); backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border); z-index: 1000;
+  transition: var(--transition);
+}
+nav.scrolled { padding: 12px 5%; background: rgba(10, 10, 10, 0.95); box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+
+.logo {
+  font-family: var(--font-head); font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 700; color: var(--gold);
+  text-decoration: none; letter-spacing: 1px;
+}
+
+.nav-menu {
+  display: flex; gap: 25px; align-items: center; list-style: none;
+}
+.nav-menu a {
+  color: var(--text-white); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+  position: relative; transition: var(--transition);
+}
+.nav-menu a:hover { color: var(--gold); }
+.nav-menu a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: var(--transition);
+}
+.nav-menu a:hover::after { width: 100%; }
+
+.cart-btn {
+  position: relative; background: transparent; border: 1px solid var(--gold);
+  color: var(--gold); padding: 8px 16px; border-radius: 30px;
+  display: flex; align-items: center; gap: 8px; transition: var(--transition);
+}
+.cart-btn:hover { background: var(--gold); color: var(--black); }
+.cart-count {
+  background: var(--gold); color: var(--black); font-size: 0.7rem; font-weight: bold;
+  width: 18px; height: 18px; border-radius: 50%; display: flex;
+  justify-content: center; align-items: center;
+}
+.cart-btn:hover .cart-count { background: var(--black); color: var(--gold); }
+
+.menu-toggle { display: none; background: none; border: none; color: var(--gold); font-size: 1.5rem; }
+
+/* Hero */
+.hero {
+  height: 100vh; min-height: 600px; position: relative; overflow: hidden;
+  display: flex; justify-content: center; align-items: center; text-align: center;
+  padding: 0 20px;
+}
+.hero-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: transform 8s ease; transform: scale(1.05);
+}
+.hero-bg.default {
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=2070&auto=format&fit=crop');
+}
+.hero-content { position: relative; z-index: 2; max-width: 800px; }
+.hero h2 {
+  font-family: var(--font-head); font-size: clamp(2rem, 6vw, 3.5rem); color: var(--gold-light);
+  margin-bottom: 15px; line-height: 1.2; opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.8s;
+}
+.hero p {
+  font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--text-gray); margin-bottom: 30px;
+  opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 1s;
+}
+.hero-btn {
+  display: inline-block; padding: 14px 35px; background: var(--gold); color: var(--black);
+  text-decoration: none; font-weight: 600; border-radius: 4px; letter-spacing: 1px;
+  transition: var(--transition); opacity: 0; animation: fadeUp 1s forwards 1.2s;
+}
+.hero-btn:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212,175,55,0.3); }
+
+/* Music Indicator Animation */
+.music-bars {
+  display: inline-flex; gap: 2px; align-items: flex-end; height: 16px;
+}
+.music-bars span {
+  display: block; width: 3px; background: var(--gold);
+  animation: musicBar 0.8s ease-in-out infinite alternate;
+}
+.music-bars span:nth-child(1) { height: 6px; animation-delay: 0s; }
+.music-bars span:nth-child(2) { height: 12px; animation-delay: 0.2s; }
+.music-bars span:nth-child(3) { height: 8px; animation-delay: 0.4s; }
+.music-bars span:nth-child(4) { height: 14px; animation-delay: 0.1s; }
+.music-bars.paused span { animation-play-state: paused; }
+
+@keyframes musicBar {
+  0% { height: 4px; }
+  100% { height: 16px; }
+}
+
+/* Music Button */
+.music-float {
+  position: fixed; top: 80px; right: 20px; z-index: 1500;
+  width: 45px; height: 45px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border: none; border-radius: 50%;
+  color: var(--black); font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+  transition: var(--transition); cursor: pointer;
+}
+.music-float:hover { transform: scale(1.15); box-shadow: 0 5px 30px rgba(212,175,55,0.7); }
+.music-float.muted { background: #333; color: #888; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.music-float.muted .music-bars span { background: #888; }
+
+/* Products */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+.section-title { text-align: center; margin: 80px 0 40px; }
+.section-title h3 { font-family: var(--font-head); font-size: clamp(1.8rem, 5vw, 2.5rem); color: var(--gold); margin-bottom: 8px; }
+.section-title p { color: var(--text-gray); font-size: 0.95rem; }
+
+.products-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px; margin-bottom: 80px;
+}
+.product-card {
+  background: var(--dark-gray); border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px; overflow: hidden; position: relative;
+  transition: var(--transition);
+}
+.product-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+.product-img-box { height: 200px; overflow: hidden; position: relative; }
+.product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+.product-card:hover img { transform: scale(1.08); }
+
+.product-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center; gap: 10px;
+  opacity: 0; transition: var(--transition);
+}
+.product-card:hover .product-overlay, .admin-mode .product-overlay { opacity: 1; }
+.overlay-btn {
+  width: 40px; height: 40px; background: #fff; border-radius: 50%;
+  display: flex; justify-content: center; align-items: center;
+  color: var(--black); border: none; cursor: pointer; transition: var(--transition);
+  transform: translateY(15px);
+}
+.product-card:hover .overlay-btn { transform: translateY(0); }
+.overlay-btn:hover { background: var(--gold); color: #fff; }
+.overlay-btn.edit { background: #333; color: var(--gold); display: none; }
+.admin-mode .overlay-btn.edit { display: flex; }
+
+.product-info { padding: 15px; text-align: center; }
+.product-info h4 { font-family: var(--font-head); font-size: 1rem; color: #fff; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.product-info .price { color: var(--gold); font-weight: 600; font-size: 0.95rem; }
+
+/* Cart */
+.cart-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(5px); z-index: 2000;
+  opacity: 0; visibility: hidden; transition: var(--transition);
+}
+.cart-overlay.open { opacity: 1; visibility: visible; }
+
+.cart-drawer {
+  position: fixed; top: 0; right: -100%; width: 350px; max-width: 85%; height: 100%;
+  background: #111; z-index: 2001; transition: var(--transition);
+  display: flex; flex-direction: column; border-left: 1px solid var(--glass-border);
+}
+.cart-overlay.open .cart-drawer { right: 0; }
+
+.cart-header {
+  padding: 20px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center;
+}
+.cart-header h3 { font-family: var(--font-head); color: var(--gold); font-size: 1.2rem; }
+.close-cart { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+.cart-items { flex: 1; overflow-y: auto; padding: 15px; }
+.cart-item {
+  display: flex; gap: 12px; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #222;
+}
+.cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; }
+.cart-item-details { flex: 1; }
+.cart-item-details h5 { font-size: 0.85rem; margin-bottom: 4px; }
+.cart-item-details .price { color: var(--gold); font-size: 0.85rem; }
+.remove-item { color: #ff4444; background: none; border: none; font-size: 0.75rem; margin-top: 4px; cursor: pointer; text-decoration: underline; }
+
+.cart-footer { padding: 20px; border-top: 1px solid #333; background: #1a1a1a; }
+.total-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.1rem; font-weight: bold; }
+.total-row span:last-child { color: var(--gold); }
+.checkout-btn {
+  width: 100%; padding: 14px; background: #25D366; color: #fff; border: none;
+  border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: var(--transition);
+}
+.checkout-btn:hover { background: #128C7E; }
+
+/* Admin */
+.admin-trigger { position: fixed; bottom: 20px; right: 20px; z-index: 1500; }
+.admin-btn {
+  width: 45px; height: 45px; background: #222; color: var(--gold); border: 1px solid var(--gold);
+  border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.1rem;
+  transition: var(--transition); box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+.admin-btn:hover { background: var(--gold); color: var(--black); transform: rotate(90deg); }
+
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 3000;
+  display: flex; justify-content: center; align-items: flex-end;
+  opacity: 0; visibility: hidden; transition: var(--transition);
+}
+@media(min-width: 768px) { .modal { align-items: center; } }
+.modal.active { opacity: 1; visibility: visible; }
+.modal-content {
+  background: #151515; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto;
+  border-radius: 20px 20px 0 0; border: 1px solid var(--gold-dark); padding: 25px; position: relative;
+  transform: translateY(100%); transition: var(--transition);
+}
+@media(min-width: 768px) { .modal-content { border-radius: 15px; transform: scale(0.9); } }
+.modal.active .modal-content { transform: translateY(0); }
+@media(min-width: 768px) { .modal.active .modal-content { transform: scale(1); } }
+
+.modal h2 { font-family: var(--font-head); color: var(--gold); margin-bottom: 20px; text-align: center; font-size: 1.4rem; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 6px; color: var(--text-gray); font-size: 0.85rem; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 12px; background: #0a0a0a; border: 1px solid #333;
+  color: #fff; border-radius: 8px; font-family: var(--font-body); transition: var(--transition); font-size: 0.9rem;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--gold); outline: none; }
+
+.upload-box {
+  border: 2px dashed #444; padding: 20px; text-align: center; border-radius: 10px; cursor: pointer; transition: var(--transition);
+}
+.upload-box:hover { border-color: var(--gold); background: rgba(212,175,55,0.05); }
+.upload-box i { font-size: 1.8rem; color: var(--gold); margin-bottom: 8px; }
+.upload-box input { display: none; }
+
+.btn-primary {
+  width: 100%; padding: 12px; background: var(--gold); color: var(--black); border: none;
+  border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); margin-top: 5px; font-size: 0.95rem;
+}
+.btn-primary:hover { background: #fff; }
+.btn-secondary { background: #333; color: var(--gold); margin-top: 10px; }
+.btn-secondary:hover { background: #444; color: #fff; }
+
+.tab-nav { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; flex-wrap: wrap; }
+.tab-btn {
+  flex: 1; min-width: 80px; padding: 8px; background: transparent; color: #888; border: none;
+  border-bottom: 2px solid transparent; cursor: pointer; transition: var(--transition); font-size: 0.8rem;
+}
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeUp 0.3s ease; }
+
+/* Toast */
+.toast-container { position: fixed; top: 80px; right: 20px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.toast {
+  background: #222; border-left: 4px solid var(--gold); padding: 12px 20px; border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 12px;
+  transform: translateX(120%); transition: transform 0.4s ease; min-width: 280px; pointer-events: auto;
+}
+.toast.show { transform: translateX(0); }
+.toast i { color: var(--gold); font-size: 1.1rem; }
+.toast-content h4 { font-size: 0.85rem; color: #fff; }
+.toast-content p { font-size: 0.75rem; color: #aaa; }
+
+/* Footer */
+footer {
+  background: #080808; padding: 40px 20px; text-align: center; border-top: 1px solid #222;
+}
+.social-links { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
+.social-links a {
+  width: 40px; height: 40px; background: #222; border-radius: 50%; display: flex;
+  justify-content: center; align-items: center; color: var(--gold); font-size: 1.1rem;
+  transition: var(--transition); text-decoration: none;
+}
+.social-links a:hover { background: var(--gold); color: var(--black); transform: translateY(-3px); }
+footer p { color: #666; font-size: 0.8rem; }
+
+/* Animations */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes loading { 0% { left: -50%; } 100% { left: 100%; } }
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* Mobile */
+@media (max-width: 768px) {
+  * { cursor: auto; }
+  .cursor-dot, .cursor-outline { display: none !important; }
+  
+  .nav-menu {
+    position: fixed; top: 70px; left: 0; width: 100%; background: #111;
+    flex-direction: column; padding: 20px; gap: 15px;
+    transform: translateY(-150%); transition: var(--transition);
+    border-bottom: 1px solid #333;
+  }
+  .nav-menu.active { transform: translateY(0); }
+  .menu-toggle { display: block; }
+  
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+  .product-img-box { height: 150px; }
+  .product-overlay { opacity: 1; background: transparent; position: static; display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+  .overlay-btn { transform: translateY(0); width: 35px; height: 35px; font-size: 0.8rem; }
+  .admin-mode .product-overlay { display: flex; }
+  
+  .hero { min-height: 500px; }
+  .section-title { margin: 60px 0 30px; }
+  
+  .music-float { top: 80px; right: 15px; width: 40px; height: 40px; font-size: 1rem; }
+  
+  .tab-btn { font-size: 0.75rem; padding: 6px 4px; }
+}
+
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .product-img-box { height: 220px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader-logo">MERYSA</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" data-cursor-dot></div>
+<div class="cursor-outline" data-cursor-outline></div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- 🔊 Background Music -->
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="assets/audio/background-music.mp3" type="audio/mpeg">
+  <source src="assets/audio/background-music.ogg" type="audio/ogg">
+</audio>
+
+<!-- 🎵 Music Button -->
+<button class="music-float muted" id="musicBtn" onclick="toggleMusic()" title="Musik On/Off">
+  <div class="music-bars paused" id="musicBars">
+    <span></span><span></span><span></span><span></span>
+  </div>
+</button>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#" class="logo">MERYSA</a>
+  <button class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-menu" id="navMenu">
+    <li><a href="#hero" onclick="toggleMenu()">Beranda</a></li>
+    <li><a href="#products" onclick="toggleMenu()">Koleksi</a></li>
+    <li><a href="#" id="navContact" onclick="toggleMenu()">Kontak</a></li>
+    <li>
+      <button class="cart-btn" onclick="toggleCart(); toggleMenu()">
+        <i class="fa-solid fa-bag-shopping"></i> 
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg default" id="heroBg"></div>
+  <div class="hero-content">
+    <h2>Kemewahan Emas<br>Berkualitas Tinggi</h2>
+    <p>Temukan perhiasan eksklusif yang mempercantik setiap momen spesial Anda.</p>
+    <a href="#products" class="hero-btn">LIHAT KOLEKSI</a>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products" class="container">
+  <div class="section-title reveal">
+    <h3>Koleksi Eksklusif</h3>
+    <p>Pilihan perhiasan terbaik untuk Anda</p>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- Cart -->
+<div class="cart-overlay" id="cartOverlay" onclick="if(event.target===this)toggleCart()">
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h3>Keranjang Belanja</h3>
+      <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Total</span>
+        <span id="cartTotal">Rp 0</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">
+        <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Trigger -->
+<div class="admin-trigger">
+  <button class="admin-btn" onclick="openAdmin()"><i class="fa-solid fa-gear"></i></button>
+</div>
+
+<!-- Admin Modal -->
+<div class="modal" id="adminModal" onclick="if(event.target===this)closeAdmin()">
+  <div class="modal-content">
+    <button class="close-cart" style="position:absolute; top:15px; right:20px;" onclick="closeAdmin()">&times;</button>
+    
+    <div id="adminLogin">
+      <h2>🔐 Admin Login</h2>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="adminPassInput" placeholder="Masukkan password" onkeypress="if(event.key==='Enter')loginAdmin()">
+      </div>
+      <button class="btn-primary" onclick="loginAdmin()">Masuk</button>
+      <p style="text-align:center; margin-top:15px; font-size:0.75rem; color:#666;">Default: admin123</p>
+    </div>
+
+    <div id="adminDashboard" style="display:none;">
+      <h2>⚙️ Dashboard Admin</h2>
+      
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('add')">Produk</button>
+        <button class="tab-btn" onclick="switchTab('bg')">Background</button>
+        <button class="tab-btn" onclick="switchTab('contact')">Kontak</button>
+        <button class="tab-btn" onclick="switchTab('pass')">Password</button>
+      </div>
+
+      <div id="tab-add" class="tab-content active">
+        <div class="form-group">
+          <label>Nama Produk</label>
+          <input type="text" id="prodName" placeholder="Contoh: Cincin Emas 24K">
+        </div>
+        <div class="form-group">
+          <label>Harga (Rp)</label>
+          <input type="number" id="prodPrice" placeholder="Contoh: 2500000">
+        </div>
+        <div class="form-group">
+          <label>Foto Produk</label>
+          <div class="upload-box" onclick="document.getElementById('prodImgInput').click()">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p id="uploadText">Klik untuk upload foto</p>
+            <input type="file" id="prodImgInput" accept="image/*">
+          </div>
+          <img id="prodPreview" style="width:100%; height:120px; object-fit:cover; margin-top:10px; border-radius:8px; display:none;">
+        </div>
+        <button class="btn-primary" id="saveProductBtn" onclick="saveProduct()">Simpan Produk</button>
+        <button class="btn-primary btn-secondary" id="cancelEditBtn" style="display:none;" onclick="cancelEdit()">Batal Edit</button>
+      </div>
+
+      <div id="tab-bg" class="tab-content">
+        <div class="form-group">
+          <div class="upload-box" onclick="document.getElementById('bgImgInput').click()">
+            <i class="fa-solid fa-image"></i>
+            <p>Pilih gambar background baru</p>
+            <input type="file" id="bgImgInput" accept="image/*">
+          </div>
+        </div>
+        <button class="btn-primary" onclick="changeBackground()">Terapkan Background</button>
+      </div>
+
+      <div id="tab-contact" class="tab-content">
+        <div class="form-group">
+          <label><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> Nomor WhatsApp</label>
+          <input type="tel" id="waNumber" placeholder="6281234567890">
+          <small style="color:#666; font-size:0.75rem">Format: 628xxx (tanpa + atau 0)</small>
+        </div>
+        <div class="form-group">
+          <label><i class="fa-brands fa-facebook" style="color:#1877f2"></i> Link Facebook</label>
+          <input type="url" id="fbLink" placeholder="https://facebook.com/tokomasmerysa">
+        </div>
+        <div class="form-group">
+          <label><i class="fa-brands fa-instagram" style="color:#e4405f"></i> Link Instagram</label>
+          <input type="url" id="igLink" placeholder="https://instagram.com/tokomasmerysa">
+        </div>
+        <div class="form-group">
+          <label><i class="fa-brands fa-tiktok" style="color:#fff"></i> Link TikTok</label>
+          <input type="url" id="ttLink" placeholder="https://tiktok.com/@tokomasmerysa">
+        </div>
+        <button class="btn-primary" onclick="saveContact()">💾 Simpan Kontak</button>
+      </div>
+
+      <div id="tab-pass" class="tab-content">
+        <div class="form-group">
+          <label>Password Baru</label>
+          <input type="password" id="newAdminPass" placeholder="Minimal 4 karakter">
+        </div>
+        <button class="btn-primary" style="background:#333; color:var(--gold);" onclick="changeAdminPassword()">Update Password</button>
+        <button class="btn-primary btn-secondary" onclick="resetPassword()">Reset ke Default</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="social-links" id="socialLinks">
+    <a href="#" id="fbLinkFooter" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" id="igLinkFooter" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" id="ttLinkFooter" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="#" id="waLinkFooter" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+  <p>© 2026 Toko Mas Merysa | All Rights Reserved 💛</p>
+</footer>
+
+<script>
+// ==========================================
+// STATE
+// ==========================================
+const defaultContacts = {
+  whatsapp: '6281234567890',
+  facebook: 'https://facebook.com/tokomasmerysa',
+  instagram: 'https://instagram.com/tokomasmerysa',
+  tiktok: 'https://tiktok.com/@tokomasmerysa'
+};
+
+const state = {
+  cart: JSON.parse(localStorage.getItem('merysa_cart')) || [],
+  products: JSON.parse(localStorage.getItem('merysa_products')) || [],
+  adminPass: localStorage.getItem('merysa_admin_pass') || 'admin123',
+  background: localStorage.getItem('merysa_bg') || null,
+  editingId: null,
+  isMuted: true,
+  contacts: JSON.parse(localStorage.getItem('merysa_contacts')) || defaultContacts
+};
+
+if (state.products.length === 0) {
+  state.products = [
+    { id: 1, name: 'Cincin Emas 24K', price: 2500000, img: 'https://images.unsplash.com/photo-1605106702734-205df224ecce?w=600' },
+    { id: 2, name: 'Kalung Mutiara', price: 3500000, img: 'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?w=600' },
+    { id: 3, name: 'Gelang Permata', price: 1800000, img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600' },
+    { id: 4, name: 'Anting Berlian', price: 1200000, img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600' }
+  ];
+  localStorage.setItem('merysa_products', JSON.stringify(state.products));
+}
+
+// ==========================================
+// INIT
+// ==========================================
+window.addEventListener('load', () => {
+  // Preloader
+  setTimeout(() => {
+    document.getElementById('preloader').style.opacity = '0';
+    setTimeout(() => document.getElementById('preloader').style.display = 'none', 600);
+  }, 1500);
+
+  renderProducts();
+  renderCart();
+  updateContactLinks();
+  
+  if(state.background) {
+    const heroBg = document.getElementById('heroBg');
+    heroBg.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('${state.background}')`;
+    heroBg.classList.remove('default');
+  }
+
+  if(sessionStorage.getItem('merysa_admin_logged') === 'true') {
+    document.body.classList.add('admin-mode');
+  }
+
+  // Music Auto-Play Attempt
+  attemptAutoPlay();
+
+  // Scroll events
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    revealOnScroll();
+  });
+  revealOnScroll();
+});
+
+// ==========================================
+// 🎵 MUSIC SYSTEM
+// ==========================================
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+const musicBars = document.getElementById('musicBars');
+
+bgMusic.volume = 0.3;
+
+function attemptAutoPlay() {
+  bgMusic.play()
+    .then(() => {
+      state.isMuted = false;
+      musicBtn.classList.remove('muted');
+      musicBars.classList.remove('paused');
+      console.log('[Music] Auto-play berhasil!');
+    })
+    .catch((err) => {
+      console.log('[Music] Auto-play diblokir browser:', err.message);
+      state.isMuted = true;
+      document.addEventListener('click', firstInteraction, { once: true });
+      document.addEventListener('touchstart', firstInteraction, { once: true });
+    });
+}
+
+function firstInteraction() {
+  bgMusic.play()
+    .then(() => {
+      state.isMuted = false;
+      musicBtn.classList.remove('muted');
+      musicBars.classList.remove('paused');
+      showToast('🎵 Musik diputar');
+    })
+    .catch(err => console.log('[Music] Masih gagal:', err));
+}
+
+function toggleMusic() {
+  state.isMuted = !state.isMuted;
+  
+  if (state.isMuted) {
+    bgMusic.pause();
+    musicBtn.classList.add('muted');
+    musicBars.classList.add('paused');
+    showToast('🔇 Musik dimatikan');
+  } else {
+    bgMusic.play()
+      .then(() => {
+        musicBtn.classList.remove('muted');
+        musicBars.classList.remove('paused');
+        showToast('🎵 Musik diputar');
+      })
+      .catch(err => {
+        console.log('[Music] Play error:', err);
+        state.isMuted = true;
+        musicBtn.classList.add('muted');
+        musicBars.classList.add('paused');
+      });
+  }
+}
+
+// ==========================================
+// CONTACT MANAGEMENT
+// ==========================================
+function updateContactLinks() {
+  const { whatsapp, facebook, instagram, tiktok } = state.contacts;
+  
+  // Update footer links
+  document.getElementById('fbLinkFooter').href = facebook;
+  document.getElementById('igLinkFooter').href = instagram;
+  document.getElementById('ttLinkFooter').href = tiktok;
+  document.getElementById('waLinkFooter').href = `https://wa.me/${whatsapp}`;
+  
+  // Update nav contact link
+  document.getElementById('navContact').href = `https://wa.me/${whatsapp}`;
+  
+  // Update checkout button
+  document.getElementById('checkoutBtn').onclick = function() {
+    checkout(whatsapp);
+  };
+}
+
+function saveContact() {
+  const whatsapp = document.getElementById('waNumber').value.trim();
+  const facebook = document.getElementById('fbLink').value.trim();
+  const instagram = document.getElementById('igLink').value.trim();
+  const tiktok = document.getElementById('ttLink').value.trim();
+  
+  // Validate WhatsApp
+  if (!whatsapp || !whatsapp.match(/^62\d{9,12}$/)) {
+    showToast('⚠️ Nomor WhatsApp tidak valid! Gunakan format 628xxx', 'error');
+    return;
+  }
+  
+  // Validate URLs
+  if (facebook && !facebook.match(/^https?:\/\/.+/)) {
+    showToast('⚠️ Link Facebook tidak valid!', 'error');
+    return;
+  }
+  if (instagram && !instagram.match(/^https?:\/\/.+/)) {
+    showToast('⚠️ Link Instagram tidak valid!', 'error');
+    return;
+  }
+  if (tiktok && !tiktok.match(/^https?:\/\/.+/)) {
+    showToast('⚠️ Link TikTok tidak valid!', 'error');
+    return;
+  }
+  
+  state.contacts = { whatsapp, facebook, instagram, tiktok };
+  localStorage.setItem('merysa_contacts', JSON.stringify(state.contacts));
+  
+  updateContactLinks();
+  showToast('✅ Kontak berhasil disimpan!');
+}
+
+// ==========================================
+// CUSTOM CURSOR
+// ==========================================
+document.addEventListener('mousemove', (e) => {
+  if(window.innerWidth <= 768) return;
+  const dot = document.querySelector('.cursor-dot');
+  const outline = document.querySelector('.cursor-outline');
+  dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+  outline.style.left = e.clientX + 'px'; outline.style.top = e.clientY + 'px';
+});
+
+// ==========================================
+// UTILS
+// ==========================================
+function formatRupiah(num) { return 'Rp ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+
+function showToast(message, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+    <div class="toast-content"><h4>${type === 'success' ? 'Berhasil!' : 'Perhatian'}</h4><p>${message}</p></div>
+  `;
+  container.appendChild(toast);
+  setTimeout(() => toast.classList.add('show'), 50);
+  setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000);
+}
+
+function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+function toggleCart() { document.getElementById('cartOverlay').classList.toggle('open'); }
+
+// ==========================================
+// PRODUCTS
+// ==========================================
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '';
+  state.products.forEach(p => {
+    grid.innerHTML += `
+      <div class="product-card reveal">
+        <div class="product-img-box">
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+        </div>
+        <div class="product-overlay">
+          <button class="overlay-btn" onclick="addToCart(${p.id})" title="Beli"><i class="fa-solid fa-cart-plus"></i></button>
+          <button class="overlay-btn edit" onclick="openEdit(${p.id})" title="Edit"><i class="fa-solid fa-pen"></i></button>
+          <button class="overlay-btn edit" style="background:#ff4444;color:#fff;" onclick="deleteProduct(${p.id})" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="product-info">
+          <h4>${p.name}</h4>
+          <p class="price">${formatRupiah(p.price)}</p>
+        </div>
+      </div>
+    `;
+  });
+  revealOnScroll();
+}
+
+function addToCart(id) {
+  const product = state.products.find(p => p.id === id);
+  state.cart.push(product);
+  localStorage.setItem('merysa_cart', JSON.stringify(state.cart));
+  renderCart();
+  showToast(`${product.name} ditambahkan`);
+}
+
+function removeFromCart(index) {
+  state.cart.splice(index, 1);
+  localStorage.setItem('merysa_cart', JSON.stringify(state.cart));
+  renderCart();
+}
+
+function renderCart() {
+  document.getElementById('cartCount').innerText = state.cart.length;
+  const cartItems = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotal');
+  cartItems.innerHTML = '';
+  
+  if (state.cart.length === 0) {
+    cartItems.innerHTML = '<p style="text-align:center; color:#666; margin-top:40px;">Keranjang masih kosong</p>';
+    totalEl.innerText = formatRupiah(0);
+    return;
+  }
+
+  let total = 0;
+  state.cart.forEach((item, index) => {
+    total += parseInt(item.price);
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.img}" alt="${item.name}">
+        <div class="cart-item-details">
+          <h5>${item.name}</h5>
+          <p class="price">${formatRupiah(item.price)}</p>
+          <button class="remove-item" onclick="removeFromCart(${index})">Hapus</button>
+        </div>
+      </div>
+    `;
+  });
+  totalEl.innerText = formatRupiah(total);
+}
+
+function checkout(waNumber = null) {
+  if (state.cart.length === 0) return showToast('Keranjang kosong!', 'error');
+  
+  const number = waNumber || state.contacts.whatsapp;
+  let msg = 'Halo Toko Mas Merysa, saya ingin memesan:%0A';
+  let total = 0;
+  state.cart.forEach(item => {
+    msg += `- ${item.name} (${formatRupiah(item.price)})%0A`;
+    total += parseInt(item.price);
+  });
+  msg += `%0ATotal: ${formatRupiah(total)}`;
+  window.open(`https://wa.me/${number}?text=${msg}`, '_blank');
+}
+
+// ==========================================
+// ADMIN
+// ==========================================
+function openAdmin() {
+  document.getElementById('adminModal').classList.add('active');
+  if(sessionStorage.getItem('merysa_admin_logged') === 'true') {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminDashboard').style.display = 'block';
+    loadContactForm();
+  }
+}
+function closeAdmin() {
+  document.getElementById('adminModal').classList.remove('active');
+  cancelEdit();
+}
+
+function loginAdmin() {
+  const input = document.getElementById('adminPassInput').value;
+  if (input === state.adminPass) {
+    sessionStorage.setItem('merysa_admin_logged', 'true');
+    document.body.classList.add('admin-mode');
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminDashboard').style.display = 'block';
+    loadContactForm();
+    showToast('Login berhasil');
+  } else {
+    showToast('Password salah', 'error');
+  }
+}
+
+function loadContactForm() {
+  document.getElementById('waNumber').value = state.contacts.whatsapp;
+  document.getElementById('fbLink').value = state.contacts.facebook;
+  document.getElementById('igLink').value = state.contacts.instagram;
+  document.getElementById('ttLink').value = state.contacts.tiktok;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById(`tab-${tab}`).classList.add('active');
+}
+
+document.getElementById('prodImgInput').addEventListener('change', function(e) {
+  if(this.files && this.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const preview = document.getElementById('prodPreview');
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+      document.getElementById('uploadText').innerText = 'Ganti foto';
+    }
+    reader.readAsDataURL(this.files[0]);
+  }
+});
+
+function saveProduct() {
+  const name = document.getElementById('prodName').value.trim();
+  const price = parseInt(document.getElementById('prodPrice').value);
+  const fileInput = document.getElementById('prodImgInput');
+  const preview = document.getElementById('prodPreview');
+
+  if (!name || !price) return showToast('Isi nama dan harga!', 'error');
+
+  const processSave = (imgData) => {
+    if (state.editingId) {
+      const index = state.products.findIndex(p => p.id === state.editingId);
+      if (index !== -1) {
+        state.products[index].name = name;
+        state.products[index].price = price;
+        if (imgData) state.products[index].img = imgData;
+      }
+      showToast('Produk berhasil diupdate!');
+    } else {
+      state.products.push({ id: Date.now(), name, price, img: imgData });
+      showToast('Produk berhasil ditambahkan!');
+    }
+    localStorage.setItem('merysa_products', JSON.stringify(state.products));
+    renderProducts();
+    cancelEdit();
+  };
+
+  if (fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => processSave(e.target.result);
+    reader.readAsDataURL(fileInput.files[0]);
+  } else {
+    processSave(state.editingId ? state.products.find(p => p.id === state.editingId)?.img : null);
+  }
+}
+
+function openEdit(id) {
+  const product = state.products.find(p => p.id === id);
+  if (!product) return;
+  
+  state.editingId = id;
+  document.getElementById('prodName').value = product.name;
+  document.getElementById('prodPrice').value = product.price;
+  document.getElementById('prodPreview').src = product.img;
+  document.getElementById('prodPreview').style.display = 'block';
+  document.getElementById('uploadText').innerText = 'Ganti foto (opsional)';
+  document.getElementById('prodImgInput').value = '';
+  
+  document.getElementById('saveProductBtn').innerText = 'Update Produk';
+  document.getElementById('cancelEditBtn').style.display = 'block';
+  
+  openAdmin();
+  switchTab('add');
+  document.querySelector('.tab-btn').click();
+}
+
+function cancelEdit() {
+  state.editingId = null;
+  document.getElementById('prodName').value = '';
+  document.getElementById('prodPrice').value = '';
+  document.getElementById('prodPreview').style.display = 'none';
+  document.getElementById('uploadText').innerText = 'Klik untuk upload foto';
+  document.getElementById('prodImgInput').value = '';
+  document.getElementById('saveProductBtn').innerText = 'Simpan Produk';
+  document.getElementById('cancelEditBtn').style.display = 'none';
+}
+
+function deleteProduct(id) {
+  if(confirm('Hapus produk ini?')) {
+    state.products = state.products.filter(p => p.id !== id);
+    localStorage.setItem('merysa_products', JSON.stringify(state.products));
+    renderProducts();
+    showToast('Produk dihapus');
+  }
+}
+
+function changeBackground() {
+  const fileInput = document.getElementById('bgImgInput');
+  if(!fileInput.files[0]) return showToast('Pilih gambar dulu!', 'error');
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    localStorage.setItem('merysa_bg', e.target.result);
+    state.background = e.target.result;
+    
+    const heroBg = document.getElementById('heroBg');
+    heroBg.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('${e.target.result}')`;
+    heroBg.classList.remove('default');
+    
+    fileInput.value = '';
+    showToast('Background berhasil diganti!');
+  };
+  reader.readAsDataURL(fileInput.files[0]);
+}
+
+function changeAdminPassword() {
+  const newPass = document.getElementById('newAdminPass').value.trim();
+  if(newPass.length < 4) return showToast('Password minimal 4 karakter', 'error');
+  
+  state.adminPass = newPass;
+  localStorage.setItem('merysa_admin_pass', newPass);
+  document.getElementById('newAdminPass').value = '';
+  showToast('Password admin berhasil diubah');
+}
+
+function resetPassword() {
+  if(confirm('Reset password ke default (admin123)?')) {
+    state.adminPass = 'admin123';
+    localStorage.setItem('merysa_admin_pass', 'admin123');
+    showToast('Password direset ke default');
+  }
+}
+
+function revealOnScroll() {
+  const reveals = document.querySelectorAll('.reveal');
+  const windowHeight = window.innerHeight;
+  reveals.forEach(reveal => {
+    if (reveal.getBoundingClientRect().top < windowHeight - 100) {
+      reveal.classList.add('active');
+    }
+  });
+}
+</script>
+<script>
+// ==========================================
+// PWA REGISTRATION & INSTALL PROMPT
+// ==========================================
+
+let deferredPrompt;
+let isPWAInstalled = false;
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js', {
+        scope: '/'
+      });
+      console.log('[PWA] Service Worker registered:', registration.scope);
+      
+      // Check for updates periodically
+      setInterval(() => {
+        registration.update();
+      }, 60 * 60 * 1000); // Check every hour
+      
+      // Handle SW updates
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            // New service worker available
+            showUpdateNotification();
+          }
+        });
+      });
+      
+      // Listen for controller change
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('[PWA] New service worker activated');
+        window.location.reload();
+      });
+      
+    } catch (error) {
+      console.error('[PWA] Service Worker registration failed:', error);
+    }
+  });
+}
+
+// Capture Install Prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log('[PWA] Install prompt captured');
+  
+  // Show install button after 3 seconds
+  setTimeout(() => {
+    showInstallButton();
+  }, 3000);
+});
+
+// Show Install Button
+function showInstallButton() {
+  const existingBtn = document.getElementById('installBtn');
+  if (existingBtn) return;
+  
+  const installBtn = document.createElement('button');
+  installBtn.id = 'installBtn';
+  installBtn.innerHTML = '📲 Install App';
+  installBtn.style.cssText = `
+    position: fixed; bottom: 80px; left: 20px; z-index: 1500;
+    background: linear-gradient(135deg, #D4AF37, #AA8C2C);
+    color: #0A0A0A; border: none; padding: 12px 20px; border-radius: 25px;
+    font-weight: 600; font-size: 0.85rem; cursor: pointer;
+    box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+    animation: slideUp 0.5s ease, pulse 2s infinite;
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Poppins', sans-serif;
+  `;
+  
+  // Add pulse animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 5px 20px rgba(212,175,55,0.4); } 50% { box-shadow: 0 5px 30px rgba(212,175,55,0.8); } }
+  `;
+  document.head.appendChild(style);
+  
+  installBtn.onclick = async () => {
+    if (!deferredPrompt) return;
+    
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    
+    if (outcome === 'accepted') {
+      console.log('[PWA] User accepted install');
+      showToast('Aplikasi berhasil di-install! 🎉');
+      installBtn.style.display = 'none';
+    } else {
+      console.log('[PWA] User declined install');
+    }
+    
+    deferredPrompt = null;
+  };
+  
+  document.body.appendChild(installBtn);
+  
+  // Hide after 30 seconds
+  setTimeout(() => {
+    installBtn.style.opacity = '0';
+    installBtn.style.transform = 'translateY(100px)';
+    installBtn.style.transition = 'all 0.5s ease';
+    setTimeout(() => installBtn.remove(), 500);
+  }, 30000);
+}
+
+// Check if already installed
+window.addEventListener('appinstalled', () => {
+  isPWAInstalled = true;
+  console.log('[PWA] App installed');
+  showToast('Terima kasih telah meng-install MERYSA! 💛');
+  
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn) installBtn.remove();
+});
+
+// Show Update Notification
+function showUpdateNotification() {
+  if (confirm('Versi baru tersedia! Refresh untuk update?')) {
+    navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+  }
+}
+
+// Offline Detection
+window.addEventListener('online', () => {
+  showToast('Koneksi internet kembali! 🌐');
+});
+
+window.addEventListener('offline', () => {
+  showToast('Mode offline - Data tersimpan di perangkat 📴');
+});
+
+// Pre-cache important pages
+if ('serviceWorker' in navigator && navigator.onLine) {
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.active.postMessage({
+      type: 'CACHE_URLS',
+      urls: [
+        '/#products',
+        '/#hero'
+      ]
+    });
+  });
+}
+
+console.log('[PWA] Toko Mas Merysa PWA Ready');
+</script>
+
+
+</body>
+</html>
