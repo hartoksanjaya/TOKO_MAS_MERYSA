@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Mas Merysa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MERYSA">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<meta name="theme-color" content="#0A0A0A">
+
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body {
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  position:fixed;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:100;
+}
+
+.logo {
+  color:gold;
+  font-weight:bold;
+  font-size:22px;
+}
+
+.menu-btn {
+  cursor:pointer;
+  font-size:22px;
+}
+
+.menu {
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:250px;
+  height:100%;
+  background:#111;
+  padding:40px;
+  transition:0.4s;
+}
+
+.menu.active {
+  right:0;
+}
+
+.menu a {
+  display:block;
+  margin:20px 0;
+  color:white;
+  text-decoration:none;
+}
+
+.menu a:hover {
+  color:gold;
+}
+
+/* HERO */
+.hero {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,1)),
+  url('https://images.unsplash.com/photo-1610375461246-83df859d849d');
+  background-size:cover;
+}
+
+.hero h1 {
+  font-size:50px;
+  color:gold;
+  text-shadow:0 0 20px gold;
+}
+
+.hero p {
+  opacity:0.8;
+  margin:10px 0;
+}
+
+.btn {
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:gold;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover {
+  transform:scale(1.1);
+}
+
+/* SECTION */
+section {
+  padding:80px 30px;
+  text-align:center;
+}
+
+.title {
+  font-size:30px;
+  color:gold;
+  margin-bottom:40px;
+}
+
+/* PRODUK */
+.products {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card {
+  background:#111;
+  border-radius:15px;
+  padding:20px;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-10px);
+  box-shadow:0 0 25px gold;
+}
+
+.card img {
+  width:100%;
+  border-radius:10px;
+}
+
+.card h3 {
+  color:gold;
+}
+
+.wa-btn {
+  margin-top:10px;
+  display:inline-block;
+  padding:10px 20px;
+  background:#25D366;
+  color:white;
+  border-radius:20px;
+  text-decoration:none;
+}
+
+/* HARGA */
+.price-box {
+  background:#111;
+  padding:30px;
+  border-radius:15px;
+  display:inline-block;
+  box-shadow:0 0 20px gold;
+}
+
+input {
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+/* FOOTER */
+footer {
+  background:black;
+  padding:20px;
+  text-align:center;
+  border-top:1px solid gold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Merysa Gold</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</nav>
+
+<div class="menu" id="menu">
+  <a href="#">Home</a>
+  <a href="#produk">Produk</a>
+  <a href="#harga">Harga</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Toko Mas Merysa</h1>
+  <p>Elegan • Mewah • Terpercaya</p>
+  <button class="btn" onclick="scrollToProduk()">Lihat Produk</button>
+</div>
+
+<!-- PRODUK -->
+<section id="produk">
+  <h2 class="title">Produk Premium</h2>
+
+  <div class="products">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed">
+      <h3>Cincin Emas</h3>
+      <a class="wa-btn" href="https://wa.me/628xxxxxxxxx">Beli</a>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638">
+      <h3>Kalung Emas</h3>
+      <a class="wa-btn" href="https://wa.me/628xxxxxxxxx">Beli</a>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1617038260897-41a1f14c98be">
+      <h3>Gelang Emas</h3>
+      <a class="wa-btn" href="https://wa.me/628xxxxxxxxx">Beli</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- HARGA -->
+<section id="harga">
+  <h2 class="title">Harga Emas</h2>
+
+  <div class="price-box">
+    <h2 id="hargaText">Rp 6.200.000 / emas</h2>
+    <input type="number" placeholder="Ubah harga..." id="inputHarga">
+    <br><br>
+    <button class="btn" onclick="updateHarga()">Update</button>
+  </div>
+</section>
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="assets/audio/background-music.mp3" type="audio/mpeg">
+</audio>
+<button onclick="toggleMusic()" style="
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:1500;
+background:gold;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+">
+🔊 Musik
+</button>
+
+<footer>
+  © 2026 Toko Mas Merysa
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
+function scrollToProduk(){
+  document.getElementById("produk").scrollIntoView({behavior:"smooth"});
+}
+
+function updateHarga(){
+  let val = document.getElementById("inputHarga").value;
+  if(val){
+    document.getElementById("hargaText").innerText = "Rp " + Number(val).toLocaleString() + " / gram";
+  }
+}
+
+function toggleMusic(){
+  if(bgMusic.paused){
+    bgMusic.play();
+  } else {
+    bgMusic.pause();
+  }
+}
+// ==========================================
+// BACKGROUND MUSIC AUTOPLAY SYSTEM
+// ==========================================
+const bgMusic = document.getElementById("bgMusic");
+
+// Set volume (0.0 - 1.0)
+bgMusic.volume = 0.5;
+
+// Fungsi play aman (untuk browser modern)
+function playMusic() {
+  const playPromise = bgMusic.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        console.log("Musik diputar otomatis");
+      })
+      .catch(() => {
+        console.log("Autoplay diblokir, menunggu interaksi user...");
+      });
+  }
+}
+
+// Jalankan saat halaman load
+window.addEventListener("load", () => {
+  playMusic();
+});
+
+// Fallback: jika autoplay diblokir, jalankan saat user klik
+document.addEventListener("click", () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+  }
+}, { once: true });
+
+// ==========================================
+// PWA REGISTRATION & INSTALL PROMPT (UPGRADE)
+// ==========================================
+
+let deferredPrompt;
+let isPWAInstalled = false;
+
+// ==========================================
+// REGISTER SERVICE WORKER
+// ==========================================
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js', {
+        scope: '/'
+      });
+      console.log('[PWA] Service Worker registered:', registration.scope);
+
+      // Auto update setiap 1 jam
+      setInterval(() => {
+        registration.update();
+      }, 60 * 60 * 1000);
+
+      // Detect update
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            showUpdateNotification();
+          }
+        });
+      });
+
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('[PWA] New service worker activated');
+        window.location.reload();
+      });
+
+    } catch (error) {
+      console.error('[PWA] Service Worker registration failed:', error);
+    }
+  });
+}
+
+// ==========================================
+// CAPTURE INSTALL PROMPT
+// ==========================================
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log('[PWA] Install prompt captured');
+
+  setTimeout(() => {
+    showInstallButton();
+  }, 3000);
+});
+
+// ==========================================
+// TOMBOL INSTALL
+// ==========================================
+function showInstallButton() {
+  const existingBtn = document.getElementById('installBtn');
+  if (existingBtn) return;
+
+  const installBtn = document.createElement('button');
+  installBtn.id = 'installBtn';
+  installBtn.innerHTML = '📲 Install App';
+
+  installBtn.style.cssText = `
+    position: fixed; bottom: 80px; left: 20px; z-index: 1500;
+    background: linear-gradient(135deg, #D4AF37, #AA8C2C);
+    color: #0A0A0A; border: none; padding: 12px 20px; border-radius: 25px;
+    font-weight: 600; font-size: 0.85rem; cursor: pointer;
+    box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Poppins', sans-serif;
+  `;
+
+  installBtn.onclick = () => {
+    showInstallOptions();
+  };
+
+  document.body.appendChild(installBtn);
+
+  // Auto hide
+  setTimeout(() => {
+    installBtn.style.opacity = '0';
+    installBtn.style.transform = 'translateY(100px)';
+    installBtn.style.transition = 'all 0.5s ease';
+    setTimeout(() => installBtn.remove(), 500);
+  }, 30000);
+}
+
+// ==========================================
+// MODAL PILIHAN INSTALL
+// ==========================================
+function showInstallOptions() {
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
+
+  modal.innerHTML = `
+    <div style="
+      background:#111;
+      padding:20px;
+      border-radius:15px;
+      text-align:center;
+      width:90%;
+      max-width:300px;
+      font-family:'Poppins',sans-serif;
+      color:#fff;
+    ">
+      <h3 style="margin-bottom:15px;">Pilih Instalasi</h3>
+
+      <button id="pwaInstall" style="
+        width:100%; margin-bottom:10px;
+        padding:12px; border:none;
+        border-radius:10px;
+        background:#D4AF37; color:#000;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        📲 Install Langsung
+      </button>
+
+      <button id="playstoreInstall" style="
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        background:#0f9d58;
+        color:#fff;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        ▶️ Play Store
+      </button>
+
+      <button id="closeModal" style="
+        margin-top:10px;
+        background:none;
+        border:none;
+        color:#aaa;
+        cursor:pointer;
+      ">Tutup</button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // INSTALL PWA
+  document.getElementById('pwaInstall').onclick = async () => {
+    if (!deferredPrompt) {
+      showToast('Browser tidak mendukung install langsung');
+      return;
+    }
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+
+    if (outcome === 'accepted') {
+      console.log('[PWA] User accepted install');
+      showToast('Aplikasi berhasil di-install! 🎉');
+    }
+
+    deferredPrompt = null;
+    modal.remove();
+  };
+
+  // PLAY STORE (GANTI LINK INI)
+  document.getElementById('playstoreInstall').onclick = () => {
+    window.open('https://play.google.com/store/apps/details?id=com.merysa.app', '_blank');
+  };
+
+  // CLOSE
+  document.getElementById('closeModal').onclick = () => {
+    modal.remove();
+  };
+}
+
+// ==========================================
+// STATUS INSTALLED
+// ==========================================
+window.addEventListener('appinstalled', () => {
+  isPWAInstalled = true;
+  console.log('[PWA] App installed');
+  showToast('Terima kasih telah meng-install MERYSA! 💛');
+
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn) installBtn.remove();
+});
+
+// ==========================================
+// UPDATE NOTIFICATION
+// ==========================================
+function showUpdateNotification() {
+  if (confirm('Versi baru tersedia! Refresh untuk update?')) {
+    navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+  }
+}
+
+// ==========================================
+// ONLINE / OFFLINE STATUS
+// ==========================================
+window.addEventListener('online', () => {
+  showToast('Koneksi internet kembali! 🌐');
+});
+
+window.addEventListener('offline', () => {
+  showToast('Mode offline - Data tersimpan di perangkat 📴');
+});
+
+// ==========================================
+// PRECACHE
+// ==========================================
+if ('serviceWorker' in navigator && navigator.onLine) {
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.active.postMessage({
+      type: 'CACHE_URLS',
+      urls: [
+        '/#products',
+        '/#hero'
+      ]
+    });
+  });
+}
+
+console.log('[PWA] Toko Mas Merysa PWA Ready');
+</script>
+
+</body>
+</html>
