@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Toko Mas Merysa</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: white; display: flex; justify-content: center; padding: 50px; }
+        .card { background: #222; padding: 30px; border-radius: 15px; border: 1px solid #D4AF37; width: 400px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; }
+        button { width: 100%; padding: 12px; background: #D4AF37; border: none; color: black; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2 style="color: #D4AF37; text-align: center;">Update Toko</h2>
+    <label>Harga Emas Hari Ini:</label>
+    <input type="text" id="harga" placeholder="Contoh: Rp 1.450.000">
+    
+    <label>Foto Produk (Pajangan):</label>
+    <input type="file" id="inputFoto" accept="image/*">
+    
+    <button onclick="updateOnline()">Update Website</button>
+    <p id="status" style="text-align: center; font-size: 12px; color: #888;"></p>
+</div>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
+    authDomain: "tokomasmerysa.firebaseapp.com",
+    databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "tokomasmerysa",
+    storageBucket: "tokomasmerysa.firebasestorage.app",
+    messagingSenderId: "659517947527",
+    appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+    const db = firebase.database();
+
+    function updateOnline() {
+        const hargaVal = document.getElementById('harga').value;
+        const file = document.getElementById('inputFoto').files[0];
+        const status = document.getElementById('status');
+
+        if (!hargaVal || !file) {
+            alert("Mohon isi harga dan pilih foto!");
+            return;
+        }
+
+        status.innerText = "Sedang mengunggah...";
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64Image = e.target.result; // Foto jadi teks
+
+            db.ref('toko_mas').set({
+                harga: hargaVal,
+                foto: base64Image,
+                waktu: new Date().toLocaleString('id-ID')
+            }).then(() => {
+                status.innerText = "Berhasil Terupdate!";
+                alert("Website sudah berubah secara online!");
+            }).catch((error) => {
+                console.error(error);
+                status.innerText = "Gagal: " + error.message;
+            });
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+</body>
+</html>

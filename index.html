@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Mas Merysa | Exclusive Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F9F1DC;
+            --dark-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif; /* Pastikan load font ini atau pakai Times New Roman */
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            /* Background utama bisa diganti di folder images/bg.jpg */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/bg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+
+        .logo img {
+            height: 60px; /* Ganti logo di images/logo.png */
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-price-ticker {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border: 1px solid var(--gold-primary);
+            border-radius: 50px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 10%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--glass);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 20px;
+            text-align: center;
+            transition: 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* Music Controls */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .music-btn {
+            background: var(--gold-primary);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid var(--glass);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="images/logo.png" alt="Merysa Logo">
+        </div>
+        <div class="menu">
+            <i class="fas fa-bars" style="font-size: 1.5rem; color: var(--gold-primary);"></i>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Toko Mas Merysa</h1>
+        <p style="font-style: italic; letter-spacing: 3px;">Kemurnian Abadi, Keindahan Hakiki</p>
+        
+        <div class="gold-price-ticker">
+            <i class="fas fa-chart-line"></i> Harga Emas Hari Ini: 
+            <span style="color: var(--gold-primary); font-weight: bold;">Rp 2.600.000 / gram</span>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="product-card">
+            <img src="images/produk1.jpg" alt="Koleksi Cincin">
+            <h3>CINCIN PERMATA</h3>
+            <p>Koleksi Eksklusif</p>
+        </div>
+
+        <div class="product-card">
+            <img src="images/produk2.jpg" alt="Kalung Emas">
+            <h3>KALUNG ROYAL</h3>
+            <p>Edisi Terbatas</p>
+        </div>
+
+        <div class="product-card">
+            <img src="images/produk3.jpg" alt="Gelang Mewah">
+            <h3>GELANG BANGEL</h3>
+            <p>Mahakarya Seni</p>
+        </div>
+    </section>
+
+    <div class="music-player">
+        <button class="music-btn" onclick="toggleMusic()">
+            <i id="music-icon" class="fas fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="audio/musik_latar.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <footer>
+        &copy; 2026 TOKO MAS MERYSA. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script>
+        const music = document.getElementById("bgMusic");
+        const icon = document.getElementById("music-icon");
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                icon.classList.remove("fa-music");
+                icon.classList.add("fa-pause");
+            } else {
+                music.pause();
+                icon.classList.remove("fa-pause");
+                icon.classList.add("fa-music");
+            }
+        }
+        
+        // Auto-play biasanya diblokir browser, jadi musik akan mulai saat interaksi pertama
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
+    authDomain: "tokomasmerysa.firebaseapp.com",
+    databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "tokomasmerysa",
+    storageBucket: "tokomasmerysa.firebasestorage.app",
+    messagingSenderId: "659517947527",
+    appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+    // Mengambil data secara otomatis (Real-time)
+    db.ref('toko_mas').on('value', (snapshot) => {
+        const data = snapshot.val();
+        if(data) {
+            // Update harga di layar
+            document.querySelector('.gold-price-ticker span').innerText = data.harga;
+            
+            // Update foto produk utama
+            if(data.foto) {
+                document.querySelector('.product-card img').src = data.foto;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
