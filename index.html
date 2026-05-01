@@ -8,7 +8,6 @@
     <style>
         :root {
             --gold-primary: #D4AF37;
-            --gold-light: #F9F1DC;
             --dark-bg: #1a1a1a;
             --text-light: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
@@ -18,21 +17,21 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Playfair Display', serif; /* Pastikan load font ini atau pakai Times New Roman */
+            font-family: 'Playfair Display', serif;
         }
 
         body {
             background-color: var(--dark-bg);
             color: var(--text-light);
             overflow-x: hidden;
-            /* Background utama bisa diganti di folder images/bg.jpg */
+            /* Background default jika firebase kosong */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/bg.jpg');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+            transition: background 0.5s ease;
         }
 
-        /* Navigation */
         nav {
             padding: 2rem 5%;
             display: flex;
@@ -42,13 +41,13 @@
         }
 
         .logo img {
-            height: 60px; /* Ganti logo di images/logo.png */
+            height: 70px;
             filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            transition: 0.3s;
         }
 
-        /* Hero Section */
         .hero {
-            height: 80vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -75,14 +74,14 @@
             border-radius: 50px;
             margin-top: 20px;
             font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        /* Gallery Section */
         .gallery {
             padding: 5rem 10%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .product-card {
@@ -91,52 +90,93 @@
             padding: 20px;
             text-align: center;
             transition: 0.5s;
-            position: relative;
-            overflow: hidden;
+            backdrop-filter: blur(5px);
         }
 
         .product-card:hover {
             border-color: var(--gold-primary);
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
         }
 
         .product-card img {
             width: 100%;
-            height: 250px;
+            height: 300px;
             object-fit: cover;
             margin-bottom: 20px;
+            border-radius: 2px;
         }
 
         .product-card h3 {
             color: var(--gold-primary);
             margin-bottom: 10px;
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        /* Music Controls */
-        .music-player {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
+        /* Music Player Premium Styles */
+.music-player {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid var(--gold-primary);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .music-btn {
-            background: var(--gold-primary);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
+.music-player:hover {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Animasi Bar Musik */
+.visualizer {
+    display: flex;
+    align-items: flex-end;
+    height: 20px;
+    gap: 3px;
+    margin-right: 15px;
+}
+
+.bar {
+    width: 3px;
+    background: var(--gold-primary);
+    height: 5px;
+    transition: 0.2s;
+}
+
+/* Class saat musik menyala */
+.playing .bar {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.playing .bar:nth-child(2) { animation-delay: 0.2s; }
+.playing .bar:nth-child(3) { animation-delay: 0.4s; }
+.playing .bar:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes bounce {
+    0%, 100% { height: 5px; }
+    50% { height: 20px; }
+}
+
+.music-text {
+    font-size: 12px;
+    color: var(--gold-primary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 
         footer {
             text-align: center;
-            padding: 3rem;
+            padding: 4rem;
             border-top: 1px solid var(--glass);
             font-size: 0.9rem;
             letter-spacing: 2px;
@@ -148,7 +188,7 @@
 
     <nav>
         <div class="logo">
-            <img src="images/logo.png" alt="Merysa Logo">
+            <img src="images/logo.png" id="mainLogo" alt="Merysa Logo">
         </div>
         <div class="menu">
             <i class="fas fa-bars" style="font-size: 1.5rem; color: var(--gold-primary);"></i>
@@ -161,69 +201,35 @@
         
         <div class="gold-price-ticker">
             <i class="fas fa-chart-line"></i> Harga Emas Hari Ini: 
-            <span style="color: var(--gold-primary); font-weight: bold;">Rp 2.600.000 / gram</span>
+            <span id="displayHarga" style="color: var(--gold-primary); font-weight: bold;">Memuat...</span>
         </div>
     </section>
 
-    <section class="gallery">
-        <div class="product-card">
-            <img src="images/produk1.jpg" alt="Koleksi Cincin">
-            <h3>CINCIN PERMATA</h3>
-            <p>Koleksi Eksklusif</p>
-        </div>
+    <section class="gallery" id="mainGallery"></section>
 
-        <div class="product-card">
-            <img src="images/produk2.jpg" alt="Kalung Emas">
-            <h3>KALUNG ROYAL</h3>
-            <p>Edisi Terbatas</p>
-        </div>
-
-        <div class="product-card">
-            <img src="images/produk3.jpg" alt="Gelang Mewah">
-            <h3>GELANG BANGEL</h3>
-            <p>Mahakarya Seni</p>
-        </div>
-    </section>
-
-    <div class="music-player">
-        <button class="music-btn" onclick="toggleMusic()">
-            <i id="music-icon" class="fas fa-music"></i>
-        </button>
-        <audio id="bgMusic" loop>
-            <source src="audio/musik_latar.mp3" type="audio/mpeg">
-        </audio>
+    <div class="music-player" id="playerBtn" onclick="toggleMusic()">
+    <div class="visualizer" id="visualizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
     </div>
-
+    <span class="music-text" id="statusText">Play Music</span>
+    
+    <audio id="bgMusic" loop>
+        <source src="audio/musik_latar.mp3" type="audio/mpeg">
+    </audio>
+</div>
     <footer>
-        &copy; 2026 TOKO MAS MERYSA. ALL RIGHTS RESERVED.
+        &copy; 2026 TOKO MAS MERYSA. PEKANBARU, INDONESIA.
     </footer>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
     <script>
-        const music = document.getElementById("bgMusic");
-        const icon = document.getElementById("music-icon");
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                icon.classList.remove("fa-music");
-                icon.classList.add("fa-pause");
-            } else {
-                music.pause();
-                icon.classList.remove("fa-pause");
-                icon.classList.add("fa-music");
-            }
-        }
-        
-        // Auto-play biasanya diblokir browser, jadi musik akan mulai saat interaksi pertama
-</script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-<script>
-    const firebaseConfig = {
+        // MASUKKAN CONFIG FIREBASE ANDA DI SINI
+        const firebaseConfig = {
         apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
         authDomain: "tokomasmerysa.firebaseapp.com",
         databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -231,45 +237,59 @@
         appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
-    db.ref('toko_mas').on('value', (snapshot) => {
-        const data = snapshot.val();
-        if(data) {
-               // 1. Update Harga (Mengambil dari folder config)
-    db.ref('toko_mas/config/harga').on('value', (snapshot) => {
-        if(snapshot.exists()) {
-            document.querySelector('.gold-price-ticker span').innerText = snapshot.val();
-        }
-    });
-
-    // 2. Update Logo & Background (Opsional jika Anda masih ingin ini dinamis)
-    db.ref('toko_mas/config').on('value', (snapshot) => {
-        const config = snapshot.val();
-        if(config) {
-            if(config.logo) document.querySelector('.logo img').src = config.logo;
-            if(config.bg) document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${config.bg})`;
-        }
-    });
-
-    // 3. Update List Produk (Bagian paling penting untuk fitur Tambah/Hapus)
-    db.ref('toko_mas/produk').on('value', (snapshot) => {
-        const gallery = document.querySelector('.gallery');
-        gallery.innerHTML = ""; // Menghapus isi gallery lama agar tidak double
-        
-        snapshot.forEach((child) => {
-            const item = child.val();
-            // Membuat tampilan kartu produk untuk setiap barang di Firebase
-            gallery.innerHTML += `
-                <div class="product-card">
-                    <img src="${item.foto}" alt="${item.nama}">
-                    <h3>${item.nama}</h3>
-                    <p>Koleksi Eksklusif</p>
-                </div>
-            `;
+        // 1. Ambil Config (Harga, Logo, Background)
+        db.ref('toko_mas/config').on('value', (snapshot) => {
+            const config = snapshot.val();
+            if(config) {
+                if(config.harga) document.getElementById('displayHarga').innerText = config.harga;
+                if(config.logo) document.getElementById('mainLogo').src = config.logo;
+                if(config.bg) {
+                    document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${config.bg})`;
+                }
+            }
         });
-    });
-</script>
+
+        // 2. Ambil Daftar Produk (Banyak Produk)
+        db.ref('toko_mas/produk').on('value', (snapshot) => {
+            const gallery = document.getElementById('mainGallery');
+            gallery.innerHTML = ""; // Kosongkan gallery
+            
+            snapshot.forEach((child) => {
+                const item = child.val();
+                gallery.innerHTML += `
+                    <div class="product-card">
+                        <img src="${item.foto}" alt="${item.nama}">
+                        <h3>${item.nama}</h3>
+                        <p>Koleksi Eksklusif</p>
+                    </div>
+                `;
+            });
+        });
+
+const music = document.getElementById("bgMusic");
+const playerBtn = document.getElementById("playerBtn");
+const statusText = document.getElementById("statusText");
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+        playerBtn.classList.add("playing");
+        statusText.innerText = "Now Playing";
+    } else {
+        music.pause();
+        playerBtn.classList.remove("playing");
+        statusText.innerText = "Music Paused";
+    }
+}
+
+// Tambahan agar jika musik berhenti sendiri, visualizer mati
+music.onpause = function() {
+    playerBtn.classList.remove("playing");
+};
+
+    </script>
 </body>
 </html>
