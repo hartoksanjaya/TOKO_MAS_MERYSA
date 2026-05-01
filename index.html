@@ -237,22 +237,39 @@
     db.ref('toko_mas').on('value', (snapshot) => {
         const data = snapshot.val();
         if(data) {
-            // 1. Update Harga
-            if(data.harga) document.querySelector('.gold-price-ticker span').innerText = data.harga;
-            
-            // 2. Update Foto & Nama Produk
-            if(data.foto) document.querySelector('.product-card img').src = data.foto;
-            if(data.namaProduk) document.querySelector('.product-card h3').innerText = data.namaProduk;
-
-            // 3. Update Logo
-            if(data.logo) document.querySelector('.logo img').src = data.logo;
-
-            // 4. Update Background Website
-            if(data.bg) document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${data.bg})`;
+               // 1. Update Harga (Mengambil dari folder config)
+    db.ref('toko_mas/config/harga').on('value', (snapshot) => {
+        if(snapshot.exists()) {
+            document.querySelector('.gold-price-ticker span').innerText = snapshot.val();
         }
     });
+
+    // 2. Update Logo & Background (Opsional jika Anda masih ingin ini dinamis)
+    db.ref('toko_mas/config').on('value', (snapshot) => {
+        const config = snapshot.val();
+        if(config) {
+            if(config.logo) document.querySelector('.logo img').src = config.logo;
+            if(config.bg) document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${config.bg})`;
+        }
+    });
+
+    // 3. Update List Produk (Bagian paling penting untuk fitur Tambah/Hapus)
+    db.ref('toko_mas/produk').on('value', (snapshot) => {
+        const gallery = document.querySelector('.gallery');
+        gallery.innerHTML = ""; // Menghapus isi gallery lama agar tidak double
+        
+        snapshot.forEach((child) => {
+            const item = child.val();
+            // Membuat tampilan kartu produk untuk setiap barang di Firebase
+            gallery.innerHTML += `
+                <div class="product-card">
+                    <img src="${item.foto}" alt="${item.nama}">
+                    <h3>${item.nama}</h3>
+                    <p>Koleksi Eksklusif</p>
+                </div>
+            `;
+        });
+    });
 </script>
-
-
 </body>
 </html>
