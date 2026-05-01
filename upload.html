@@ -1,81 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Toko Mas Merysa</title>
+    <title>Admin Toko Mas Merysa - Pekanbaru</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: white; display: flex; justify-content: center; padding: 50px; }
-        .card { background: #222; padding: 30px; border-radius: 15px; border: 1px solid #D4AF37; width: 400px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; }
-        button { width: 100%; padding: 12px; background: #D4AF37; border: none; color: black; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #111; color: white; padding: 20px; display: flex; justify-content: center; }
+        .card { background: #222; padding: 25px; border-radius: 15px; border: 1px solid #D4AF37; width: 100%; max-width: 500px; }
+        h2 { color: #D4AF37; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        .form-group { margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #aaa; font-size: 14px; }
+        input[type="text"], input[type="file"] { width: 100%; padding: 10px; background: #333; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #D4AF37; border: none; color: black; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; font-size: 16px; }
+        button:hover { background: #f1c40f; }
+        #status { text-align: center; margin-top: 15px; color: #D4AF37; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2 style="color: #D4AF37; text-align: center;">Update Toko</h2>
-    <label>Harga Emas Hari Ini:</label>
-    <input type="text" id="harga" placeholder="Contoh: Rp 1.450.000">
+    <h2>Control Panel Merysa</h2>
     
-    <label>Foto Produk (Pajangan):</label>
-    <input type="file" id="inputFoto" accept="image/*">
-    
-    <button onclick="updateOnline()">Update Website</button>
-    <p id="status" style="text-align: center; font-size: 12px; color: #888;"></p>
+    <div class="form-group">
+        <label>Harga Emas Hari Ini:</label>
+        <input type="text" id="harga" placeholder="Contoh: Rp 2.650.000 / gram">
+    </div>
+
+    <div class="form-group">
+        <label>Ganti Logo Toko (File Gambar):</label>
+        <input type="file" id="inputLogo" accept="image/*">
+    </div>
+
+    <div class="form-group">
+        <label>Ganti Background Website:</label>
+        <input type="file" id="inputBG" accept="image/*">
+    </div>
+
+    <div class="form-group">
+        <label>Update Foto Produk Utama:</label>
+        <input type="file" id="inputFoto" accept="image/*">
+        <label style="margin-top:5px;">Nama Produk:</label>
+        <input type="text" id="namaProduk" placeholder="Contoh: Cincin Berlian Royal">
+    </div>
+
+    <button onclick="updateWebsite()">PUBLIKASIKAN PERUBAHAN</button>
+    <p id="status"></p>
 </div>
 
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+<script>
+    // MASUKKAN CONFIG FIREBASE ANDA DI SINI
+    const firebaseConfig = {
+        apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
+        authDomain: "tokomasmerysa.firebaseapp.com",
+        databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "tokomasmerysa",
+        appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
+    };
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
-    authDomain: "tokomasmerysa.firebaseapp.com",
-    databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "tokomasmerysa",
-    storageBucket: "tokomasmerysa.firebasestorage.app",
-    messagingSenderId: "659517947527",
-    appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-
+    firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    function updateOnline() {
-        const hargaVal = document.getElementById('harga').value;
-        const file = document.getElementById('inputFoto').files[0];
-        const status = document.getElementById('status');
-
-        if (!hargaVal || !file) {
-            alert("Mohon isi harga dan pilih foto!");
-            return;
-        }
-
-        status.innerText = "Sedang mengunggah...";
-
+    // Fungsi pembantu untuk mengubah file gambar ke teks (Base64)
+    const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = function(e) {
-            const base64Image = e.target.result; // Foto jadi teks
-
-            db.ref('toko_mas').set({
-                harga: hargaVal,
-                foto: base64Image,
-                waktu: new Date().toLocaleString('id-ID')
-            }).then(() => {
-                status.innerText = "Berhasil Terupdate!";
-                alert("Website sudah berubah secara online!");
-            }).catch((error) => {
-                console.error(error);
-                status.innerText = "Gagal: " + error.message;
-            });
-        };
         reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    async function updateWebsite() {
+        const status = document.getElementById('status');
+        status.innerText = "Sedang memproses perubahan...";
+
+        try {
+            const updates = {};
+            
+            // Cek Harga
+            const hargaVal = document.getElementById('harga').value;
+            if(hargaVal) updates['harga'] = hargaVal;
+
+            // Cek Nama Produk
+            const namaVal = document.getElementById('namaProduk').value;
+            if(namaVal) updates['namaProduk'] = namaVal;
+
+            // Cek File Foto Produk
+            const fotoFile = document.getElementById('inputFoto').files[0];
+            if(fotoFile) updates['foto'] = await toBase64(fotoFile);
+
+            // Cek File Logo
+            const logoFile = document.getElementById('inputLogo').files[0];
+            if(logoFile) updates['logo'] = await toBase64(logoFile);
+
+            // Cek File Background
+            const bgFile = document.getElementById('inputBG').files[0];
+            if(bgFile) updates['bg'] = await toBase64(bgFile);
+
+            // Kirim ke Firebase
+            await db.ref('toko_mas').update(updates);
+            
+            status.innerText = "✅ Berhasil Diperbarui Secara Online!";
+            alert("Website Merysa sudah berubah!");
+        } catch (error) {
+            status.innerText = "❌ Gagal: " + error.message;
+        }
     }
 </script>
 </body>
