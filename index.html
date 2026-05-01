@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Mas Merysa | Exclusive Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#D4AF37">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+ <style>
+:root {
+    --gold-primary: #D4AF37;
+    --dark-bg: #1a1a1a;
+    --text-light: #ffffff;
+    --glass: rgba(255, 255, 255, 0.05);
+    --nav-height: 90px;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
+}
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* ================= NAVBAR ================= */
+.nav-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 2000;
+    background: rgba(26,26,26,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212,175,55,0.3);
+}
+
+/* LOGO */
+.logo {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 0 15px rgba(212,175,55,0.5);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* MENU DESKTOP */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold-primary);
+}
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background: var(--gold-primary);
+    transition: 0.3s;
+}
+
+/* ================= HERO ================= */
+.hero {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: calc(var(--nav-height) + 40px) 10% 40px 10%;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 4rem); /* Responsif otomatis */
+        letter-spacing: 5px;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+     .gold-price-ticker {
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        padding: 15px 30px;
+        border: 1px solid var(--gold-primary);
+        border-radius: 50px;
+        margin-top: 20px;
+        font-size: 1.1rem;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+
+/* ================= GALLERY ================= */
+.gallery {
+    padding: 4rem 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: var(--glass);
+    border: 1px solid rgba(212,175,55,0.2);
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    transition: 0.4s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-primary);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* ================= INFO ================= */
+.info-section {
+        padding: 4rem 10%;
+        background: rgba(0,0,0,0.5);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        border-top: 1px solid var(--glass);
+    }
+
+    .info-box h4 {
+        color: var(--gold-primary);
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .info-box ul { list-style: none; }
+    .info-box ul li { margin-bottom: 15px; line-height: 1.6; }
+
+    .info-box a {
+        color: #ccc;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .info-box a:hover {
+        color: var(--gold-primary);
+        padding-left: 5px;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+    .social-icons a {
+        font-size: 24px;
+        color: var(--gold-primary);
+        transition: transform 0.3s;
+    }
+
+    .social-icons a:hover {
+        transform: scale(1.2);
+    }
+
+    /* Music Player */
+    .music-player {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 1px solid var(--gold-primary);
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .visualizer {
+        display: flex;
+        align-items: flex-end;
+        height: 15px;
+        gap: 3px;
+        margin-right: 12px;
+    }
+
+    .bar {
+        width: 3px;
+        background: var(--gold-primary);
+        height: 4px;
+    }
+
+    .playing .bar { animation: bounce 1s ease-in-out infinite; }
+    .playing .bar:nth-child(2) { animation-delay: 0.2s; }
+    .playing .bar:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+        0%, 100% { height: 4px; }
+        50% { height: 15px; }
+    }
+
+    .music-text {
+        font-size: 11px;
+        color: var(--gold-primary);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+/* ================= FOOTER ================= */
+footer {
+        text-align: center;
+        padding: 3rem;
+        border-top: 1px solid var(--glass);
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        opacity: 0.6;
+    }
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+    /* HAMBURGER MUNCUL */
+    .hamburger {
+        display: flex;
+    }
+
+    /* MENU MOBILE */
+    .nav-links {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(10px);
+
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+
+        transition: all 0.4s ease;
+    }
+
+    /* AKTIF */
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .hero {
+        min-height: 60vh;
+        padding-top: 120px;
+    }
+
+    .gallery {
+        padding: 2rem 5%;
+    }
+
+    .info-section {
+        padding: 3rem 5%;
+    }
+}
+</style>
+
+</head>
+<body>
+
+    <nav class="nav-container">
+    <div class="logo">
+        <img src="images/logo.png" id="mainLogo" alt="Merysa Logo" style="height: 50px;">
+    </div>
+    
+    <ul class="nav-links">
+        <li><a href="#">BERANDA</a></li>
+        <li><a href="#mainGallery">KOLEKSI</a></li>
+        <li><a href="#toko">LOKASI TOKO</a></li>
+        <li><a href="#sosmed">KONTAK</a></li>
+    </ul>
+
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+ <section class="hero">
+        <h1>Toko Mas Merysa</h1>
+        <p style="font-style: italic; letter-spacing: 3px;">Kemurnian Abadi, Keindahan Hakiki</p>
+        
+        <div class="gold-price-ticker">
+            <i class="fas fa-chart-line"></i> Harga Emas Hari Ini: 
+            <span id="displayHarga" style="color: var(--gold-primary); font-weight: bold;">Memuat...</span>
+        </div>
+    </section>
+    <section class="gallery" id="mainGallery"></section>
+
+<section class="info-section" id="toko">
+    <div class="info-box">
+        <h4>Silahkan Kunjungi Toko Kami</h4>
+        <ul>
+            <li>
+                <strong>Toko Mas Merysa</strong><br>
+                <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank"><i class="fas fa-map-marker-alt"></i> Lihat Lokasi</a>
+            </li>
+            <li>
+                <strong>Toko Mas New Merysa</strong><br>
+                <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank"><i class="fas fa-map-marker-alt"></i> Lihat Lokasi</a>
+            </li>
+            <li>
+                <strong>Toko Mas Merysa Baru</strong><br>
+                <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank"><i class="fas fa-map-marker-alt"></i> Lihat Lokasi</a>
+            </li>
+            <li>
+                <strong>Toko Mas Grand Merysa</strong><br>
+                <span><i class="fas fa-clock"></i> Lokasi Menyusul</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="info-box" id="sosmed">
+        <h4>Media Sosial Kami</h4>
+        <p style="margin-bottom: 15px; color: #888;">Ikuti koleksi terbaru kami melalui media sosial resmi Toko Mas Merysa.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@tokomasmerysa?_r=1&_t=ZS-95zpqNTLJSi" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+</section>
+
+    <div class="music-player" id="playerBtn" onclick="toggleMusic()">
+    <div class="visualizer" id="visualizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <span class="music-text" id="statusText">Play Music</span>
+    
+    <audio id="bgMusic" loop>
+        <source src="audio/musik_latar.mp3" type="audio/mpeg">
+    </audio>
+</div>
+    <footer>
+        &copy; 2026 TOKO MAS MERYSA. PEKANBARU, INDONESIA.
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script>
+        // MASUKKAN CONFIG FIREBASE ANDA DI SINI
+        const firebaseConfig = {
+        apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
+        authDomain: "tokomasmerysa.firebaseapp.com",
+        databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "tokomasmerysa",
+        appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
+    };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // 1. Ambil Config (Harga, Logo, Background)
+        db.ref('toko_mas/config').on('value', (snapshot) => {
+            const config = snapshot.val();
+            if(config) {
+                if(config.harga) document.getElementById('displayHarga').innerText = config.harga;
+                if(config.logo) document.getElementById('mainLogo').src = config.logo;
+                if(config.bg) {
+                    document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${config.bg})`;
+                }
+            }
+        });
+
+        // 2. Ambil Daftar Produk (Banyak Produk)
+        db.ref('toko_mas/produk').on('value', (snapshot) => {
+            const gallery = document.getElementById('mainGallery');
+            gallery.innerHTML = ""; // Kosongkan gallery
+            
+            snapshot.forEach((child) => {
+                const item = child.val();
+                gallery.innerHTML += `
+                    <div class="product-card">
+                        <img src="${item.foto}" alt="${item.nama}">
+                        <h3>${item.nama}</h3>
+                        <p>Koleksi Eksklusif</p>
+                    </div>
+                `;
+            });
+        });
+
+const music = document.getElementById("bgMusic");
+const playerBtn = document.getElementById("playerBtn");
+const statusText = document.getElementById("statusText");
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+        playerBtn.classList.add("playing");
+        statusText.innerText = "Now Playing";
+    } else {
+        music.pause();
+        playerBtn.classList.remove("playing");
+        statusText.innerText = "Music Paused";
+    }
+}
+// Tambahan agar jika musik berhenti sendiri, visualizer mati
+music.onpause = function() {
+    playerBtn.classList.remove("playing");
+};
+// HAMBURGER MENU
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+
+hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+// Auto close menu saat klik link (biar terasa premium)
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+    });
+});
+
+// ==========================================
+// REGISTER SERVICE WORKER
+// ==========================================
+if ('servic-eWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js', {
+        scope: '/'
+      });
+      console.log('[PWA] Service Worker registered:', registration.scope);
+
+      // Auto update setiap 1 jam
+      setInterval(() => {
+        registration.update();
+      }, 60 * 60 * 1000);
+
+      // Detect update
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            showUpdateNotification();
+          }
+        });
+      });
+
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('[PWA] New service worker activated');
+        window.location.reload();
+      });
+
+    } catch (error) {
+      console.error('[PWA] Service Worker registration failed:', error);
+    }
+  });
+}
+
+// ==========================================
+// CAPTURE INSTALL PROMPT
+// ==========================================
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log('[PWA] Install prompt captured');
+
+  setTimeout(() => {
+    showInstallButton();
+  }, 3000);
+});
+
+// ==========================================
+// TOMBOL INSTALL
+// ==========================================
+function showInstallButton() {
+  const existingBtn = document.getElementById('installBtn');
+  if (existingBtn) return;
+
+  const installBtn = document.createElement('button');
+  installBtn.id = 'installBtn';
+  installBtn.innerHTML = '📲 Install App';
+
+  installBtn.style.cssText = `
+    position: fixed; bottom: 80px; left: 20px; z-index: 1500;
+    background: linear-gradient(135deg, #D4AF37, #AA8C2C);
+    color: #0A0A0A; border: none; padding: 12px 20px; border-radius: 25px;
+    font-weight: 600; font-size: 0.85rem; cursor: pointer;
+    box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Poppins', sans-serif;
+  `;
+
+  installBtn.onclick = () => {
+    showInstallOptions();
+  };
+
+  document.body.appendChild(installBtn);
+
+  // Auto hide
+  setTimeout(() => {
+    installBtn.style.opacity = '0';
+    installBtn.style.transform = 'translateY(100px)';
+    installBtn.style.transition = 'all 0.5s ease';
+    setTimeout(() => installBtn.remove(), 500);
+  }, 30000);
+}
+
+// ==========================================
+// MODAL PILIHAN INSTALL
+// ==========================================
+function showInstallOptions() {
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
+
+  modal.innerHTML = `
+    <div style="
+      background:#111;
+      padding:20px;
+      border-radius:15px;
+      text-align:center;
+      width:90%;
+      max-width:300px;
+      font-family:'Poppins',sans-serif;
+      color:#fff;
+    ">
+      <h3 style="margin-bottom:15px;">Pilih Instalasi</h3>
+
+      <button id="pwaInstall" style="
+        width:100%; margin-bottom:10px;
+        padding:12px; border:none;
+        border-radius:10px;
+        background:#D4AF37; color:#000;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        📲 Install Langsung
+      </button>
+
+      <button id="playstoreInstall" style="
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        background:#0f9d58;
+        color:#fff;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        ▶️ Play Store
+      </button>
+
+      <button id="closeModal" style="
+        margin-top:10px;
+        background:none;
+        border:none;
+        color:#aaa;
+        cursor:pointer;
+      ">Tutup</button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // INSTALL PWA
+  document.getElementById('pwaInstall').onclick = async () => {
+    if (!deferredPrompt) {
+      showToast('Browser tidak mendukung install langsung');
+      return;
+    }
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+
+    if (outcome === 'accepted') {
+      console.log('[PWA] User accepted install');
+      showToast('Aplikasi berhasil di-install! 🎉');
+    }
+
+    deferredPrompt = null;
+    modal.remove();
+  };
+
+  // PLAY STORE (GANTI LINK INI)
+  document.getElementById('playstoreInstall').onclick = () => {
+    window.open('https://play.google.com/store/apps/details?id=github.qtok.twa', '_blank');
+  };
+
+  // CLOSE
+  document.getElementById('closeModal').onclick = () => {
+    modal.remove();
+  };
+}
+
+// ==========================================
+// STATUS INSTALLED
+// ==========================================
+window.addEventListener('appinstalled', () => {
+  isPWAInstalled = true;
+  console.log('[PWA] App installed');
+  showToast('Terima kasih telah meng-install MERYSA! 💛');
+
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn) installBtn.remove();
+});
+
+// ==========================================
+// UPDATE NOTIFICATION
+// ==========================================
+function showUpdateNotification() {
+  if (confirm('Versi baru tersedia! Refresh untuk update?')) {
+    navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+  }
+}
+
+// ==========================================
+// ONLINE / OFFLINE STATUS
+// ==========================================
+window.addEventListener('online', () => {
+  showToast('Koneksi internet kembali! 🌐');
+});
+
+window.addEventListener('offline', () => {
+  showToast('Mode offline - Data tersimpan di perangkat 📴');
+});
+
+// ==========================================
+// PRECACHE
+// ==========================================
+if ('serviceWorker' in navigator && navigator.onLine) {
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.active.postMessage({
+      type: 'CACHE_URLS',
+      urls: [
+        '/#products',
+        '/#hero'
+      ]
+    });
+  });
+}
+
+console.log('[PWA] Toko Mas Merysa PWA Ready');
+    </script>
+</body>
+</html>
