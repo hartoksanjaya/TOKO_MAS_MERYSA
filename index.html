@@ -6,6 +6,10 @@
     <title>Toko Mas Merysa | Exclusive Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#D4AF37">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <style>
     :root {
@@ -452,7 +456,234 @@ function toggleMusic() {
 music.onpause = function() {
     playerBtn.classList.remove("playing");
 };
+// ==========================================
+// REGISTER SERVICE WORKER
+// ==========================================
+if ('servic-eWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js', {
+        scope: '/'
+      });
+      console.log('[PWA] Service Worker registered:', registration.scope);
 
+      // Auto update setiap 1 jam
+      setInterval(() => {
+        registration.update();
+      }, 60 * 60 * 1000);
+
+      // Detect update
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            showUpdateNotification();
+          }
+        });
+      });
+
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('[PWA] New service worker activated');
+        window.location.reload();
+      });
+
+    } catch (error) {
+      console.error('[PWA] Service Worker registration failed:', error);
+    }
+  });
+}
+
+// ==========================================
+// CAPTURE INSTALL PROMPT
+// ==========================================
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log('[PWA] Install prompt captured');
+
+  setTimeout(() => {
+    showInstallButton();
+  }, 3000);
+});
+
+// ==========================================
+// TOMBOL INSTALL
+// ==========================================
+function showInstallButton() {
+  const existingBtn = document.getElementById('installBtn');
+  if (existingBtn) return;
+
+  const installBtn = document.createElement('button');
+  installBtn.id = 'installBtn';
+  installBtn.innerHTML = '📲 Install App';
+
+  installBtn.style.cssText = `
+    position: fixed; bottom: 80px; left: 20px; z-index: 1500;
+    background: linear-gradient(135deg, #D4AF37, #AA8C2C);
+    color: #0A0A0A; border: none; padding: 12px 20px; border-radius: 25px;
+    font-weight: 600; font-size: 0.85rem; cursor: pointer;
+    box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Poppins', sans-serif;
+  `;
+
+  installBtn.onclick = () => {
+    showInstallOptions();
+  };
+
+  document.body.appendChild(installBtn);
+
+  // Auto hide
+  setTimeout(() => {
+    installBtn.style.opacity = '0';
+    installBtn.style.transform = 'translateY(100px)';
+    installBtn.style.transition = 'all 0.5s ease';
+    setTimeout(() => installBtn.remove(), 500);
+  }, 30000);
+}
+
+// ==========================================
+// MODAL PILIHAN INSTALL
+// ==========================================
+function showInstallOptions() {
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
+
+  modal.innerHTML = `
+    <div style="
+      background:#111;
+      padding:20px;
+      border-radius:15px;
+      text-align:center;
+      width:90%;
+      max-width:300px;
+      font-family:'Poppins',sans-serif;
+      color:#fff;
+    ">
+      <h3 style="margin-bottom:15px;">Pilih Instalasi</h3>
+
+      <button id="pwaInstall" style="
+        width:100%; margin-bottom:10px;
+        padding:12px; border:none;
+        border-radius:10px;
+        background:#D4AF37; color:#000;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        📲 Install Langsung
+      </button>
+
+      <button id="playstoreInstall" style="
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        background:#0f9d58;
+        color:#fff;
+        font-weight:bold;
+        cursor:pointer;
+      ">
+        ▶️ Play Store
+      </button>
+
+      <button id="closeModal" style="
+        margin-top:10px;
+        background:none;
+        border:none;
+        color:#aaa;
+        cursor:pointer;
+      ">Tutup</button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // INSTALL PWA
+  document.getElementById('pwaInstall').onclick = async () => {
+    if (!deferredPrompt) {
+      showToast('Browser tidak mendukung install langsung');
+      return;
+    }
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+
+    if (outcome === 'accepted') {
+      console.log('[PWA] User accepted install');
+      showToast('Aplikasi berhasil di-install! 🎉');
+    }
+
+    deferredPrompt = null;
+    modal.remove();
+  };
+
+  // PLAY STORE (GANTI LINK INI)
+  document.getElementById('playstoreInstall').onclick = () => {
+    window.open('https://play.google.com/store/apps/details?id=github.qtok.twa', '_blank');
+  };
+
+  // CLOSE
+  document.getElementById('closeModal').onclick = () => {
+    modal.remove();
+  };
+}
+
+// ==========================================
+// STATUS INSTALLED
+// ==========================================
+window.addEventListener('appinstalled', () => {
+  isPWAInstalled = true;
+  console.log('[PWA] App installed');
+  showToast('Terima kasih telah meng-install MERYSA! 💛');
+
+  const installBtn = document.getElementById('installBtn');
+  if (installBtn) installBtn.remove();
+});
+
+// ==========================================
+// UPDATE NOTIFICATION
+// ==========================================
+function showUpdateNotification() {
+  if (confirm('Versi baru tersedia! Refresh untuk update?')) {
+    navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+  }
+}
+
+// ==========================================
+// ONLINE / OFFLINE STATUS
+// ==========================================
+window.addEventListener('online', () => {
+  showToast('Koneksi internet kembali! 🌐');
+});
+
+window.addEventListener('offline', () => {
+  showToast('Mode offline - Data tersimpan di perangkat 📴');
+});
+
+// ==========================================
+// PRECACHE
+// ==========================================
+if ('serviceWorker' in navigator && navigator.onLine) {
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.active.postMessage({
+      type: 'CACHE_URLS',
+      urls: [
+        '/#products',
+        '/#hero'
+      ]
+    });
+  });
+}
+
+console.log('[PWA] Toko Mas Merysa PWA Ready');
     </script>
 </body>
 </html>
