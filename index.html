@@ -3,41 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Toko Mas Merysa | Exclusive Gallery</title>
+    
+    <!-- 🔍 SEO & Social Meta Tags -->
+    <title>Toko Mas Merysa | Exclusive Gold Gallery Pekanbaru</title>
+    <meta name="description" content="Koleksi emas mewah bersertifikat dari Toko Mas Merysa Pekanbaru. Cincin, kalung, gelang emas 24K dengan jaminan keaslian & harga terbaik.">
+    <meta name="keywords" content="toko emas, emas merysa, perhiasan emas, emas pekanbaru, cincin emas, kalung emas">
+    <meta name="author" content="Toko Mas Merysa">
+    <meta name="robots" content="index, follow">
+    
+    <!-- 🌐 Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hartoksanjaya.github.io/TOKO_MAS_MERYSA/">
+    <meta property="og:title" content="Toko Mas Merysa | Exclusive Gold Gallery">
+    <meta property="og:description" content="Kemurnian Abadi, Keindahan Hakiki. Koleksi emas premium bersertifikat.">
+    <meta property="og:image" content="https://hartoksanjaya.github.io/TOKO_MAS_MERYSA/images/og-image.jpg">
+    
+    <!-- 🐦 Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Toko Mas Merysa | Exclusive Gold Gallery">
+    <meta property="twitter:description" content="Koleksi emas mewah bersertifikat dari Pekanbaru.">
+    
+    <!-- 🎨 Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 📱 PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#D4AF37">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+
+    <!-- 🏷️ Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JewelryStore",
+      "name": "Toko Mas Merysa",
+      "image": "https://hartoksanjaya.github.io/TOKO_MAS_MERYSA/images/logo.png",
+      "description": "Toko emas premium di Pekanbaru dengan koleksi perhiasan emas bersertifikat",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pekanbaru",
+        "addressRegion": "Riau",
+        "addressCountry": "ID"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Sa 09:00-21:00",
+      "telephone": "+62-852-1374-5387"
+    }
+    </script>
 
     <style>
         :root {
+            /* ✨ Premium Color System */
             --gold-primary: #D4AF37;
             --gold-light: #F4E4A6;
             --gold-dark: #AA8C2C;
-            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --gold-gradient: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            --gold-gradient-horizontal: linear-gradient(90deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             --dark-bg: #0a0a0a;
-            --dark-card: rgba(20, 20, 20, 0.85);
+            --dark-card: rgba(20, 20, 20, 0.92);
+            --dark-elevated: rgba(30, 30, 30, 0.95);
             --text-light: #ffffff;
             --text-muted: #b0b0b0;
+            --text-gold: #D4AF37;
             --glass: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(212, 175, 55, 0.3);
+            --glass-border: rgba(212, 175, 55, 0.35);
             --nav-height: 90px;
+            
+            /* ✨ Premium Effects */
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --transition-smooth: all 0.3s ease-out;
             --shadow-gold: 0 10px 40px rgba(212, 175, 55, 0.25);
-            --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --shadow-gold-intense: 0 20px 60px rgba(212, 175, 55, 0.4);
+            --shadow-deep: 0 25px 80px rgba(0, 0, 0, 0.6);
+            --glow-gold: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.2);
+            
+            /* ✨ Typography Scale */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 2rem;
+            --text-4xl: 2.5rem;
+            --text-5xl: 3.5rem;
+            --text-6xl: 5rem;
         }
 
-        /* ===== RESET & BASE ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ===== RESET & BASE PREMIUM ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         
         html {
             scroll-behavior: smooth;
             scroll-padding-top: var(--nav-height);
             font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
@@ -45,37 +111,65 @@
             background: var(--dark-bg);
             color: var(--text-light);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-weight: 300;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
+            line-height: 1.2;
         }
 
-        /* ===== PREMIUM BACKGROUND ===== */
+        /* ===== PREMIUM BACKGROUND WITH PARTICLES ===== */
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
             background: 
-                radial-gradient(ellipse at 20% 80%, rgba(212,175,55,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 15% 85%, rgba(212,175,55,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 15%, rgba(212,175,55,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 70%),
                 url('images/bg.jpg') center/cover fixed;
+            z-index: -3;
+            filter: brightness(0.9);
+        }
+
+        /* ✨ Animated Gold Particles */
+        #goldParticles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
             z-index: -2;
-            filter: brightness(0.6);
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 15s infinite ease-in-out;
+            box-shadow: 0 0 10px rgba(212,175,55,0.8);
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
         }
 
         body::after {
             content: '';
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
             background: linear-gradient(180deg, 
-                rgba(10,10,10,0.9) 0%, 
-                rgba(10,10,10,0.95) 50%, 
-                rgba(10,10,10,1) 100%);
+                rgba(10,10,10,0.3) 0%, 
+                rgba(10,10,10,0.5) 40%, 
+                rgba(10,10,10,0.85) 100%);
             z-index: -1;
         }
 
@@ -89,7 +183,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
         #premiumLoader.hidden {
@@ -98,33 +192,58 @@
             pointer-events: none;
         }
 
+        .loader-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
         .loader-gold {
-            width: 80px;
-            height: 80px;
+            position: absolute;
+            inset: 0;
             border: 3px solid transparent;
             border-top-color: var(--gold-primary);
             border-radius: 50%;
             animation: spin 1.2s linear infinite, glow 2s ease-in-out infinite alternate;
         }
 
+        .loader-gold::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 2px solid transparent;
+            border-bottom-color: var(--gold-light);
+            border-radius: 50%;
+            animation: spin 2s reverse linear infinite;
+        }
+
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(212,175,55,0.3); }
-            to { box-shadow: 0 0 40px rgba(212,175,55,0.8), 0 0 80px rgba(212,175,55,0.4); }
+            from { box-shadow: 0 0 20px rgba(212,175,55,0.4); }
+            to { box-shadow: 0 0 50px rgba(212,175,55,0.9), 0 0 100px rgba(212,175,55,0.5); }
         }
 
         .loader-text {
-            margin-top: 25px;
+            margin-top: 35px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            letter-spacing: 4px;
+            font-size: 1.3rem;
+            letter-spacing: 8px;
             color: var(--gold-primary);
-            animation: pulse 1.5s ease-in-out infinite;
+            animation: pulse 1.5s ease-in-out infinite, shimmer 3s ease-in-out infinite;
+            text-transform: uppercase;
+        }
+
+        .loader-subtext {
+            margin-top: 12px;
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            opacity: 0.8;
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+            50% { opacity: 0.7; }
         }
 
         /* ===== NAVBAR PREMIUM ===== */
@@ -138,8 +257,9 @@
             align-items: center;
             padding: 0 5%;
             z-index: 2000;
-            background: rgba(10, 10, 10, 0.92);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid var(--glass-border);
             transition: var(--transition);
         }
@@ -147,32 +267,35 @@
         .nav-container.scrolled {
             height: 75px;
             background: rgba(10, 10, 10, 0.98);
-            box-shadow: var(--shadow-gold);
+            box-shadow: var(--shadow-gold-intense);
+            border-bottom-color: var(--gold-primary);
         }
 
         .logo {
-            width: 65px;
-            height: 65px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             overflow: hidden;
             border: 2px solid var(--gold-primary);
-            box-shadow: 0 0 25px rgba(212,175,55,0.4);
+            box-shadow: var(--glow-gold);
             transition: var(--transition);
             position: relative;
+            cursor: pointer;
         }
 
-        .logo::after {
+        .logo::before {
             content: '';
             position: absolute;
-            inset: -2px;
+            inset: -3px;
             border-radius: 50%;
-            padding: 2px;
+            padding: 3px;
             background: var(--gold-gradient);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            animation: rotate 3s linear infinite;
+            animation: rotate 4s linear infinite;
+            z-index: -1;
         }
 
         @keyframes rotate { 100% { transform: rotate(360deg); } }
@@ -184,104 +307,190 @@
             transition: transform 0.5s ease;
         }
 
-        .logo:hover img { transform: scale(1.1); }
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(212,175,55,0.6);
+        }
+
+        .logo:hover img { transform: scale(1.15) rotate(2deg); }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 40px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 2.5px;
+            font-size: var(--text-xs);
+            letter-spacing: 3px;
             font-weight: 500;
             text-transform: uppercase;
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: var(--gold-gradient);
+            background: var(--gold-gradient-horizontal);
             transition: var(--transition);
+            border-radius: 2px;
         }
 
-        .nav-links a:hover { color: var(--gold-primary); }
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { 
+            color: var(--gold-primary); 
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a:hover::after { 
+            width: 100%; 
+            left: 0;
+            transform: none;
+        }
 
+        .nav-links a i {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: var(--transition-smooth);
+        }
+        
+        .nav-links a:hover i {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Hamburger Menu Premium */
         .hamburger {
             display: none;
             flex-direction: column;
             gap: 6px;
             cursor: pointer;
-            padding: 10px;
+            padding: 12px;
             z-index: 2001;
+            position: relative;
         }
 
         .hamburger span {
-            width: 28px;
+            width: 30px;
             height: 3px;
-            background: var(--gold-primary);
-            border-radius: 2px;
+            background: var(--gold-gradient-horizontal);
+            border-radius: 3px;
             transition: var(--transition);
+            position: relative;
         }
 
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .hamburger span::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-gradient-horizontal);
+            border-radius: 3px;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .hamburger:hover span::after { opacity: 1; }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
         /* ===== HERO PREMIUM ===== */
         .hero {
-            min-height: 90vh;
+            min-height: 95vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: calc(var(--nav-height) + 50px) 5% 60px;
+            padding: calc(var(--nav-height) + 60px) 5% 80px;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border: 1px solid rgba(212,175,55,0.15);
-            border-radius: 50%;
-            animation: float 20s linear infinite;
-            pointer-events: none;
-        }
-
+        /* ✨ Animated Decorative Rings */
+        .hero::before,
         .hero::after {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            border: 1px solid rgba(212,175,55,0.1);
             border-radius: 50%;
-            animation: float 25s linear infinite reverse;
+            border: 1px solid rgba(212,175,55,0.12);
             pointer-events: none;
+            animation: floatRing 25s linear infinite;
         }
 
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        .hero::before {
+            width: 700px;
+            height: 700px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-direction: reverse;
+            animation-duration: 30s;
+            border-color: rgba(212,175,55,0.08);
+        }
+
+        @keyframes floatRing {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.05); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 25px;
+            background: var(--glass);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50px;
+            font-size: var(--text-xs);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-primary);
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.8s ease 0.2s both;
+        }
+
+        .hero-badge i {
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(0.9); }
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 10vw, 5rem);
-            letter-spacing: 8px;
+            font-size: clamp(2.8rem, 10vw, 6rem);
+            letter-spacing: 10px;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             background: var(--gold-gradient);
@@ -290,137 +499,284 @@
             background-clip: text;
             animation: shimmer 3s ease-in-out infinite;
             position: relative;
+            font-weight: 700;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: var(--gold-gradient-horizontal);
+            border-radius: 2px;
         }
 
         @keyframes shimmer {
             0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.3); }
+            50% { filter: brightness(1.4); }
         }
 
         .hero p {
             font-style: italic;
-            letter-spacing: 5px;
-            font-size: 1.2rem;
+            letter-spacing: 6px;
+            font-size: var(--text-lg);
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin: 2.5rem 0 3rem;
             font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            position: relative;
         }
 
-        .gold-price-ticker {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            padding: 18px 40px;
-            border: 1px solid var(--gold-primary);
-            border-radius: 60px;
-            margin-top: 25px;
-            font-size: 1.15rem;
-            box-shadow: var(--shadow-gold);
+        .hero p::before,
+        .hero p::after {
+            content: '✦';
+            color: var(--gold-primary);
+            margin: 0 15px;
+            opacity: 0.8;
+        }
+
+        /* ✨ Premium CTA Buttons */
+        .hero-cta {
             display: flex;
-            align-items: center;
-            gap: 12px;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn-premium {
+            padding: 16px 45px;
+            background: var(--gold-gradient);
+            color: #0a0a0a;
+            border: none;
+            border-radius: 50px;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            cursor: pointer;
             transition: var(--transition);
-            animation: fadeInUp 0.8s ease 0.3s both;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-gold-intense);
+        }
+
+        .btn-premium:hover::before {
+            transform: translateX(100%);
+        }
+
+        .btn-premium.btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .btn-premium.btn-outline:hover {
+            background: var(--gold-primary);
+            color: #0a0a0a;
+        }
+
+        /* ✨ Gold Price Ticker Premium */
+        .gold-price-ticker {
+            background: var(--dark-elevated);
+            backdrop-filter: blur(20px);
+            padding: 20px 50px;
+            border: 1px solid var(--gold-primary);
+            border-radius: 70px;
+            margin-top: 35px;
+            font-size: var(--text-base);
+            box-shadow: var(--shadow-gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+            animation: fadeInUp 0.8s ease 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gold-price-ticker::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-gradient);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: -1;
         }
 
         .gold-price-ticker:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(212,175,55,0.35);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold-intense);
+        }
+
+        .gold-price-ticker:hover::before {
+            opacity: 0.1;
         }
 
         .gold-price-ticker i {
             animation: bounce 2s ease infinite;
+            font-size: 1.2rem;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== SECTION TITLES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== SECTION TITLES PREMIUM ===== */
         .section-title {
             text-align: center;
-            padding: 2rem 0 3rem;
+            padding: 4rem 0 4.5rem;
             position: relative;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
-            letter-spacing: 4px;
+            font-size: var(--text-4xl);
+            letter-spacing: 5px;
             text-transform: uppercase;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
+            position: relative;
+            font-weight: 700;
         }
 
         .section-title h2::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 100px;
             height: 3px;
-            background: var(--gold-gradient);
-            margin: 15px auto 0;
-            border-radius: 2px;
+            background: var(--gold-gradient-horizontal);
+            margin: 20px auto 0;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .section-title h2::after::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            box-shadow: var(--glow-gold);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: var(--text-lg);
+            margin-top: 25px;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
         }
 
         /* ===== GALLERY PREMIUM ===== */
         .gallery-section {
-            padding: 2rem 5% 4rem;
+            padding: 2rem 5% 6rem;
         }
 
         .gallery-tabs {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 3rem;
+            gap: 12px;
+            margin-bottom: 4rem;
             flex-wrap: wrap;
         }
 
         .gallery-tab {
-            padding: 12px 30px;
+            padding: 14px 35px;
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 40px;
+            border-radius: 50px;
             color: var(--text-light);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            font-size: var(--text-xs);
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-tab::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-gradient);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: -1;
         }
 
         .gallery-tab.active,
         .gallery-tab:hover {
-            background: var(--gold-gradient);
             color: #0a0a0a;
             border-color: transparent;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-gold);
+        }
+
+        .gallery-tab.active::before,
+        .gallery-tab:hover::before {
+            opacity: 1;
         }
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
+        /* ✨ Product Card Premium */
         .product-card {
             background: var(--dark-card);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 20px;
+            border-radius: 24px;
+            padding: 25px;
             text-align: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.6s ease both;
+            group: product;
         }
 
         .product-card::before {
@@ -431,27 +787,47 @@
             opacity: 0;
             transition: var(--transition);
             z-index: 0;
+            border-radius: 24px;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-15px);
             border-color: var(--gold-primary);
-            box-shadow: var(--shadow-gold);
+            box-shadow: var(--shadow-gold-intense);
         }
 
-        .product-card:hover::before { opacity: 0.08; }
+        .product-card:hover::before { opacity: 0.06; }
+        .product-card:hover::after { left: 100%; }
 
         .product-card .media-wrapper {
             position: relative;
             width: 100%;
-            height: 280px;
-            border-radius: 15px;
+            height: 300px;
+            border-radius: 18px;
             overflow: hidden;
-            margin-bottom: 18px;
-            background: rgba(0,0,0,0.3);
+            margin-bottom: 22px;
+            background: rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .media-wrapper {
+            border-color: var(--gold-primary);
+            box-shadow: var(--glow-gold);
         }
 
         .product-card img,
@@ -459,26 +835,47 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .product-card:hover img,
         .product-card:hover video {
-            transform: scale(1.08);
+            transform: scale(1.12) rotate(0.5deg);
         }
 
+        /* ✨ Video Badge & Overlay */
         .video-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(212,175,55,0.95);
+            top: 15px;
+            right: 15px;
+            background: rgba(212,175,55,0.98);
             color: #0a0a0a;
-            padding: 5px 12px;
+            padding: 6px 16px;
+            border-radius: 25px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .certificate-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(30,30,30,0.95);
+            color: var(--gold-primary);
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 600;
             letter-spacing: 1px;
-            z-index: 2;
+            z-index: 3;
+            border: 1px solid var(--gold-primary);
             display: flex;
             align-items: center;
             gap: 5px;
@@ -487,7 +884,7 @@
         .play-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.4);
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -500,44 +897,110 @@
         .product-card.video:hover .play-overlay { opacity: 1; }
 
         .play-btn {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: var(--gold-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #0a0a0a;
-            font-size: 1.3rem;
-            box-shadow: 0 8px 25px rgba(212,175,55,0.5);
+            font-size: 1.5rem;
+            box-shadow: 0 10px 35px rgba(212,175,55,0.6);
             transition: var(--transition);
+            position: relative;
+        }
+
+        .play-btn::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: pulseRing 2s ease-out infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
 
         .play-overlay:hover .play-btn {
-            transform: scale(1.15);
-            box-shadow: 0 12px 40px rgba(212,175,55,0.7);
+            transform: scale(1.2);
+            box-shadow: 0 15px 50px rgba(212,175,55,0.8);
         }
 
+        /* ✨ Product Info */
         .product-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: var(--text-xl);
+            margin-bottom: 12px;
             position: relative;
             z-index: 1;
+            font-weight: 600;
         }
 
         .product-card .price {
             color: var(--gold-primary);
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .product-card .description {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
         }
 
-        /* ===== VIDEO LIGHTBOX ===== */
+        /* ✨ Quick Actions */
+        .product-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-action {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn-action:hover {
+            background: var(--gold-primary);
+            color: #0a0a0a;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-gold);
+            border-color: transparent;
+        }
+
+        .btn-action.wishlist.active {
+            background: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        /* ===== VIDEO LIGHTBOX PREMIUM ===== */
         .video-lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.97);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -545,7 +1008,8 @@
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
-            padding: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
         }
 
         .video-lightbox.active {
@@ -554,50 +1018,60 @@
         }
 
         .lightbox-content {
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
             position: relative;
-            animation: zoomIn 0.4s ease;
+            animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         @keyframes zoomIn {
-            from { transform: scale(0.9); opacity: 0; }
+            from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
 
         .lightbox-video {
             width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow-deep);
-            outline: 2px solid var(--gold-primary);
+            border-radius: 24px;
+            box-shadow: var(--shadow-deep), var(--glow-gold);
+            outline: 3px solid var(--gold-primary);
+            outline-offset: -3px;
         }
 
         .lightbox-close {
             position: absolute;
-            top: -50px;
+            top: -60px;
             right: 0;
-            background: none;
-            border: none;
+            background: var(--dark-elevated);
+            border: 2px solid var(--gold-primary);
             color: var(--gold-primary);
             font-size: 2rem;
             cursor: pointer;
             transition: var(--transition);
-            padding: 10px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: var(--text-sm);
+            letter-spacing: 1px;
         }
 
         .lightbox-close:hover {
-            transform: rotate(90deg);
-            color: var(--gold-light);
+            background: var(--gold-primary);
+            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold);
         }
 
-        /* ===== INFO SECTION ===== */
+        /* ===== INFO SECTION PREMIUM ===== */
         .info-section {
-            padding: 5rem 10%;
-            background: rgba(15,15,15,0.7);
+            padding: 6rem 10%;
+            background: rgba(15,15,15,0.85);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
             border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
             position: relative;
         }
 
@@ -609,57 +1083,89 @@
             width: 1px;
             height: 100%;
             background: linear-gradient(180deg, transparent, var(--gold-primary), transparent);
-            opacity: 0.3;
+            opacity: 0.25;
         }
 
         .info-box {
-            padding: 30px;
+            padding: 40px 35px;
             background: var(--dark-card);
-            border-radius: 25px;
+            border-radius: 28px;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold-gradient-horizontal);
+            opacity: 0;
+            transition: var(--transition-smooth);
         }
 
         .info-box:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--gold-primary);
-            box-shadow: var(--shadow-gold);
+            box-shadow: var(--shadow-gold-intense);
+        }
+
+        .info-box:hover::before {
+            opacity: 1;
         }
 
         .info-box h4 {
             color: var(--gold-primary);
-            margin-bottom: 25px;
-            letter-spacing: 3px;
+            margin-bottom: 30px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            font-size: 1.3rem;
+            font-size: var(--text-lg);
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            font-weight: 600;
         }
 
         .info-box h4::after {
             content: '';
             position: absolute;
             bottom: 0; left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--gold-gradient);
+            width: 60px;
+            height: 3px;
+            background: var(--gold-gradient-horizontal);
+            border-radius: 2px;
         }
 
         .info-box ul { list-style: none; }
+        
         .info-box ul li { 
-            margin-bottom: 18px; 
-            line-height: 1.7;
-            padding-left: 25px;
+            margin-bottom: 22px; 
+            line-height: 1.8;
+            padding-left: 32px;
             position: relative;
+            font-size: var(--text-sm);
         }
 
         .info-box ul li::before {
             content: '✦';
             position: absolute;
             left: 0;
+            top: 2px;
             color: var(--gold-primary);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        .info-box ul li strong {
+            color: var(--text-light);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 4px;
+            font-size: var(--text-base);
         }
 
         .info-box a {
@@ -668,78 +1174,234 @@
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-weight: 400;
         }
 
         .info-box a:hover {
             color: var(--gold-primary);
-            transform: translateX(5px);
+            transform: translateX(8px);
         }
 
+        .info-box a i {
+            transition: var(--transition-smooth);
+        }
+        
+        .info-box a:hover i {
+            transform: scale(1.2);
+        }
+
+        /* ✨ Social Icons Premium */
         .social-icons {
             display: flex;
-            gap: 18px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 25px;
         }
 
         .social-icons a {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             background: var(--glass);
             border: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--gold-primary);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-gradient);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: -1;
         }
 
         .social-icons a:hover {
-            background: var(--gold-gradient);
             color: #0a0a0a;
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: var(--shadow-gold);
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: var(--shadow-gold-intense);
             border-color: transparent;
+        }
+
+        .social-icons a:hover::before {
+            opacity: 1;
+        }
+
+        /* ✨ Trust Badges */
+        .trust-badges {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--glass);
+            border-radius: 30px;
+            font-size: var(--text-xs);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+
+        .trust-badge i {
+            color: var(--gold-primary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials-section {
+            padding: 6rem 5%;
+            background: rgba(12,12,12,0.9);
+            position: relative;
+        }
+
+        .testimonials-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: var(--dark-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 45px 40px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 25px;
+            left: 35px;
+            font-size: 5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-primary);
+            opacity: 0.15;
+            line-height: 1;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            border: 3px solid var(--gold-primary);
+            padding: 3px;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #0a0a0a;
+        }
+
+        .testimonial-text {
+            font-size: var(--text-lg);
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .testimonial-author {
+            color: var(--gold-primary);
+            font-weight: 600;
+            font-size: var(--text-base);
+        }
+
+        .testimonial-role {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+            margin-top: 5px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .testimonial-dot.active {
+            background: var(--gold-primary);
+            border-color: var(--gold-primary);
+            transform: scale(1.2);
         }
 
         /* ===== MUSIC PLAYER PREMIUM ===== */
         .music-player {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 35px;
+            right: 35px;
             z-index: 1000;
             display: flex;
             align-items: center;
-            background: var(--dark-card);
-            padding: 12px 25px;
-            border-radius: 60px;
-            border: 1px solid var(--gold-primary);
-            backdrop-filter: blur(15px);
+            background: var(--dark-elevated);
+            padding: 14px 30px;
+            border-radius: 70px;
+            border: 2px solid var(--gold-primary);
+            backdrop-filter: blur(20px);
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow-gold);
-            gap: 15px;
+            box-shadow: var(--shadow-gold-intense);
+            gap: 18px;
+            min-width: 220px;
         }
 
         .music-player:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 45px rgba(212,175,55,0.35);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(212,175,55,0.45);
+            border-color: var(--gold-light);
+        }
+
+        .music-player.playing {
+            border-color: var(--gold-light);
+            animation: pulseBorder 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseBorder {
+            0%, 100% { box-shadow: var(--shadow-gold-intense); }
+            50% { box-shadow: 0 0 30px rgba(212,175,55,0.7), 0 0 60px rgba(212,175,55,0.3); }
         }
 
         .visualizer {
             display: flex;
             align-items: flex-end;
-            height: 20px;
-            gap: 4px;
+            height: 25px;
+            gap: 5px;
         }
 
         .bar {
-            width: 4px;
-            background: var(--gold-gradient);
-            border-radius: 2px;
-            height: 6px;
+            width: 5px;
+            background: var(--gold-gradient-horizontal);
+            border-radius: 3px;
+            height: 8px;
             transition: height 0.15s ease;
         }
 
@@ -749,35 +1411,339 @@
         .playing .bar:nth-child(4) { animation-delay: 0.45s; }
 
         @keyframes visualize {
-            0%, 100% { height: 6px; }
-            50% { height: 20px; }
+            0%, 100% { height: 8px; }
+            50% { height: 25px; }
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
         }
 
         .music-text {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--gold-primary);
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             font-weight: 600;
         }
 
-        /* ===== FOOTER ===== */
+        .music-title {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* ===== FLOATING WHATSAPP CTA ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            left: 35px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            background: #25D366;
+            color: white;
+            border-radius: 70px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--text-sm);
+            letter-spacing: 1px;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            animation: floatWA 3s ease-in-out infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            font-size: 1.3rem;
+        }
+
+        @keyframes floatWA {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ===== FOOTER PREMIUM ===== */
         footer {
             text-align: center;
-            padding: 4rem 2rem 3rem;
+            padding: 5rem 2rem 4rem;
             border-top: 1px solid var(--glass-border);
-            font-size: 0.85rem;
+            font-size: var(--text-sm);
             letter-spacing: 3px;
-            opacity: 0.8;
-            background: rgba(10,10,10,0.9);
+            opacity: 0.9;
+            background: rgba(10,10,10,0.95);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: var(--gold-gradient-horizontal);
+        }
+
+        footer .footer-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-primary);
+            margin: 0 auto 25px;
+            display: block;
+            overflow: hidden;
         }
 
         footer a {
             color: var(--gold-primary);
             text-decoration: none;
+            transition: var(--transition-smooth);
+            position: relative;
         }
 
-        /* ===== MOBILE PREMIUM ===== */
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-primary);
+            transition: var(--transition-smooth);
+        }
+
+        footer a:hover::after {
+            width: 100%;
+        }
+
+        footer .copyright {
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+        }
+
+        footer .crafted {
+            display: block;
+            margin-top: 15px;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        footer .crafted span {
+            color: var(--gold-primary);
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* ===== QUICK VIEW MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2500;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--dark-elevated);
+            border-radius: 28px;
+            border: 2px solid var(--gold-primary);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            animation: modalSlide 0.4s ease;
+            box-shadow: var(--shadow-deep), var(--glow-gold);
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(30px) scale(0.98); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .modal-media {
+            height: 100%;
+            min-height: 400px;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .modal-media img,
+        .modal-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--dark-card);
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--gold-primary);
+            color: #0a0a0a;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: var(--text-2xl);
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .modal-price {
+            color: var(--gold-primary);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .modal-desc {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .modal-specs {
+            margin-bottom: 30px;
+        }
+
+        .modal-specs dt {
+            color: var(--gold-primary);
+            font-weight: 500;
+            margin-top: 12px;
+            font-size: var(--text-sm);
+        }
+
+        .modal-specs dd {
+            color: var(--text-light);
+            margin-left: 0;
+            font-size: var(--text-sm);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-modal {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: var(--text-sm);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-modal.primary {
+            background: var(--gold-gradient);
+            color: #0a0a0a;
+            border: none;
+        }
+
+        .btn-modal.secondary {
+            background: transparent;
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .btn-modal:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* ===== ANIMATION UTILITIES ===== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            will-change: opacity, transform;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-item { opacity: 0; animation: staggerFade 0.5s ease forwards; }
+        @keyframes staggerFade {
+            to { opacity: 1; transform: none; }
+        }
+
+        /* ===== RESPONSIVE PREMIUM ===== */
+        @media (max-width: 1024px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+                max-height: 95vh;
+            }
+            .modal-media { min-height: 300px; }
+        }
+
         @media (max-width: 768px) {
             :root { --nav-height: 80px; }
             
@@ -792,13 +1758,14 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 30px;
+                gap: 35px;
                 background: rgba(10,10,10,0.98);
-                backdrop-filter: blur(20px);
+                backdrop-filter: blur(25px);
                 transform: translateY(-100%);
                 opacity: 0;
                 pointer-events: none;
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1999;
             }
             
             .nav-links.active {
@@ -807,207 +1774,417 @@
                 pointer-events: auto;
             }
             
-            .hero { min-height: 75vh; padding-top: 130px; }
-            .hero h1 { font-size: clamp(2rem, 9vw, 3.5rem); letter-spacing: 5px; }
-            .hero p { font-size: 1rem; letter-spacing: 3px; }
+            .hero { min-height: 85vh; padding-top: 140px; }
+            .hero h1 { font-size: clamp(2.3rem, 9vw, 4rem); letter-spacing: 6px; }
+            .hero p { font-size: var(--text-base); letter-spacing: 4px; }
             
-            .gallery { 
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-                padding: 0 2%;
+            .gold-price-ticker {
+                padding: 16px 35px;
+                font-size: var(--text-sm);
+                flex-wrap: wrap;
+                justify-content: center;
+                border-radius: 60px;
             }
             
-            .product-card .media-wrapper { height: 240px; }
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-premium {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .gallery { 
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 25px;
+                padding: 0 3%;
+            }
+            
+            .product-card .media-wrapper { height: 260px; }
             
             .info-section { 
-                padding: 4rem 5%; 
+                padding: 5rem 5%; 
                 grid-template-columns: 1fr;
             }
             
             .info-section::before { display: none; }
             
-            .music-player {
+            .music-player,
+            .whatsapp-float {
                 bottom: 20px;
-                right: 20px;
-                padding: 10px 20px;
+                padding: 12px 22px;
+                font-size: var(--text-xs);
             }
             
-            .section-title h2 { font-size: 2rem; }
+            .whatsapp-float { left: 20px; }
+            .music-player { right: 20px; }
+            
+            .section-title h2 { font-size: var(--text-3xl); }
+            
+            .modal-content {
+                grid-template-columns: 1fr;
+                margin: 10px;
+            }
         }
 
         @media (max-width: 480px) {
             .gold-price-ticker { 
-                padding: 15px 25px; 
-                font-size: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+                padding: 14px 25px; 
+                font-size: var(--text-sm);
             }
             
-            .gallery-tab { padding: 10px 20px; font-size: 0.8rem; }
-            .product-card .media-wrapper { height: 200px; }
+            .gallery-tab { padding: 12px 22px; font-size: 0.75rem; }
+            .product-card .media-wrapper { height: 220px; }
+            .product-card { padding: 20px 18px; }
+            .product-card h3 { font-size: var(--text-lg); }
+            
+            .info-box { padding: 30px 25px; }
+            
+            .section-title { padding: 3rem 0 3.5rem; }
+            
+            footer { padding: 4rem 1.5rem 3rem; }
         }
 
-        /* ===== UTILITY ANIMATIONS ===== */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* Focus styles for keyboard navigation */
+        a:focus, button:focus, [tabindex]:focus {
+            outline: 2px solid var(--gold-primary);
+            outline-offset: 3px;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--gold-primary);
+            color: #0a0a0a;
+            padding: 12px 24px;
+            z-index: 10000;
+            transition: top 0.3s;
+            font-weight: 600;
         }
         
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .skip-link:focus {
+            top: 0;
         }
     </style>
 </head>
 <body>
+    <!-- ♿ Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- PREMIUM LOADER -->
+    <!-- ✨ Gold Particles Container -->
+    <div id="goldParticles"></div>
+
+    <!-- 💎 PREMIUM LOADER -->
     <div id="premiumLoader">
-        <div class="loader-gold"></div>
-        <div class="loader-text">MERYSA</div>
+        <div class="loader-container">
+            <div class="loader-gold"></div>
+        </div>
+        <div class="loader-text">M E R Y S A</div>
+        <div class="loader-subtext">Loading Excellence</div>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="nav-container">
-        <div class="logo">
-            <img src="images/logo.png" id="mainLogo" alt="Merysa Logo">
+    <!-- 🧭 NAVBAR PREMIUM -->
+    <nav class="nav-container" role="navigation" aria-label="Main navigation">
+        <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" role="button" tabindex="0" aria-label="Kembali ke beranda">
+            <img src="images/logo.png" id="mainLogo" alt="Toko Mas Merysa Logo">
         </div>
         
-        <ul class="nav-links">
-            <li><a href="#">BERANDA</a></li>
-            <li><a href="#galleryPhotos">FOTO</a></li>
-            <li><a href="#galleryVideos">VIDEO</a></li>
-            <li><a href="#toko">LOKASI</a></li>
-            <li><a href="#sosmed">KONTAK</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="#galleryPhotos"><i class="fas fa-images"></i> Koleksi Foto</a></li>
+            <li><a href="#galleryVideos"><i class="fas fa-video"></i> Video Gallery</a></li>
+            <li><a href="#toko"><i class="fas fa-store"></i> Lokasi Toko</a></li>
+            <li><a href="#sosmed"><i class="fas fa-headset"></i> Kontak</a></li>
         </ul>
 
-        <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- ✨ HERO SECTION -->
     <section class="hero">
-        <h1>Toko Mas Merysa</h1>
-        <p>Kemurnian Abadi, Keindahan Hakiki</p>
-        
-        <div class="gold-price-ticker">
-            <i class="fas fa-chart-line"></i> 
-            <span>Harga Emas Hari Ini:</span>
-            <span id="displayHarga" style="color: var(--gold-primary); font-weight: 700; margin-left: 8px;">Memuat...</span>
-        </div>
-    </section>
-
-    <!-- GALLERY SECTION -->
-    <section class="gallery-section">
-        <div class="section-title">
-            <h2>Koleksi Eksklusif</h2>
-        </div>
-        
-        <div class="gallery-tabs">
-            <div class="gallery-tab active" data-filter="all">Semua</div>
-            <div class="gallery-tab" data-filter="photo">Foto</div>
-            <div class="gallery-tab" data-filter="video">Video</div>
-        </div>
-        
-        <div class="gallery" id="mainGallery">
-            <!-- Produk akan dimuat dari Firebase -->
-        </div>
-    </section>
-
-    <!-- INFO SECTION -->
-    <section class="info-section" id="toko">
-        <div class="info-box">
-            <h4>Kunjungi Toko Kami</h4>
-            <ul>
-                <li><strong>Toko Mas Merysa</strong><br>
-                    <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank">
-                        <i class="fas fa-map-marker-alt"></i> Lihat Lokasi
-                    </a>
-                </li>
-                <li><strong>Toko Mas New Merysa</strong><br>
-                    <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank">
-                        <i class="fas fa-map-marker-alt"></i> Lihat Lokasi
-                    </a>
-                </li>
-                <li><strong>Toko Mas Merysa Baru</strong><br>
-                    <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank">
-                        <i class="fas fa-map-marker-alt"></i> Lihat Lokasi
-                    </a>
-                </li>
-                <li><strong>Toko Mas Grand Merysa</strong><br>
-                    <span><i class="fas fa-clock"></i> Lokasi Menyusul</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="info-box" id="sosmed">
-            <h4>Media Sosial</h4>
-            <p style="margin-bottom: 20px; color: var(--text-muted);">Ikuti koleksi terbaru kami melalui media sosial resmi Toko Mas Merysa.</p>
-            <div class="social-icons">
-                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@tokomasmerysa?_r=1&_t=ZS-95zpqNTLJSi" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-certificate"></i> Bersertifikat 24K
+            </div>
+            <h1>Toko Mas Merysa</h1>
+            <p>Kemurnian Abadi, Keindahan Hakiki</p>
+            
+            <div class="hero-cta">
+                <a href="#galleryPhotos" class="btn-premium">
+                    <i class="fas fa-gem"></i> Lihat Koleksi
+                </a>
+                <a href="https://wa.me/6285213745387" class="btn-premium btn-outline" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Konsultasi
+                </a>
+            </div>
+            
+            <div class="gold-price-ticker">
+                <i class="fas fa-coins"></i> 
+                <span>Harga Emas Hari Ini:</span>
+                <span id="displayHarga" style="color: var(--gold-primary); font-weight: 700; margin-left: 8px; font-size: 1.1rem;">Memuat...</span>
             </div>
         </div>
     </section>
 
-    <!-- MUSIC PLAYER -->
-    <div class="music-player" id="playerBtn" onclick="toggleMusic()">
-        <div class="visualizer" id="visualizer">
+    <!-- 🖼️ GALLERY SECTION -->
+    <section class="gallery-section" id="main-content">
+        <div class="section-title">
+            <h2>Koleksi Eksklusif</h2>
+            <p class="section-subtitle">Setiap karya adalah mahakarya</p>
+        </div>
+        
+        <div class="gallery-tabs" role="tablist">
+            <button class="gallery-tab active" data-filter="all" role="tab" aria-selected="true">Semua Koleksi</button>
+            <button class="gallery-tab" data-filter="photo" role="tab">Foto</button>
+            <button class="gallery-tab" data-filter="video" role="tab">Video</button>
+        </div>
+        
+        <div class="gallery" id="mainGallery" aria-live="polite">
+            <!-- Produk akan dimuat dari Firebase -->
+            <div class="product-card animate-on-scroll" style="animation-delay: 0ms">
+                <div class="media-wrapper">
+                    <img src="images/placeholder.jpg" alt="Contoh koleksi emas" loading="lazy">
+                    <div class="certificate-badge"><i class="fas fa-check-circle"></i> Certified</div>
+                </div>
+                <h3>Cincin Mahar Premium</h3>
+                <span class="price">Rp 12.500.000</span>
+                <p class="description">Emas 24K dengan ukiran tradisional</p>
+                <div class="product-actions">
+                    <button class="btn-action quick-view" aria-label="Lihat detail">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn-action wishlist" aria-label="Tambah ke wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://wa.me/6285213745387?text=Saya%20tertarik%20dengan%20Cincin%20Mahar%20Premium" class="btn-action" aria-label="Hubungi via WhatsApp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 💬 TESTIMONIALS SECTION -->
+    <section class="testimonials-section">
+        <div class="section-title">
+            <h2>Kata Mereka</h2>
+            <p class="section-subtitle">Pengalaman pelanggan terpercaya</p>
+        </div>
+        
+        <div class="testimonials-carousel">
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <p class="testimonial-text">"Kualitas emasnya benar-benar premium, sertifikatnya lengkap, dan pelayanannya sangat profesional. Sangat direkomendasikan!"</p>
+                <div class="testimonial-author">Siti Rahayu</div>
+                <div class="testimonial-role">Pelanggan Setia sejak 2023</div>
+            </div>
+            
+            <div class="testimonial-nav">
+                <div class="testimonial-dot active" data-slide="0"></div>
+                <div class="testimonial-dot" data-slide="1"></div>
+                <div class="testimonial-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📍 INFO SECTION -->
+    <section class="info-section" id="toko">
+        <div class="info-box animate-on-scroll">
+            <h4><i class="fas fa-map-marked-alt"></i> Kunjungi Toko Kami</h4>
+            <ul>
+                <li>
+                    <strong>Toko Mas Merysa</strong>
+                    <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank" rel="noopener">
+                        <i class="fas fa-location-arrow"></i> Pasar selasa panam. 123, Pekanbaru
+                    </a>
+                </li>
+                <li>
+                    <strong>Toko Mas New Merysa</strong>
+                    <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank" rel="noopener">
+                        <i class="fas fa-location-arrow"></i> Pasar selasa panam. 123, Pekanbaru
+                    </a>
+                </li>
+                <li>
+                    <strong>Toko Mas Merysa Baru</strong>
+                    <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank" rel="noopener">
+                        <i class="fas fa-location-arrow"></i> Pasar selasa panam. 123, Pekanbaru
+                    </a>
+                </li>
+                <li>
+                    <strong>Toko Mas grand Merysa</strong>
+                    <a href="https://maps.app.goo.gl/Sk9AF8BcWaCQDcaE8" target="_blank" rel="noopener">
+                        <i class="fas fa-location-arrow"></i> Pasar selasa panam. 123, Pekanbaru
+                    </a>
+                </li>
+                <li>
+                    <strong><i class="fas fa-clock"></i> Jam Operasional</strong>
+                    Senin - Sabtu: 09.00 - 17.00 WIB<br>
+                    Minggu: 10.00 - 17.00 WIB
+                </li>
+            </ul>
+            <div class="trust-badges">
+                <span class="trust-badge"><i class="fas fa-shield-alt"></i> Garansi Resmi</span>
+                <span class="trust-badge"><i class="fas fa-undo"></i> Tukar 7 Hari</span>
+            </div>
+        </div>
+
+        <div class="info-box animate-on-scroll" id="sosmed">
+            <h4><i class="fas fa-share-alt"></i> Terhubung Dengan Kami</h4>
+            <p style="margin-bottom: 25px; color: var(--text-muted);">Ikuti koleksi terbaru dan penawaran eksklusif melalui media sosial resmi Toko Mas Merysa.</p>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@tokomasmerysa?_r=1&_t=ZS-95zpqNTLJSi" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/6285213745387" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="trust-badges" style="margin-top: 30px;">
+                <span class="trust-badge"><i class="fas fa-lock"></i> Transaksi Aman</span>
+                <span class="trust-badge"><i class="fas fa-medal"></i> Terakreditasi</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎵 MUSIC PLAYER PREMIUM -->
+    <div class="music-player" id="playerBtn" role="button" tabindex="0" aria-label="Toggle background music">
+        <div class="visualizer" id="visualizer" aria-hidden="true">
             <div class="bar"></div><div class="bar"></div>
             <div class="bar"></div><div class="bar"></div>
         </div>
-        <span class="music-text" id="statusText">Play Music</span>
+        <div class="music-info">
+            <span class="music-text" id="statusText">Play Music</span>
+            <span class="music-title">Elegant Gold Theme</span>
+        </div>
         <audio id="bgMusic" loop preload="none">
             <source src="audio/musik_latar.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
         </audio>
     </div>
 
-    <!-- VIDEO LIGHTBOX -->
-    <div class="video-lightbox" id="videoLightbox">
+    <!-- 💬 FLOATING WHATSAPP CTA -->
+    <a href="https://wa.me/6285213745387" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Hubungi kami via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Chat Sekarang</span>
+    </a>
+
+    <!-- 🎬 VIDEO LIGHTBOX PREMIUM -->
+    <div class="video-lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Video player">
         <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose">&times;</button>
-            <video class="lightbox-video" id="lightboxVideo" controls></video>
+            <button class="lightbox-close" id="lightboxClose" aria-label="Tutup video">
+                <i class="fas fa-times"></i> Tutup
+            </button>
+            <video class="lightbox-video" id="lightboxVideo" controls playsinline preload="metadata">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- 🔍 QUICK VIEW MODAL -->
+    <div class="modal-overlay" id="quickViewModal" role="dialog" aria-modal="true" aria-label="Detail produk">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Tutup detail">&times;</button>
+            <div class="modal-media" id="modalMedia">
+                <!-- Media will be injected here -->
+            </div>
+            <div class="modal-info">
+                <h3 class="modal-title" id="modalTitle">Nama Produk</h3>
+                <div class="modal-price" id="modalPrice">Rp 0</div>
+                <p class="modal-desc" id="modalDesc">Deskripsi produk akan muncul di sini.</p>
+                <dl class="modal-specs">
+                    <dt>Berat</dt><dd id="modalWeight">- gram</dd>
+                    <dt>Kadar Emas</dt><dd id="modalKarat">24 Karat</dd>
+                    <dt>Sertifikat</dt><dd id="modalCert">✓ Tersedia</dd>
+                </dl>
+                <div class="modal-actions">
+                    <a href="https://wa.me/6285213745387" class="btn-modal primary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Pesan Sekarang
+                    </a>
+                    <button class="btn-modal secondary" id="modalWishlist">
+                        <i class="far fa-heart"></i> Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🦶 FOOTER PREMIUM -->
     <footer>
-        &copy; 2026 <a href="#">TOKO MAS MERYSA</a>. PEKANBARU, INDONESIA.<br>
-        <span style="opacity: 0.6; display: block; margin-top: 10px;">Crafted with <span style="color: var(--gold-primary);">♥</span> & Gold</span>
+        <img src="images/logo.png" alt="Toko Mas Merysa" class="footer-logo" loading="lazy">
+        &copy; 2026 <a href="#">TOKO MAS MERYSA</a>. Pekanbaru, Indonesia.<br>
+        <span class="copyright">Semua hak dilindungi undang-undang. Emas bersertifikat & terjamin keasliannya.</span>
+        <span class="crafted">Crafted with <span>♥</span> & Pure Gold</span>
     </footer>
 
-    <!-- FIREBASE & APP SCRIPT -->
+    <!-- 🔥 FIREBASE & APP SCRIPT -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     
     <script>
-        // ===== KONFIGURASI FIREBASE =====
+        // ===== 🔧 FIREBASE CONFIG =====
         const firebaseConfig = {
         apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
         authDomain: "tokomasmerysa.firebaseapp.com",
         databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
         projectId: "tokomasmerysa",
         appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
-    };
+        };
         
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
         const db = firebase.database();
 
-        // ===== PREMIUM LOADER =====
+        // ===== ✨ GOLD PARTICLES EFFECT =====
+        function createGoldParticles() {
+            const container = document.getElementById('goldParticles');
+            const particleCount = window.innerWidth < 768 ? 15 : 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // ===== 💎 PREMIUM LOADER =====
         window.addEventListener('load', () => {
+            // Create particles first
+            createGoldParticles();
+            
+            // Hide loader after content loaded
             setTimeout(() => {
-                document.getElementById('premiumLoader').classList.add('hidden');
-            }, 1500);
+                const loader = document.getElementById('premiumLoader');
+                loader.classList.add('hidden');
+                
+                // Trigger scroll animations after loader
+                setTimeout(() => {
+                    handleScrollAnimations();
+                }, 300);
+            }, 1800);
         });
 
-        // ===== NAVBAR SCROLL EFFECT =====
+        // ===== 🧭 NAVBAR SCROLL EFFECT =====
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.nav-container');
             if (window.scrollY > 50) {
@@ -1015,25 +2192,47 @@
             } else {
                 nav.classList.remove('scrolled');
             }
-        });
+        }, { passive: true });
 
-        // ===== MOBILE MENU =====
+        // ===== 📱 MOBILE MENU PREMIUM =====
         const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        const navLinks = document.getElementById('navLinks');
         
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+        function toggleMenu() {
+            const isActive = hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : '';
+        }
+        
+        hamburger.addEventListener('click', toggleMenu);
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
         });
         
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
             });
         });
 
-        // ===== MUSIC PLAYER =====
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container') && navLinks.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ===== 🎵 MUSIC PLAYER PREMIUM =====
         const bgMusic = document.getElementById('bgMusic');
         const playerBtn = document.getElementById('playerBtn');
         const visualizer = document.getElementById('visualizer');
@@ -1051,31 +2250,55 @@
                     statusText.textContent = 'Now Playing';
                 }).catch(e => {
                     console.log('Autoplay prevented:', e);
-                    alert('Klik tombol lagi untuk memutar musik 🎵');
+                    // Show user-friendly message
+                    const originalText = statusText.textContent;
+                    statusText.textContent = 'Klik lagi ▶';
+                    setTimeout(() => {
+                        statusText.textContent = originalText;
+                    }, 2000);
                 });
             }
             isPlaying = !isPlaying;
         }
 
-        // ===== ANIMATE ON SCROLL =====
-        const animateElements = document.querySelectorAll('.animate-on-scroll, .product-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        animateElements.forEach(el => observer.observe(el));
+        playerBtn.addEventListener('click', toggleMusic);
+        playerBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMusic();
+            }
+        });
 
-        // ===== GALLERY TABS FILTER =====
+        // ===== ✨ SCROLL ANIMATIONS =====
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Stagger animation for gallery items
+                        if (entry.target.classList.contains('product-card')) {
+                            entry.target.style.animationDelay = `${index * 80}ms`;
+                        }
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+            
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // ===== 🖼️ GALLERY TABS FILTER =====
         const tabs = document.querySelectorAll('.gallery-tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
+                tabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
                 tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
                 filterGallery(tab.dataset.filter);
             });
         });
@@ -1083,17 +2306,22 @@
         function filterGallery(type) {
             const cards = document.querySelectorAll('.product-card');
             cards.forEach(card => {
-                if (type === 'all' || card.dataset.type === type) {
+                const cardType = card.dataset.type;
+                if (type === 'all' || cardType === type) {
                     card.style.display = 'block';
-                    setTimeout(() => card.style.opacity = '1', 100);
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
                 } else {
                     card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
                     setTimeout(() => card.style.display = 'none', 300);
                 }
             });
         }
 
-        // ===== VIDEO LIGHTBOX =====
+        // ===== 🎬 VIDEO LIGHTBOX PREMIUM =====
         const lightbox = document.getElementById('videoLightbox');
         const lightboxVideo = document.getElementById('lightboxVideo');
         const lightboxClose = document.getElementById('lightboxClose');
@@ -1101,8 +2329,9 @@
         function openVideo(src) {
             lightboxVideo.src = src;
             lightbox.classList.add('active');
-            lightboxVideo.play();
+            lightboxVideo.play().catch(() => {});
             document.body.style.overflow = 'hidden';
+            lightboxClose.focus();
         }
 
         function closeVideo() {
@@ -1116,79 +2345,308 @@
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) closeVideo();
         });
+        
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeVideo();
+            }
+        });
 
-        // ===== LOAD PRODUCTS FROM FIREBASE =====
+        // ===== 🔍 QUICK VIEW MODAL =====
+        const modal = document.getElementById('quickViewModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalMedia = document.getElementById('modalMedia');
+        
+        function openModal(product) {
+            document.getElementById('modalTitle').textContent = product.nama || 'Produk Premium';
+            document.getElementById('modalPrice').textContent = product.harga || 'Hubungi untuk harga';
+            document.getElementById('modalDesc').textContent = product.deskripsi || 'Koleksi eksklusif emas 24K bersertifikat.';
+            document.getElementById('modalWeight').textContent = product.berat || '-';
+            document.getElementById('modalCert').textContent = product.sertifikat ? '✓ Tersedia' : 'Hubungi kami';
+            
+            // Set media
+            const src = product.url_video || product.foto;
+            const isVideo = product.tipe === 'video' || product.url_video;
+            modalMedia.innerHTML = isVideo 
+                ? `<video src="${src}" controls autoplay loop muted playsinline></video>`
+                : `<img src="${src}" alt="${product.nama}" loading="lazy">`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            modalClose.focus();
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            modalMedia.innerHTML = '';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Delegate quick view clicks
+        document.addEventListener('click', (e) => {
+            const quickViewBtn = e.target.closest('.quick-view');
+            if (quickViewBtn) {
+                const card = quickViewBtn.closest('.product-card');
+                if (card) {
+                    // In real app, fetch full product data from Firebase
+                    const product = {
+                        nama: card.querySelector('h3')?.textContent || 'Produk',
+                        harga: card.querySelector('.price')?.textContent || '',
+                        foto: card.querySelector('img')?.src || '',
+                        deskripsi: card.querySelector('.description')?.textContent || ''
+                    };
+                    openModal(product);
+                }
+            }
+        });
+
+        // Wishlist toggle
+        document.addEventListener('click', (e) => {
+            const wishlistBtn = e.target.closest('.wishlist');
+            if (wishlistBtn) {
+                wishlistBtn.classList.toggle('active');
+                const icon = wishlistBtn.querySelector('i');
+                if (wishlistBtn.classList.contains('active')) {
+                    icon.classList.replace('far', 'fas');
+                    // Show toast notification
+                    showToast('Ditambahkan ke Wishlist ✨');
+                } else {
+                    icon.classList.replace('fas', 'far');
+                }
+            }
+        });
+
+        // Simple toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--dark-elevated);
+                border: 2px solid var(--gold-primary);
+                color: var(--text-light);
+                padding: 15px 30px;
+                border-radius: 50px;
+                font-size: var(--text-sm);
+                z-index: 5000;
+                box-shadow: var(--shadow-gold-intense);
+                animation: fadeInUp 0.3s ease, fadeOut 0.3s ease 2.5s forwards;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // ===== 💬 TESTIMONIALS CAROUSEL (Simple) =====
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                testimonialDots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                // In production: implement full carousel logic
+            });
+        });
+
+        // ===== 🖼️ LAZY LOAD WITH BLUR-UP =====
+        document.addEventListener('DOMContentLoaded', () => {
+            if ('loading' in HTMLImageElement.prototype) {
+                // Native lazy loading supported
+                const images = document.querySelectorAll('img[loading="lazy"]');
+                images.forEach(img => {
+                    img.addEventListener('load', () => {
+                        img.style.transition = 'opacity 0.4s ease';
+                        img.style.opacity = '1';
+                    });
+                    img.style.opacity = '0';
+                });
+            }
+        });
+
+        // ===== 📦 LOAD PRODUCTS FROM FIREBASE =====
         function renderGallery(products) {
             const gallery = document.getElementById('mainGallery');
+            if (!gallery) return;
+            
             gallery.innerHTML = '';
+            
+            if (products.length === 0) {
+                gallery.innerHTML = '<p style="text-align:center;color:var(--text-muted);grid-column:1/-1;">Koleksi sedang diperbarui. Silakan kunjungi toko kami.</p>';
+                return;
+            }
             
             products.forEach((item, index) => {
                 const isVideo = item.tipe === 'video' || item.foto?.includes('video') || item.url_video;
-                const mediaSrc = item.url_video || item.foto;
-                const delay = index * 100;
+                const mediaSrc = item.url_video || item.foto || 'images/placeholder.jpg';
+                const delay = Math.min(index * 100, 1000); // Cap max delay
                 
                 const card = document.createElement('div');
                 card.className = `product-card animate-on-scroll ${isVideo ? 'video' : ''}`;
                 card.dataset.type = isVideo ? 'video' : 'photo';
                 card.style.animationDelay = `${delay}ms`;
+                card.tabIndex = 0; // Make focusable
                 
                 card.innerHTML = `
                     <div class="media-wrapper">
                         ${isVideo ? `
-                            <video src="${mediaSrc}" muted loop playsinline></video>
+                            <video src="${mediaSrc}" muted loop playsinline loading="lazy"></video>
                             <div class="video-badge"><i class="fas fa-play"></i> Video</div>
-                            <div class="play-overlay" onclick="openVideo('${mediaSrc}')">
+                            <div class="play-overlay" role="button" tabindex="0" aria-label="Putar video">
                                 <div class="play-btn"><i class="fas fa-play"></i></div>
                             </div>
                         ` : `
-                            <img src="${item.foto}" alt="${item.nama}" loading="lazy">
+                            <img src="${mediaSrc}" alt="${item.nama || 'Produk emas'}" loading="lazy">
                         `}
+                        <div class="certificate-badge"><i class="fas fa-check-circle"></i> Certified</div>
                     </div>
-                    <h3>${item.nama}</h3>
-                    ${item.harga ? `<div class="price">${item.harga}</div>` : ''}
+                    <h3>${item.nama || 'Koleksi Premium'}</h3>
+                    ${item.harga ? `<span class="price">${item.harga}</span>` : ''}
+                    ${item.deskripsi ? `<p class="description">${item.deskripsi.substring(0, 60)}${item.deskripsi.length > 60 ? '...' : ''}</p>` : ''}
+                    <div class="product-actions">
+                        <button class="btn-action quick-view" aria-label="Lihat detail ${item.nama || 'produk'}">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-action wishlist" aria-label="Simpan ke wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <a href="https://wa.me/6281234567890?text=Saya%20tertarik%20dengan%20${encodeURIComponent(item.nama || 'produk')}" 
+                           class="btn-action" 
+                           aria-label="Hubungi via WhatsApp" 
+                           target="_blank" 
+                           rel="noopener">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 `;
+                
+                // Add video play handler
+                if (isVideo) {
+                    const playOverlay = card.querySelector('.play-overlay');
+                    playOverlay.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openVideo(mediaSrc);
+                    });
+                    playOverlay.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openVideo(mediaSrc);
+                        }
+                    });
+                }
                 
                 gallery.appendChild(card);
             });
+            
+            // Re-initialize scroll animations for new elements
+            setTimeout(handleScrollAnimations, 100);
         }
 
-        // ===== LOAD CONFIG & PRODUCTS =====
+        // ===== 🔄 LOAD SITE DATA =====
         function loadSiteData() {
-            // Load harga emas
-            db.ref('toko_mas/config/harga').once('value').then(snapshot => {
-                const harga = snapshot.val();
-                if (harga) {
-                    document.getElementById('displayHarga').textContent = harga;
-                }
-            });
-            
-            // Load logo & background
-            db.ref('toko_mas/config').once('value').then(snapshot => {
-                const config = snapshot.val();
-                if (config?.logo) {
-                    document.getElementById('mainLogo').src = config.logo;
-                }
-                if (config?.bg) {
-                    document.body.style.backgroundImage = `url(${config.bg})`;
-                }
-            });
-            
-            // Load products (foto + video)
-            db.ref('toko_mas/produk').on('value', (snapshot) => {
-                const products = [];
-                snapshot.forEach(child => {
-                    products.push({ key: child.key, ...child.val() });
+            // Load harga emas dengan fallback
+            db.ref('toko_mas/config/harga').once('value')
+                .then(snapshot => {
+                    const harga = snapshot.val();
+                    const display = document.getElementById('displayHarga');
+                    if (display) {
+                        display.textContent = harga || 'Hubungi kami untuk harga terbaru';
+                    }
+                })
+                .catch(err => {
+                    console.warn('Gagal memuat harga emas:', err);
+                    const display = document.getElementById('displayHarga');
+                    if (display) display.textContent = 'Harga tersedia di toko';
                 });
-                renderGallery(products);
-            });
+            
+            // Load konfigurasi tampilan
+            db.ref('toko_mas/config').once('value')
+                .then(snapshot => {
+                    const config = snapshot.val();
+                    if (config?.logo) {
+                        const logo = document.getElementById('mainLogo');
+                        if (logo) logo.src = config.logo;
+                    }
+                    // Background handled by CSS, can override if needed
+                })
+                .catch(err => console.warn('Gagal memuat config:', err));
+            
+            // Load products dengan error handling
+            db.ref('toko_mas/produk').on('value', 
+                (snapshot) => {
+                    const products = [];
+                    snapshot.forEach(child => {
+                        const data = child.val();
+                        if (data) products.push({ key: child.key, ...data });
+                    });
+                    renderGallery(products);
+                },
+                (error) => {
+                    console.error('Firebase error:', error);
+                    // Show fallback content
+                    const gallery = document.getElementById('mainGallery');
+                    if (gallery) {
+                        gallery.innerHTML = `
+                            <div class="product-card" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                                <i class="fas fa-gem" style="font-size: 3rem; color: var(--gold-primary); margin-bottom: 20px;"></i>
+                                <h3 style="margin-bottom: 15px;">Koleksi Premium</h3>
+                                <p style="color: var(--text-muted); margin-bottom: 25px;">Silakan kunjungi toko kami untuk melihat koleksi lengkap emas bersertifikat.</p>
+                                <a href="https://wa.me/6281234567890" class="btn-premium" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Hubungi Kami
+                                </a>
+                            </div>
+                        `;
+                    }
+                }
+            );
         }
 
-        // Initialize
+        // ===== 🚀 INITIALIZE =====
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize animations
+            handleScrollAnimations();
+            
+            // Load data from Firebase
             loadSiteData();
+            
+            // Add keyboard support for logo
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            }
         });
 
-    // ==========================================
+        // ===== ♿ Accessibility Enhancements =====
+        // Close modals on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) closeVideo();
+                if (modal.classList.contains('active')) closeModal();
+            }
+        });
+
+        // Prevent scroll when modal is open
+        function toggleBodyScroll(shouldLock) {
+            document.body.style.overflow = shouldLock ? 'hidden' : '';
+        }
+// =====================================
 // REGISTER SERVICE WORKER
 // ==========================================
 if ('servic-eWorker' in navigator) {
