@@ -301,6 +301,27 @@ text-align:center;
 padding:20px;
 color:#aaa;
 }
+.music-btn{
+position:fixed;
+bottom:20px;
+left:20px;
+padding:10px 15px;
+background:linear-gradient(135deg,#D4AF37,#f5e6a3);
+color:#000;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:0.85rem;
+font-weight:600;
+box-shadow:0 5px 15px rgba(212,175,55,0.4);
+transition:0.3s;
+z-index:999;
+}
+
+.music-btn:hover{
+transform:scale(1.05);
+box-shadow:0 5px 25px rgba(212,175,55,0.6);
+}
 </style>
 </head>
 
@@ -310,9 +331,14 @@ color:#aaa;
 <div class="wave"></div>
 
 <!-- 🎵 MUSIK -->
-<audio autoplay loop>
-<source src="audio/musik_latar.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop>
+    <source src="audio/musik_latar.mp3" type="audio/mpeg">
 </audio>
+
+<!-- 🎵 BUTTON CONTROL -->
+<button id="musicBtn" class="music-btn" onclick="toggleMusic()">
+    ▶️ Play Musik
+</button>
 
 <header class="navbar">
 
@@ -433,6 +459,34 @@ let media=d.file
 videoList.innerHTML+=media;
 });
 });
+    
+/* MUSIC */
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+function toggleMusic(){
+    if(isPlaying){
+        music.pause();
+        btn.innerHTML = "▶️ Play Musik";
+    }else{
+        music.play();
+        btn.innerHTML = "⏸️ Stop Musik";
+    }
+    isPlaying = !isPlaying;
+}
+
+/* AUTO PLAY (biar jalan setelah interaksi pertama) */
+document.body.addEventListener("click", () => {
+    if(!isPlaying){
+        music.play().then(()=>{
+            isPlaying = true;
+            btn.innerHTML = "⏸️ Stop Musik";
+        }).catch(()=>{});
+    }
+}, { once:true });
+
 // =====================================
 // REGISTER SERVICE WORKER
 // ==========================================
