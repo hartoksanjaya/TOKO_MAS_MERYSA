@@ -17,310 +17,849 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <style>
-:root{
---gold:#D4AF37;
---dark:#050505;
---border:rgba(212,175,55,0.3);
+/* 🎨 PREMIUM CSS VARIABLES */
+:root {
+  --gold-primary: #D4AF37;
+  --gold-light: #F4E4A6;
+  --gold-dark: #A67C00;
+  --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+  --gold-glow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3);
+  --dark-bg: #0a0a0f;
+  --dark-card: rgba(20, 20, 30, 0.85);
+  --dark-card-hover: rgba(30, 30, 45, 0.95);
+  --border-gold: rgba(212, 175, 55, 0.4);
+  --border-glow: rgba(212, 175, 55, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 10px 40px rgba(212, 175, 55, 0.25);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
 }
 
-body{
-margin:0;
-font-family:Poppins;
-background:var(--dark);
-color:#fff;
-overflow-x:hidden;
+/* 🌟 RESET & BASE */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* ✨ GOLD SHINE */
-.gold{
-background:linear-gradient(120deg,#BF953F,#FCF6BA,#B38728,#FBF5B7);
-background-size:300%;
--webkit-background-clip:text;
-color:transparent;
-animation:shine 6s linear infinite;
-}
-@keyframes shine{0%{background-position:0}100%{background-position:300%}}
-
-/* 🌌 BINTANG */
-.stars{
-position:fixed;
-width:100%;height:100%;
-background:url('https://www.transparenttextures.com/patterns/stardust.png');
-animation:moveStars 50s linear infinite;
-opacity:0.3;
-z-index:-1;
-}
-@keyframes moveStars{
-from{background-position:0 0;}
-to{background-position:1000px 1000px;}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-/* 🌊 AIR EFFECT */
-.wave{
-position:fixed;
-bottom:0;
-width:100%;
-height:120px;
-background:rgba(212,175,55,0.1);
-animation:wave 6s infinite linear;
-z-index:-1;
-}
-@keyframes wave{
-0%{transform:translateX(0);}
-100%{transform:translateX(-200px);}
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* NAVBAR */
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 20px;
-background:rgba(0,0,0,0.8);
-backdrop-filter:blur(10px);
-border-bottom:1px solid var(--border);
-position:sticky;
-top:0;
-z-index:999;
+/* ✨ PREMIUM TYPOGRAPHY */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
 }
 
-.logo{height:40px;}
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 
-.menu{
-display:flex;
-gap:15px;
-}
-
-.menu a{
-color:#fff;
-text-decoration:none;
-font-size:0.9rem;
-}
-
-/* HAMBURGER */
-.hamburger{
-display:none;
-cursor:pointer;
-font-size:20px;
-}
-/* NAVBAR */
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px 20px;
-background:rgba(0,0,0,0.8);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(212,175,55,0.3);
-position:sticky;
-top:0;
-z-index:999;
+/* 🏆 GOLD TEXT EFFECT - PREMIUM */
+.gold {
+  background: var(--gold-gradient);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShine 8s ease-in-out infinite;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+  position: relative;
+  display: inline-block;
 }
 
-/* LEFT SIDE */
-.nav-left{
-display:flex;
-align-items:center;
-gap:12px;
+.gold::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--gold-gradient);
+  border-radius: 2px;
+  transition: transform var(--transition-normal);
+  opacity: 0.7;
 }
 
-/* LOGO BULAT */
-.logo-circle{
-width:45px;
-height:45px;
-border-radius:50%;
-object-fit:cover;
-border:2px solid #D4AF37;
-box-shadow:0 0 10px rgba(212,175,55,0.5);
-transition:0.3s;
+.gold:hover::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
-.logo-circle:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px rgba(212,175,55,0.8);
+@keyframes goldShine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
-/* BRAND TEXT */
-.brand{
-font-size:1.2rem;
-letter-spacing:1px;
+/* 🌌 PREMIUM STAR BACKGROUND */
+.stars {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 90px 40px, rgba(212,175,55,0.9), transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.7), transparent);
+  background-size: 200px 200px;
+  animation: starMove 100s linear infinite;
+  opacity: 0.4;
+  z-index: -2;
+  pointer-events: none;
 }
 
-/* MENU */
-.menu{
-display:flex;
-gap:20px;
+.stars::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, var(--dark-bg) 70%);
 }
 
-.menu a{
-color:#fff;
-text-decoration:none;
-font-size:0.9rem;
-position:relative;
-transition:0.3s;
+@keyframes starMove {
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to { background-position: 200px 200px, 150px 100px, 100px 150px, 180px 80px; }
 }
 
-/* UNDERLINE EFFECT */
-.menu a::after{
-content:'';
-position:absolute;
-bottom:-5px;
-left:0;
-width:0%;
-height:2px;
-background:#D4AF37;
-transition:0.3s;
+/* 🌊 PREMIUM WAVE EFFECT */
+.wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 150px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(212, 175, 55, 0.15), 
+    rgba(212, 175, 55, 0.08), 
+    transparent);
+  animation: waveFlow 12s ease-in-out infinite;
+  z-index: -1;
+  opacity: 0.6;
+  filter: blur(1px);
 }
 
-.menu a:hover::after{
-width:100%;
+.wave::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: url("image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0v46.3c233.3 0 466.7-30.8 700-30.8s466.7 30.8 700 30.8V0H0z' fill='rgba(212,175,55,0.1)'/%3E%3C/svg%3E") repeat-x;
+  background-size: 1200px 120px;
+  animation: wavePattern 8s linear infinite;
 }
 
-/* HAMBURGER */
-.hamburger{
-display:none;
-font-size:22px;
-cursor:pointer;
+@keyframes waveFlow {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-25%) scaleY(1.05); }
 }
 
-/* MOBILE */
-@media(max-width:768px){
-.menu{
-display:none;
-flex-direction:column;
-position:absolute;
-top:65px;
-right:10px;
-background:#111;
-padding:15px;
-border-radius:10px;
-border:1px solid rgba(212,175,55,0.3);
+@keyframes wavePattern {
+  from { background-position: 0 0; }
+  to { background-position: -1200px 0; }
 }
 
-.menu.show{
-display:flex;
+/* 🎯 PREMIUM NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px clamp(16px, 4vw, 32px);
+  background: rgba(10, 10, 15, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-gold);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition-normal);
 }
 
-.hamburger{
-display:block;
-}
-}
-
-@media(max-width:768px){
-.menu{
-display:none;
-flex-direction:column;
-position:absolute;
-top:60px;
-right:10px;
-background:#111;
-padding:15px;
-border-radius:10px;
-}
-.menu.show{display:flex;}
-.hamburger{display:block;}
+.navbar.scrolled {
+  padding: 8px clamp(16px, 4vw, 32px);
+  background: rgba(10, 10, 15, 0.98);
+  box-shadow: var(--shadow-md);
 }
 
-/* HERO */
-.hero{
-text-align:center;
-padding:40px 20px;
+/* 🖼️ PREMIUM LOGO */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.price{
-margin-top:10px;
-padding:10px 20px;
-background:#111;
-border-radius:10px;
-border:1px solid var(--border);
-display:inline-block;
+.logo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-primary);
+  box-shadow: var(--gold-glow);
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
 }
 
-/* GRID */
-.container{max-width:1200px;margin:auto;padding:20px;}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-gap:15px;
+.logo-circle::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  padding: 2px;
+  background: var(--gold-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderRotate 4s linear infinite;
 }
 
-/* PRODUCT */
-.product{
-background:#111;
-padding:10px;
-border-radius:10px;
-border:1px solid var(--border);
-text-align:center;
-transition:0.3s;
-}
-.product:hover{
-transform:translateY(-5px);
-box-shadow:0 5px 20px rgba(212,175,55,0.3);
-}
-.product img{
-width:100%;
-height:140px;
-object-fit:cover;
-border-radius:8px;
+@keyframes borderRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* VIDEO */
-video,iframe{
-width:100%;
-border-radius:10px;
-margin-top:10px;
+.logo-circle:hover {
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.7), 0 0 60px rgba(212, 175, 55, 0.4);
 }
 
-/* TOKO */
-.toko{
-background:#111;
-padding:10px;
-border-radius:10px;
-margin-top:10px;
-border:1px solid var(--border);
+.brand {
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-/* SOSIAL */
-.social{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-}
-.social a{
-background:#111;
-padding:8px 12px;
-border-radius:8px;
-border:1px solid var(--border);
-color:#fff;
-text-decoration:none;
+/* 🧭 PREMIUM MENU */
+.menu {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-/* FOOTER */
-footer{
-text-align:center;
-padding:20px;
-color:#aaa;
-}
-.music-btn{
-position:fixed;
-bottom:20px;
-left:20px;
-padding:10px 15px;
-background:linear-gradient(135deg,#D4AF37,#f5e6a3);
-color:#000;
-border:none;
-border-radius:30px;
-cursor:pointer;
-font-size:0.85rem;
-font-weight:600;
-box-shadow:0 5px 15px rgba(212,175,55,0.4);
-transition:0.3s;
-z-index:999;
+.menu a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: var(--transition-normal);
+  letter-spacing: 0.3px;
 }
 
-.music-btn:hover{
-transform:scale(1.05);
-box-shadow:0 5px 25px rgba(212,175,55,0.6);
+.menu a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background: var(--gold-gradient);
+  opacity: 0;
+  transition: var(--transition-normal);
+  z-index: -1;
+}
+
+.menu a:hover,
+.menu a.active {
+  color: var(--dark-bg);
+  transform: translateY(-2px);
+}
+
+.menu a:hover::before,
+.menu a.active::before {
+  opacity: 1;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 70%;
+  height: 2px;
+  background: var(--gold-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-normal);
+  box-shadow: 0 0 10px var(--gold-primary);
+}
+
+.menu a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* 🍔 PREMIUM HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  z-index: 1001;
+}
+
+.hamburger:hover {
+  background: rgba(212, 175, 55, 0.15);
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2.5px;
+  background: var(--gold-primary);
+  border-radius: 3px;
+  transition: var(--transition-normal);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* 📱 MOBILE MENU */
+@media (max-width: 900px) {
+  .menu {
+    position: fixed;
+    top: 70px;
+    right: clamp(16px, 4vw, 32px);
+    flex-direction: column;
+    background: var(--dark-card);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-gold);
+    box-shadow: var(--shadow-lg), var(--shadow-gold);
+    gap: 4px;
+    min-width: 200px;
+    transform: scale(0.95) translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-slow);
+    z-index: 999;
+  }
+
+  .menu.show {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .menu a {
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* 🎬 PREMIUM HERO SECTION */
+.hero {
+  text-align: center;
+  padding: clamp(40px, 8vw, 80px) clamp(20px, 4vw, 40px);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 60vw, 800px);
+  height: clamp(300px, 60vw, 800px);
+  background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* 💎 PREMIUM PRICE BADGE */
+.price {
+  margin-top: 16px;
+  padding: 14px 28px;
+  background: var(--dark-card);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-sm), var(--shadow-gold);
+  transition: var(--transition-normal);
+  backdrop-filter: blur(10px);
+}
+
+.price:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md), 0 0 30px rgba(212, 175, 55, 0.4);
+  border-color: var(--gold-primary);
+}
+
+.price::before {
+  content: '✨';
+  font-size: 1.2rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.9); }
+}
+
+/* 📦 PREMIUM CONTAINER & GRID */
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: clamp(20px, 4vw, 40px);
+}
+
+.section-title {
+  text-align: center;
+  margin: clamp(40px, 6vw, 60px) 0 clamp(24px, 4vw, 40px);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--gold-gradient);
+  margin: 16px auto 0;
+  border-radius: 3px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* 🛍️ PREMIUM PRODUCT GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(140px, 25vw, 200px), 1fr));
+  gap: clamp(16px, 3vw, 24px);
+  padding: 8px;
+}
+
+/* 🎁 PREMIUM PRODUCT CARD */
+.product {
+  background: var(--dark-card);
+  border-radius: var(--radius-md);
+  padding: clamp(12px, 2vw, 20px);
+  border: 1px solid var(--border-gold);
+  text-align: center;
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.product::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-gradient);
+  opacity: 0;
+  transition: var(--transition-normal);
+  z-index: -1;
+}
+
+.product:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--gold-primary);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+}
+
+.product:hover::before {
+  opacity: 0.08;
+}
+
+.product img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  transition: var(--transition-normal);
+  border: 2px solid transparent;
+  background: linear-gradient(var(--dark-card), var(--dark-card)) padding-box,
+              var(--gold-gradient) border-box;
+}
+
+.product:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.product h4 {
+  font-size: 1rem;
+  margin: 8px 0 4px;
+  color: var(--text-primary);
+}
+
+.product p {
+  font-size: 0.9rem;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+/* 🎬 PREMIUM VIDEO SECTION */
+#videoList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 4vw, 32px);
+  margin-top: 24px;
+}
+
+video, iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-gold);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  background: #000;
+}
+
+video:hover, iframe:hover {
+  border-color: var(--gold-primary);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+  transform: translateY(-4px);
+}
+
+/* 🏪 PREMIUM TOKO CARDS */
+.toko {
+  background: var(--dark-card);
+  padding: clamp(16px, 3vw, 24px);
+  border-radius: var(--radius-md);
+  margin: 12px 0;
+  border: 1px solid var(--border-gold);
+  transition: var(--transition-normal);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toko:hover {
+  transform: translateX(8px);
+  border-color: var(--gold-primary);
+  box-shadow: var(--shadow-gold);
+}
+
+.toko a {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-fast);
+}
+
+.toko a:hover {
+  color: var(--gold-primary);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+/* 🌐 PREMIUM SOCIAL BUTTONS */
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social a {
+  background: var(--dark-card);
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-gold);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-normal);
+  backdrop-filter: blur(10px);
+  min-width: 140px;
+  justify-content: center;
+}
+
+.social a:hover {
+  color: var(--dark-bg);
+  background: var(--gold-gradient);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--shadow-gold), 0 10px 30px rgba(0,0,0,0.3);
+  border-color: transparent;
+}
+
+.social a i {
+  font-size: 1.1rem;
+}
+
+/* 🎵 PREMIUM MUSIC BUTTON */
+.music-btn {
+  position: fixed;
+  bottom: clamp(16px, 3vw, 24px);
+  left: clamp(16px, 3vw, 24px);
+  padding: 12px 24px;
+  background: var(--gold-gradient);
+  color: var(--dark-bg);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: var(--gold-glow), var(--shadow-md);
+  transition: var(--transition-normal);
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.music-btn:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.7), var(--shadow-lg);
+}
+
+.music-btn:active {
+  transform: scale(0.98);
+}
+
+.music-btn.playing::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--dark-bg);
+  border-radius: 50%;
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; }
+}
+
+/* 🦶 PREMIUM FOOTER */
+footer {
+  text-align: center;
+  padding: clamp(30px, 6vw, 50px) clamp(20px, 4vw, 40px);
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-gold);
+  margin-top: 40px;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+footer .gold {
+  font-size: 1.1rem;
+}
+
+/* 🎨 PREMIUM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-gradient);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* 🎯 PREMIUM LOADING STATE */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+  animation: loadingShine 1.5s infinite;
+}
+
+@keyframes loadingShine {
+  to { left: 100%; }
+}
+
+/* 🎨 PREMIUM HOVER GLOW UTILITY */
+.glow-hover {
+  transition: var(--transition-normal);
+}
+
+.glow-hover:hover {
+  box-shadow: var(--gold-glow), var(--shadow-lg);
+}
+
+/* 📱 RESPONSIVE ENHANCEMENTS */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+  
+  .logo-circle {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .brand {
+    font-size: 1.1rem;
+  }
+  
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .product img {
+    height: auto;
+    aspect-ratio: 1;
+  }
+  
+  .social a {
+    min-width: 120px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .music-btn {
+    padding: 10px 18px;
+    font-size: 0.8rem;
+    bottom: 12px;
+    left: 12px;
+  }
+}
+
+/* 🖥️ DESKTOP ENHANCEMENTS */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 28px;
+  }
+  
+  .product {
+    padding: 24px;
+  }
+  
+  .product img {
+    height: 180px;
+  }
+}
+
+/* 🎨 DARK MODE OPTIMIZATION */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dark-bg: #0a0a0f;
+    --dark-card: rgba(20, 20, 30, 0.85);
+  }
+}
+
+/* ♿ ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 🎯 FOCUS STATES FOR ACCESSIBILITY */
+a:focus-visible,
+button:focus-visible,
+.menu a:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* 🎨 PRINT STYLES */
+@media print {
+  .stars, .wave, .music-btn, .hamburger {
+    display: none !important;
+  }
+  
+  body {
+    background: #fff;
+    color: #000;
+  }
+  
+  .gold {
+    color: #D4AF37 !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+  }
 }
 </style>
 </head>
@@ -419,73 +958,450 @@ const firebaseConfig = {
         appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
         };
 firebase.initializeApp(firebaseConfig);
-const db=firebase.database();
-
-/* MENU */
-function toggleMenu(){
-menu.classList.toggle("show");
+if (typeof firebase === 'undefined') {
+  console.error('❌ Firebase SDK belum dimuat!');
+} else {
+  firebase.initializeApp(firebaseConfig);
 }
 
-/* CONFIG */
-db.ref("config").on("value",snap=>{
-let c=snap.val()||{};
-if(c.logo) logo.src=c.logo;
-if(c.bg) document.body.style.background=`url(${c.bg}) center/cover fixed`;
-if(c.price) price.innerText=c.price;
-});
+const db = firebase.database();
 
-/* PRODUK */
-db.ref("produk").on("value",snap=>{
-produkList.innerHTML="";
-snap.forEach(c=>{
-let d=c.val();
-produkList.innerHTML+=`
-<div class="product">
-<img src="${d.img||''}">
-<h4>${d.nama}</h4>
-<p>${d.harga}</p>
-</div>`;
-});
-});
+/* 🎯 DOM ELEMENTS - CACHED REFERENCES */
+const elements = {
+  menu: document.getElementById('menu'),
+  hamburger: document.querySelector('.hamburger'),
+  logo: document.getElementById('logo'),
+  price: document.getElementById('price'),
+  produkList: document.getElementById('produkList'),
+  videoList: document.getElementById('videoList'),
+  music: document.getElementById('bgMusic'),
+  musicBtn: document.getElementById('musicBtn')
+};
 
-/* VIDEO */
-db.ref("video").on("value",snap=>{
-videoList.innerHTML="";
-snap.forEach(c=>{
-let d=c.val();
-let media=d.file
-? `<video src="${d.file}" controls></video>`
-: `<iframe src="${d.url}"></iframe>`;
-videoList.innerHTML+=media;
-});
-});
+/* 🛡️ UTILITY: Sanitize HTML untuk mencegah XSS */
+const sanitize = (str) => {
+  const div = document.createElement('div');
+  div.textContent = str ?? '';
+  return div.innerHTML;
+};
+
+/* 🛡️ UTILITY: Safe image URL validator */
+const isValidUrl = (url) => {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
+/* 🍔 MOBILE MENU TOGGLE */
+function toggleMenu() {
+  if (!elements.menu || !elements.hamburger) return;
+  
+  elements.menu.classList.toggle('show');
+  elements.hamburger.classList.toggle('active');
+  
+  // Close menu when clicking outside (mobile)
+  const closeOnOutsideClick = (e) => {
+    if (!elements.menu.contains(e.target) && !elements.hamburger.contains(e.target)) {
+      elements.menu.classList.remove('show');
+      elements.hamburger.classList.remove('active');
+      document.removeEventListener('click', closeOnOutsideClick);
+    }
+  };
+  
+  if (elements.menu.classList.contains('show')) {
+    setTimeout(() => {
+      document.addEventListener('click', closeOnOutsideClick);
+    }, 100);
+  }
+}
+
+// Attach hamburger click event
+if (elements.hamburger) {
+  elements.hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+}
+
+/* ⚙️ CONFIG LISTENER - REALTIME UPDATES */
+if (db) {
+  db.ref('config').on('value', 
+    (snap) => {
+      const c = snap.val() || {};
+      
+      // Update logo dengan validasi
+      if (c.logo && isValidUrl(c.logo) && elements.logo) {
+        elements.logo.src = c.logo;
+        elements.logo.alt = 'Merysa Gold Logo';
+        elements.logo.style.opacity = '1';
+      }
+      
+      // Update background dengan fallback
+      if (c.bg && isValidUrl(c.bg)) {
+        document.body.style.background = `url(${c.bg}) center/cover fixed`;
+        document.body.style.backgroundAttachment = 'fixed';
+      }
+      
+      // Update harga dengan formatting
+      if (c.price && elements.price) {
+        elements.price.innerHTML = `<span class="gold">💰</span> ${sanitize(c.price)}`;
+        elements.price.classList.remove('loading');
+      }
+    },
+    (error) => {
+      console.error('❌ Error fetching config:', error);
+      if (elements.price) {
+        elements.price.textContent = 'Harga tidak tersedia';
+        elements.price.classList.add('error');
+      }
+    }
+  );
+
+  /* 🛍️ PRODUK LISTENER - EFFICIENT RENDERING */
+  db.ref('produk').on('value',
+    (snap) => {
+      if (!elements.produkList) return;
+      
+      // Clear dengan aman
+      elements.produkList.innerHTML = '';
+      
+      const fragment = document.createDocumentFragment();
+      let count = 0;
+      
+      snap.forEach((child) => {
+        const d = child.val();
+        if (!d) return;
+        
+        const productCard = document.createElement('div');
+        productCard.className = 'product glow-hover';
+        productCard.innerHTML = `
+          <img 
+            src="${d.img && isValidUrl(d.img) ? d.img : 'images/placeholder-gold.png'}" 
+            alt="${sanitize(d.nama || 'Produk Emas')}"
+            loading="lazy"
+            onerror="this.src='images/placeholder-gold.png'; this.alt='Gambar tidak tersedia';"
+          >
+          <h4>${sanitize(d.nama || 'Produk Premium')}</h4>
+          <p class="gold">${sanitize(d.harga || 'Hubungi Kami')}</p>
+        `;
+        
+        fragment.appendChild(productCard);
+        count++;
+      });
+      
+      elements.produkList.appendChild(fragment);
+      
+      // Empty state
+      if (count === 0) {
+        elements.produkList.innerHTML = `
+          <div class="product" style="grid-column: 1/-1;">
+            <p style="color: var(--text-muted);">✨ Produk akan segera hadir ✨</p>
+          </div>
+        `;
+      }
+    },
+    (error) => {
+      console.error('❌ Error fetching produk:', error);
+      if (elements.produkList) {
+        elements.produkList.innerHTML = `
+          <div class="product" style="grid-column: 1/-1; border-color: #ff6b6b;">
+            <p style="color: #ff6b6b;">⚠️ Gagal memuat produk. Silakan refresh.</p>
+          </div>
+        `;
+      }
+    }
+  );
+
+  /* 🎬 VIDEO LISTENER - SECURE EMBED */
+  db.ref('video').on('value',
+    (snap) => {
+      if (!elements.videoList) return;
+      
+      elements.videoList.innerHTML = '';
+      const fragment = document.createDocumentFragment();
+      
+      snap.forEach((child) => {
+        const d = child.val();
+        if (!d) return;
+        
+        const videoWrapper = document.createElement('div');
+        videoWrapper.style.position = 'relative';
+        videoWrapper.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
+        videoWrapper.style.borderRadius = 'var(--radius-md)';
+        videoWrapper.style.overflow = 'hidden';
+        videoWrapper.style.border = '1px solid var(--border-gold)';
+        videoWrapper.style.boxShadow = 'var(--shadow-md)';
+        
+        let mediaElement;
+        
+        if (d.file && isValidUrl(d.file)) {
+          // Local/CDN video file
+          mediaElement = document.createElement('video');
+          mediaElement.src = d.file;
+          mediaElement.controls = true;
+          mediaElement.preload = 'metadata';
+          mediaElement.style.position = 'absolute';
+          mediaElement.style.top = '0';
+          mediaElement.style.left = '0';
+          mediaElement.style.width = '100%';
+          mediaElement.style.height = '100%';
+          mediaElement.style.objectFit = 'cover';
+          mediaElement.setAttribute('playsinline', '');
+          mediaElement.setAttribute('webkit-playsinline', '');
+          
+        } else if (d.url && isValidUrl(d.url)) {
+          // YouTube/Vimeo embed dengan security enhancements
+          const embedUrl = d.url
+            .replace('watch?v=', 'embed/')
+            .replace('youtu.be/', 'youtube.com/embed/')
+            .replace('?feature=share', '')
+            .split('?')[0] + '?rel=0&modestbranding=1&controls=1';
+          
+          mediaElement = document.createElement('iframe');
+          mediaElement.src = embedUrl;
+          mediaElement.title = sanitize(d.judul || 'Video Merysa Gold');
+          mediaElement.loading = 'lazy';
+          mediaElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          mediaElement.allowFullscreen = true;
+          mediaElement.style.position = 'absolute';
+          mediaElement.style.top = '0';
+          mediaElement.style.left = '0';
+          mediaElement.style.width = '100%';
+          mediaElement.style.height = '100%';
+          mediaElement.style.border = 'none';
+          mediaElement.referrerPolicy = 'strict-origin-when-cross-origin';
+        }
+        
+        if (mediaElement) {
+          videoWrapper.appendChild(mediaElement);
+          fragment.appendChild(videoWrapper);
+        }
+      });
+      
+      elements.videoList.appendChild(fragment);
+      
+      // Empty state
+      if (!elements.videoList.children.length) {
+        elements.videoList.innerHTML = `
+          <div style="text-align:center; padding:40px; color:var(--text-muted);">
+            <p>🎬 Video showcase akan segera hadir</p>
+          </div>
+        `;
+      }
+    },
+    (error) => {
+      console.error('❌ Error fetching video:', error);
+    }
+  );
+}
+
+/* 🎵 MUSIC PLAYER - ROBUST IMPLEMENTATION */
+class MusicPlayer {
+  constructor(audioEl, btnEl) {
+    this.audio = audioEl;
+    this.btn = btnEl;
+    this.isPlaying = false;
+    this.hasInteracted = false;
     
-/* MUSIC */
-const music = document.getElementById("bgMusic");
-const btn = document.getElementById("musicBtn");
-
-let isPlaying = false;
-
-function toggleMusic(){
-    if(isPlaying){
-        music.pause();
-        btn.innerHTML = "▶️ Play Musik";
-    }else{
-        music.play();
-        btn.innerHTML = "⏸️ Stop Musik";
+    this.init();
+  }
+  
+  init() {
+    if (!this.audio || !this.btn) return;
+    
+    // Preload audio metadata
+    this.audio.preload = 'metadata';
+    this.audio.volume = 0.6; // Default volume 60%
+    
+    // Button click handler
+    this.btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggle();
+    });
+    
+    // Handle audio events
+    this.audio.addEventListener('play', () => {
+      this.isPlaying = true;
+      this.updateButtonState();
+      this.savePreference(true);
+    });
+    
+    this.audio.addEventListener('pause', () => {
+      this.isPlaying = false;
+      this.updateButtonState();
+      this.savePreference(false);
+    });
+    
+    this.audio.addEventListener('error', (e) => {
+      console.error('❌ Audio error:', e);
+      this.btn.disabled = true;
+      this.btn.innerHTML = '⚠️ Audio Error';
+      this.btn.style.opacity = '0.6';
+    });
+    
+    // Enable after first user interaction (browser policy)
+    const enableOnInteraction = () => {
+      this.hasInteracted = true;
+      this.loadSavedPreference();
+      document.body.removeEventListener('click', enableOnInteraction);
+      document.body.removeEventListener('touchstart', enableOnInteraction);
+    };
+    
+    document.body.addEventListener('click', enableOnInteraction, { once: true });
+    document.body.addEventListener('touchstart', enableOnInteraction, { once: true });
+  }
+  
+  async toggle() {
+    if (!this.audio) return;
+    
+    try {
+      if (this.isPlaying) {
+        await this.audio.pause();
+      } else {
+        // Browser might block autoplay, handle gracefully
+        await this.audio.play();
+      }
+    } catch (err) {
+      console.warn('⚠️ Playback blocked by browser:', err);
+      // Show user hint
+      this.btn.innerHTML = '🔕 Klik untuk aktifkan audio';
+      setTimeout(() => this.updateButtonState(), 3000);
     }
-    isPlaying = !isPlaying;
+  }
+  
+  updateButtonState() {
+    if (!this.btn) return;
+    
+    if (this.isPlaying) {
+      this.btn.innerHTML = '<span style="animation:pulseDot 1.5s infinite">⏺️</span> Pause Musik';
+      this.btn.classList.add('playing');
+    } else {
+      this.btn.innerHTML = '▶️ Play Musik';
+      this.btn.classList.remove('playing');
+    }
+  }
+  
+  savePreference(play) {
+    try {
+      localStorage.setItem('merysa_music', play ? '1' : '0');
+    } catch (e) {
+      console.warn('Could not save music preference');
+    }
+  }
+  
+  loadSavedPreference() {
+    const pref = localStorage.getItem('merysa_music');
+    if (pref === '1' && !this.isPlaying) {
+      // Attempt to play after user interaction
+      this.audio.play().catch(() => {
+        // Silently fail if blocked
+      });
+    }
+  }
 }
 
-/* AUTO PLAY (biar jalan setelah interaksi pertama) */
-document.body.addEventListener("click", () => {
-    if(!isPlaying){
-        music.play().then(()=>{
-            isPlaying = true;
-            btn.innerHTML = "⏸️ Stop Musik";
-        }).catch(()=>{});
+// Initialize music player after DOM ready
+if (elements.music && elements.musicBtn) {
+  // Wait for DOM to be fully ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new MusicPlayer(elements.music, elements.musicBtn);
+    });
+  } else {
+    new MusicPlayer(elements.music, elements.musicBtn);
+  }
+}
+
+/* 🧹 CLEANUP - Prevent memory leaks on page unload */
+window.addEventListener('beforeunload', () => {
+  if (db) {
+    db.ref('config').off();
+    db.ref('produk').off();
+    db.ref('video').off();
+  }
+  
+  if (elements.music) {
+    elements.music.pause();
+  }
+});
+
+/* 🎯 SMOOTH SCROLL FOR ANCHOR LINKS */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    
+    if (targetId === '#') return;
+    
+    const target = document.querySelector(targetId);
+    if (target) {
+      // Close mobile menu if open
+      elements.menu?.classList.remove('show');
+      elements.hamburger?.classList.remove('active');
+      
+      // Smooth scroll with offset for fixed header
+      const headerOffset = 80;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
-}, { once:true });
+  });
+});
+
+/* 🎨 NAVBAR SCROLL EFFECT */
+const navbar = document.querySelector('.navbar');
+if (navbar) {
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  };
+  
+  // Throttle scroll event for performance
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Initial check
+  handleScroll();
+}
+
+/* 📱 TOUCH OPTIMIZATION */
+// Prevent double-tap zoom on mobile (optional)
+document.addEventListener('touchstart', function(e) {
+  if (e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Handle viewport resize for mobile menu
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    // Close mobile menu if screen resized to desktop
+    if (window.innerWidth > 900 && elements.menu) {
+      elements.menu.classList.remove('show');
+      elements.hamburger?.classList.remove('active');
+    }
+  }, 250);
+});
 
 // =====================================
 // REGISTER SERVICE WORKER
