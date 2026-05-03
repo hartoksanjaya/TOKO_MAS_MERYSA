@@ -861,6 +861,28 @@ button:focus-visible,
     -webkit-text-fill-color: #D4AF37 !important;
   }
 }
+
+.admin-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #D4AF37, #FFD700);
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: Poppins, sans-serif;
+    box-shadow: 0 0 10px rgba(212,175,55,0.7);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.admin-btn:hover {
+    background: linear-gradient(135deg, #FFD700, #fff);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255,215,0,1);
+}
 </style>
 </head>
 
@@ -942,6 +964,9 @@ button:focus-visible,
 </div>
 
 </div>
+    <a href="https://hartoksanjaya.github.io/TOKO_MAS_MERYSA/upload.html" target="_blank" class="admin-btn">
+    🔐 Admin
+    </a>
 
 <footer>© 2026 Merysa Gold</footer>
 
@@ -1025,6 +1050,18 @@ document.body.addEventListener("click", () => {
         }).catch(()=>{});
     }
 }, { once:true });
+    
+<button class="admin-btn" onclick="aksesAdmin()">🔐 Admin</button>
+
+<script>
+function aksesAdmin(){
+    let pass = prompt("Masukkan Password Admin:");
+    if(pass === "1986merysa"){
+        window.open("https://hartoksanjaya.github.io/TOKO_MAS_MERYSA/upload.html","_blank");
+    } else {
+        alert("Password salah!");
+    }
+}
 
 // =====================================
 // REGISTER SERVICE WORKER
