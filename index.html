@@ -958,450 +958,73 @@ const firebaseConfig = {
         appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
         };
 firebase.initializeApp(firebaseConfig);
-if (typeof firebase === 'undefined') {
-  console.error('❌ Firebase SDK belum dimuat!');
-} else {
-  firebase.initializeApp(firebaseConfig);
+const db=firebase.database();
+
+/* MENU */
+function toggleMenu(){
+menu.classList.toggle("show");
 }
 
-const db = firebase.database();
-
-/* 🎯 DOM ELEMENTS - CACHED REFERENCES */
-const elements = {
-  menu: document.getElementById('menu'),
-  hamburger: document.querySelector('.hamburger'),
-  logo: document.getElementById('logo'),
-  price: document.getElementById('price'),
-  produkList: document.getElementById('produkList'),
-  videoList: document.getElementById('videoList'),
-  music: document.getElementById('bgMusic'),
-  musicBtn: document.getElementById('musicBtn')
-};
-
-/* 🛡️ UTILITY: Sanitize HTML untuk mencegah XSS */
-const sanitize = (str) => {
-  const div = document.createElement('div');
-  div.textContent = str ?? '';
-  return div.innerHTML;
-};
-
-/* 🛡️ UTILITY: Safe image URL validator */
-const isValidUrl = (url) => {
-  try {
-    const parsed = new URL(url);
-    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
-  } catch {
-    return false;
-  }
-};
-
-/* 🍔 MOBILE MENU TOGGLE */
-function toggleMenu() {
-  if (!elements.menu || !elements.hamburger) return;
-  
-  elements.menu.classList.toggle('show');
-  elements.hamburger.classList.toggle('active');
-  
-  // Close menu when clicking outside (mobile)
-  const closeOnOutsideClick = (e) => {
-    if (!elements.menu.contains(e.target) && !elements.hamburger.contains(e.target)) {
-      elements.menu.classList.remove('show');
-      elements.hamburger.classList.remove('active');
-      document.removeEventListener('click', closeOnOutsideClick);
-    }
-  };
-  
-  if (elements.menu.classList.contains('show')) {
-    setTimeout(() => {
-      document.addEventListener('click', closeOnOutsideClick);
-    }, 100);
-  }
-}
-
-// Attach hamburger click event
-if (elements.hamburger) {
-  elements.hamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
-}
-
-/* ⚙️ CONFIG LISTENER - REALTIME UPDATES */
-if (db) {
-  db.ref('config').on('value', 
-    (snap) => {
-      const c = snap.val() || {};
-      
-      // Update logo dengan validasi
-      if (c.logo && isValidUrl(c.logo) && elements.logo) {
-        elements.logo.src = c.logo;
-        elements.logo.alt = 'Merysa Gold Logo';
-        elements.logo.style.opacity = '1';
-      }
-      
-      // Update background dengan fallback
-      if (c.bg && isValidUrl(c.bg)) {
-        document.body.style.background = `url(${c.bg}) center/cover fixed`;
-        document.body.style.backgroundAttachment = 'fixed';
-      }
-      
-      // Update harga dengan formatting
-      if (c.price && elements.price) {
-        elements.price.innerHTML = `<span class="gold">💰</span> ${sanitize(c.price)}`;
-        elements.price.classList.remove('loading');
-      }
-    },
-    (error) => {
-      console.error('❌ Error fetching config:', error);
-      if (elements.price) {
-        elements.price.textContent = 'Harga tidak tersedia';
-        elements.price.classList.add('error');
-      }
-    }
-  );
-
-  /* 🛍️ PRODUK LISTENER - EFFICIENT RENDERING */
-  db.ref('produk').on('value',
-    (snap) => {
-      if (!elements.produkList) return;
-      
-      // Clear dengan aman
-      elements.produkList.innerHTML = '';
-      
-      const fragment = document.createDocumentFragment();
-      let count = 0;
-      
-      snap.forEach((child) => {
-        const d = child.val();
-        if (!d) return;
-        
-        const productCard = document.createElement('div');
-        productCard.className = 'product glow-hover';
-        productCard.innerHTML = `
-          <img 
-            src="${d.img && isValidUrl(d.img) ? d.img : 'images/placeholder-gold.png'}" 
-            alt="${sanitize(d.nama || 'Produk Emas')}"
-            loading="lazy"
-            onerror="this.src='images/placeholder-gold.png'; this.alt='Gambar tidak tersedia';"
-          >
-          <h4>${sanitize(d.nama || 'Produk Premium')}</h4>
-          <p class="gold">${sanitize(d.harga || 'Hubungi Kami')}</p>
-        `;
-        
-        fragment.appendChild(productCard);
-        count++;
-      });
-      
-      elements.produkList.appendChild(fragment);
-      
-      // Empty state
-      if (count === 0) {
-        elements.produkList.innerHTML = `
-          <div class="product" style="grid-column: 1/-1;">
-            <p style="color: var(--text-muted);">✨ Produk akan segera hadir ✨</p>
-          </div>
-        `;
-      }
-    },
-    (error) => {
-      console.error('❌ Error fetching produk:', error);
-      if (elements.produkList) {
-        elements.produkList.innerHTML = `
-          <div class="product" style="grid-column: 1/-1; border-color: #ff6b6b;">
-            <p style="color: #ff6b6b;">⚠️ Gagal memuat produk. Silakan refresh.</p>
-          </div>
-        `;
-      }
-    }
-  );
-
-  /* 🎬 VIDEO LISTENER - SECURE EMBED */
-  db.ref('video').on('value',
-    (snap) => {
-      if (!elements.videoList) return;
-      
-      elements.videoList.innerHTML = '';
-      const fragment = document.createDocumentFragment();
-      
-      snap.forEach((child) => {
-        const d = child.val();
-        if (!d) return;
-        
-        const videoWrapper = document.createElement('div');
-        videoWrapper.style.position = 'relative';
-        videoWrapper.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
-        videoWrapper.style.borderRadius = 'var(--radius-md)';
-        videoWrapper.style.overflow = 'hidden';
-        videoWrapper.style.border = '1px solid var(--border-gold)';
-        videoWrapper.style.boxShadow = 'var(--shadow-md)';
-        
-        let mediaElement;
-        
-        if (d.file && isValidUrl(d.file)) {
-          // Local/CDN video file
-          mediaElement = document.createElement('video');
-          mediaElement.src = d.file;
-          mediaElement.controls = true;
-          mediaElement.preload = 'metadata';
-          mediaElement.style.position = 'absolute';
-          mediaElement.style.top = '0';
-          mediaElement.style.left = '0';
-          mediaElement.style.width = '100%';
-          mediaElement.style.height = '100%';
-          mediaElement.style.objectFit = 'cover';
-          mediaElement.setAttribute('playsinline', '');
-          mediaElement.setAttribute('webkit-playsinline', '');
-          
-        } else if (d.url && isValidUrl(d.url)) {
-          // YouTube/Vimeo embed dengan security enhancements
-          const embedUrl = d.url
-            .replace('watch?v=', 'embed/')
-            .replace('youtu.be/', 'youtube.com/embed/')
-            .replace('?feature=share', '')
-            .split('?')[0] + '?rel=0&modestbranding=1&controls=1';
-          
-          mediaElement = document.createElement('iframe');
-          mediaElement.src = embedUrl;
-          mediaElement.title = sanitize(d.judul || 'Video Merysa Gold');
-          mediaElement.loading = 'lazy';
-          mediaElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-          mediaElement.allowFullscreen = true;
-          mediaElement.style.position = 'absolute';
-          mediaElement.style.top = '0';
-          mediaElement.style.left = '0';
-          mediaElement.style.width = '100%';
-          mediaElement.style.height = '100%';
-          mediaElement.style.border = 'none';
-          mediaElement.referrerPolicy = 'strict-origin-when-cross-origin';
-        }
-        
-        if (mediaElement) {
-          videoWrapper.appendChild(mediaElement);
-          fragment.appendChild(videoWrapper);
-        }
-      });
-      
-      elements.videoList.appendChild(fragment);
-      
-      // Empty state
-      if (!elements.videoList.children.length) {
-        elements.videoList.innerHTML = `
-          <div style="text-align:center; padding:40px; color:var(--text-muted);">
-            <p>🎬 Video showcase akan segera hadir</p>
-          </div>
-        `;
-      }
-    },
-    (error) => {
-      console.error('❌ Error fetching video:', error);
-    }
-  );
-}
-
-/* 🎵 MUSIC PLAYER - ROBUST IMPLEMENTATION */
-class MusicPlayer {
-  constructor(audioEl, btnEl) {
-    this.audio = audioEl;
-    this.btn = btnEl;
-    this.isPlaying = false;
-    this.hasInteracted = false;
-    
-    this.init();
-  }
-  
-  init() {
-    if (!this.audio || !this.btn) return;
-    
-    // Preload audio metadata
-    this.audio.preload = 'metadata';
-    this.audio.volume = 0.6; // Default volume 60%
-    
-    // Button click handler
-    this.btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.toggle();
-    });
-    
-    // Handle audio events
-    this.audio.addEventListener('play', () => {
-      this.isPlaying = true;
-      this.updateButtonState();
-      this.savePreference(true);
-    });
-    
-    this.audio.addEventListener('pause', () => {
-      this.isPlaying = false;
-      this.updateButtonState();
-      this.savePreference(false);
-    });
-    
-    this.audio.addEventListener('error', (e) => {
-      console.error('❌ Audio error:', e);
-      this.btn.disabled = true;
-      this.btn.innerHTML = '⚠️ Audio Error';
-      this.btn.style.opacity = '0.6';
-    });
-    
-    // Enable after first user interaction (browser policy)
-    const enableOnInteraction = () => {
-      this.hasInteracted = true;
-      this.loadSavedPreference();
-      document.body.removeEventListener('click', enableOnInteraction);
-      document.body.removeEventListener('touchstart', enableOnInteraction);
-    };
-    
-    document.body.addEventListener('click', enableOnInteraction, { once: true });
-    document.body.addEventListener('touchstart', enableOnInteraction, { once: true });
-  }
-  
-  async toggle() {
-    if (!this.audio) return;
-    
-    try {
-      if (this.isPlaying) {
-        await this.audio.pause();
-      } else {
-        // Browser might block autoplay, handle gracefully
-        await this.audio.play();
-      }
-    } catch (err) {
-      console.warn('⚠️ Playback blocked by browser:', err);
-      // Show user hint
-      this.btn.innerHTML = '🔕 Klik untuk aktifkan audio';
-      setTimeout(() => this.updateButtonState(), 3000);
-    }
-  }
-  
-  updateButtonState() {
-    if (!this.btn) return;
-    
-    if (this.isPlaying) {
-      this.btn.innerHTML = '<span style="animation:pulseDot 1.5s infinite">⏺️</span> Pause Musik';
-      this.btn.classList.add('playing');
-    } else {
-      this.btn.innerHTML = '▶️ Play Musik';
-      this.btn.classList.remove('playing');
-    }
-  }
-  
-  savePreference(play) {
-    try {
-      localStorage.setItem('merysa_music', play ? '1' : '0');
-    } catch (e) {
-      console.warn('Could not save music preference');
-    }
-  }
-  
-  loadSavedPreference() {
-    const pref = localStorage.getItem('merysa_music');
-    if (pref === '1' && !this.isPlaying) {
-      // Attempt to play after user interaction
-      this.audio.play().catch(() => {
-        // Silently fail if blocked
-      });
-    }
-  }
-}
-
-// Initialize music player after DOM ready
-if (elements.music && elements.musicBtn) {
-  // Wait for DOM to be fully ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      new MusicPlayer(elements.music, elements.musicBtn);
-    });
-  } else {
-    new MusicPlayer(elements.music, elements.musicBtn);
-  }
-}
-
-/* 🧹 CLEANUP - Prevent memory leaks on page unload */
-window.addEventListener('beforeunload', () => {
-  if (db) {
-    db.ref('config').off();
-    db.ref('produk').off();
-    db.ref('video').off();
-  }
-  
-  if (elements.music) {
-    elements.music.pause();
-  }
+/* CONFIG */
+db.ref("config").on("value",snap=>{
+let c=snap.val()||{};
+if(c.logo) logo.src=c.logo;
+if(c.bg) document.body.style.background=`url(${c.bg}) center/cover fixed`;
+if(c.price) price.innerText=c.price;
 });
 
-/* 🎯 SMOOTH SCROLL FOR ANCHOR LINKS */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    
-    if (targetId === '#') return;
-    
-    const target = document.querySelector(targetId);
-    if (target) {
-      // Close mobile menu if open
-      elements.menu?.classList.remove('show');
-      elements.hamburger?.classList.remove('active');
-      
-      // Smooth scroll with offset for fixed header
-      const headerOffset = 80;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  });
+/* PRODUK */
+db.ref("produk").on("value",snap=>{
+produkList.innerHTML="";
+snap.forEach(c=>{
+let d=c.val();
+produkList.innerHTML+=`
+<div class="product">
+<img src="${d.img||''}">
+<h4>${d.nama}</h4>
+<p>${d.harga}</p>
+</div>`;
+});
 });
 
-/* 🎨 NAVBAR SCROLL EFFECT */
-const navbar = document.querySelector('.navbar');
-if (navbar) {
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+/* VIDEO */
+db.ref("video").on("value",snap=>{
+videoList.innerHTML="";
+snap.forEach(c=>{
+let d=c.val();
+let media=d.file
+? `<video src="${d.file}" controls></video>`
+: `<iframe src="${d.url}"></iframe>`;
+videoList.innerHTML+=media;
+});
+});
+    
+/* MUSIC */
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+function toggleMusic(){
+    if(isPlaying){
+        music.pause();
+        btn.innerHTML = "▶️ Play Musik";
+    }else{
+        music.play();
+        btn.innerHTML = "⏸️ Stop Musik";
     }
-  };
-  
-  // Throttle scroll event for performance
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        handleScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-  
-  // Initial check
-  handleScroll();
+    isPlaying = !isPlaying;
 }
 
-/* 📱 TOUCH OPTIMIZATION */
-// Prevent double-tap zoom on mobile (optional)
-document.addEventListener('touchstart', function(e) {
-  if (e.touches.length > 1) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
-// Handle viewport resize for mobile menu
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    // Close mobile menu if screen resized to desktop
-    if (window.innerWidth > 900 && elements.menu) {
-      elements.menu.classList.remove('show');
-      elements.hamburger?.classList.remove('active');
+/* AUTO PLAY (biar jalan setelah interaksi pertama) */
+document.body.addEventListener("click", () => {
+    if(!isPlaying){
+        music.play().then(()=>{
+            isPlaying = true;
+            btn.innerHTML = "⏸️ Stop Musik";
+        }).catch(()=>{});
     }
-  }, 250);
-});
+}, { once:true });
 
 // =====================================
 // REGISTER SERVICE WORKER
