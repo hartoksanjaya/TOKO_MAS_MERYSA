@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merysa Gold Admin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+:root{
+--gold:#D4AF37;
+--bg:#0a0a0a;
+--card:#141414;
+--border:rgba(212,175,55,0.3);
+--glass:rgba(255,255,255,0.05);
+}
+
+body{
+font-family:Poppins;
+background:var(--bg);
+color:#fff;
+margin:0;
+}
+
+/* GOLD EFFECT */
+.gold{
+background:linear-gradient(120deg,#BF953F,#FCF6BA,#B38728,#FBF5B7,#AA771C);
+background-size:300%;
+-webkit-background-clip:text;
+color:transparent;
+animation:shine 5s infinite linear;
+}
+@keyframes shine{0%{background-position:0}100%{background-position:300%}}
+
+/* LOGIN */
+#auth{
+position:fixed;inset:0;
+display:flex;justify-content:center;align-items:center;
+background:#000;
+z-index:999;
+}
+.auth-box{
+background:#111;
+padding:40px;
+border-radius:20px;
+text-align:center;
+border:1px solid var(--border);
+}
+
+/* HEADER */
+header{
+display:flex;
+justify-content:space-between;
+padding:15px 25px;
+border-bottom:1px solid var(--border);
+background:#050505;
+}
+
+/* GRID */
+.container{
+padding:20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+@media(max-width:900px){
+.container{grid-template-columns:1fr}
+}
+
+/* CARD */
+.card{
+background:var(--card);
+padding:20px;
+border-radius:15px;
+border:1px solid var(--border);
+}
+
+/* INPUT */
+input,textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:var(--glass);
+border:1px solid var(--border);
+color:#fff;
+border-radius:10px;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:var(--gold);
+}
+
+/* PRODUCT */
+.catalog{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+gap:15px;
+margin-top:15px;
+}
+.product{
+background:#1c1c1c;
+padding:10px;
+border-radius:10px;
+text-align:center;
+}
+.product img{
+width:100%;
+height:120px;
+object-fit:cover;
+border-radius:8px;
+}
+
+/* VIDEO */
+video,iframe{
+width:100%;
+border-radius:10px;
+margin-top:10px;
+}
+
+/* PRICE */
+.price-box{
+background:#111;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+border:1px solid var(--border);
+font-size:1.2rem;
+}
+
+/* TOAST */
+.toast{
+position:fixed;
+bottom:20px;right:20px;
+background:var(--gold);
+color:#000;
+padding:12px 20px;
+border-radius:10px;
+display:none;
+}
+#previewRemove{
+border:1px solid rgba(212,175,55,0.3);
+background:#111;
+padding:5px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="auth">
+<div class="auth-box">
+<h2 class="gold">🔐 Admin Login</h2>
+<input type="password" id="pass" placeholder="Password">
+<button onclick="login()">Masuk</button>
+<p id="err" style="color:red"></p>
+ <a href="index.html" class="back-link">← Kembali ke Website</a>
+</div>
+</div>
+
+<header>
+<h3 class="gold">👑 Merysa Gold Dashboard</h3>
+<button onclick="logout()">Logout</button>
+</header>
+
+<div id="app" style="display:none">
+
+<div class="container">
+
+<!-- HARGA EMAS -->
+<div class="card">
+<h3>💰 Harga Emas</h3>
+<div id="priceView" class="price-box">Memuat...</div>
+<input id="goldPrice" placeholder="Rp 1.250.000 / gram">
+<button onclick="savePrice()">Simpan Harga</button>
+</div>
+
+<!-- TAMPILAN -->
+<div class="card">
+<h3>🎨 Tampilan</h3>
+<label>Logo</label>
+<input type="file" id="logoFile">
+<label>Background</label>
+<input type="file" id="bgFile">
+<button onclick="saveConfig()">Simpan Tampilan</button>
+</div>
+
+<!-- PRODUK -->
+<div class="card">
+<h3>🛍️ Produk</h3>
+<input id="pNama" placeholder="Nama">
+<input id="pHarga" placeholder="Harga">
+<input type="file" id="pFile">
+<input type="hidden" id="editProduk">
+<button onclick="saveProduk()">Simpan Produk</button>
+<div id="produkList" class="catalog"></div>
+</div>
+
+<!-- VIDEO -->
+<div class="card">
+<h3>🎬 Video</h3>
+<input type="file" id="vFile" accept="video/*">
+<input id="vUrl" placeholder="Link YouTube">
+<input type="hidden" id="editVideo">
+<button onclick="saveVideo()">Simpan Video</button>
+<div id="videoList"></div>
+</div>
+
+<!-- 🧼 HAPUS BACKGROUND -->
+<div class="card">
+<h3>🧼 Hapus Background Gambar</h3>
+
+<input type="file" id="bgRemoveFile" accept="image/*">
+
+<button onclick="removeBg()">✨ Hapus Background</button>
+
+<br><br>
+
+<img id="previewRemove" style="max-width:100%;border-radius:10px;display:none;">
+
+<br>
+
+<button id="downloadBtn" style="display:none;margin-top:10px;" onclick="downloadImage()">
+⬇️ Download PNG
+</button>
+
+</div>
+
+</div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+const ADMIN_PASSWORD="1986merysa";
+
+const firebaseConfig = {
+        apiKey: "AIzaSyCi-CNKPGkeUuc7WBCizkQlLO9DT2cXJAk",
+        authDomain: "tokomasmerysa.firebaseapp.com",
+        databaseURL: "https://tokomasmerysa-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "tokomasmerysa",
+        appId: "1:659517947527:web:4ed83fc9f6206b45ef0222"
+        };
+firebase.initializeApp(firebaseConfig);
+const db=firebase.database();
+
+/* LOGIN */
+function login(){
+if(pass.value===ADMIN_PASSWORD){
+sessionStorage.setItem("admin","1");
+init();
+}else err.innerText="Password salah";
+}
+function logout(){
+sessionStorage.clear();
+location.reload();
+}
+if(sessionStorage.getItem("admin")) init();
+
+function init(){
+auth.style.display="none";
+app.style.display="block";
+load();
+}
+
+/* BASE64 */
+function toBase64(file){
+return new Promise(r=>{
+let reader=new FileReader();
+reader.onload=()=>r(reader.result);
+reader.readAsDataURL(file);
+});
+}
+
+/* TOAST */
+function toast(msg){
+toastEl.innerText=msg;
+toastEl.style.display="block";
+setTimeout(()=>toastEl.style.display="none",2000);
+}
+
+/* HARGA */
+function savePrice(){
+db.ref("config").update({price:goldPrice.value});
+toast("Harga disimpan");
+}
+db.ref("config/price").on("value",s=>{
+priceView.innerText=s.val()||"Belum diatur";
+});
+
+/* CONFIG */
+async function saveConfig(){
+let data={};
+if(logoFile.files[0]) data.logo=await toBase64(logoFile.files[0]);
+if(bgFile.files[0]) data.bg=await toBase64(bgFile.files[0]);
+db.ref("config").update(data);
+toast("Tampilan disimpan");
+}
+
+/* PRODUK */
+async function saveProduk(){
+let id=editProduk.value;
+let img="";
+if(pFile.files[0]) img=await toBase64(pFile.files[0]);
+
+let data={nama:pNama.value,harga:pHarga.value};
+if(img) data.img=img;
+
+if(id){
+db.ref("produk/"+id).update(data);
+}else{
+db.ref("produk").push(data);
+}
+
+pNama.value="";pHarga.value="";
+editProduk.value="";
+toast("Produk disimpan");
+}
+
+function editProdukFn(id,d){
+pNama.value=d.nama;
+pHarga.value=d.harga;
+editProduk.value=id;
+}
+
+function delProduk(id){
+db.ref("produk/"+id).remove();
+}
+
+/* VIDEO */
+async function saveVideo(){
+let id=editVideo.value;
+let file=vFile.files[0];
+let data={};
+
+if(file){
+data.file=await toBase64(file);
+}else if(vUrl.value){
+let url=vUrl.value;
+if(url.includes("youtube")){
+let idVid=url.split("v=")[1];
+data.url="https://www.youtube.com/embed/"+idVid;
+}else{
+data.url=url;
+}
+}
+
+if(id){
+db.ref("video/"+id).update(data);
+}else{
+db.ref("video").push(data);
+}
+
+vFile.value="";vUrl.value="";
+editVideo.value="";
+toast("Video disimpan");
+}
+
+function editVideoFn(id,d){
+vUrl.value=d.url||"";
+editVideo.value=id;
+}
+
+function delVideo(id){
+db.ref("video/"+id).remove();
+}
+
+/* LOAD */
+function load(){
+
+db.ref("produk").on("value",s=>{
+produkList.innerHTML="";
+s.forEach(c=>{
+let d=c.val();
+produkList.innerHTML+=`
+<div class="product">
+<img src="${d.img||''}">
+<h4>${d.nama}</h4>
+<p>${d.harga}</p>
+<button onclick='editProdukFn("${c.key}", ${JSON.stringify(d)})'>✏️</button>
+<button onclick='delProduk("${c.key}")'>❌</button>
+</div>`;
+});
+});
+
+db.ref("video").on("value",s=>{
+videoList.innerHTML="";
+s.forEach(c=>{
+let d=c.val();
+let media=d.file
+? `<video src="${d.file}" controls></video>`
+: `<iframe src="${d.url}"></iframe>`;
+
+videoList.innerHTML+=`
+<div class="card">
+${media}
+<button onclick='editVideoFn("${c.key}", ${JSON.stringify(d)})'>✏️</button>
+<button onclick='delVideo("${c.key}")'>❌</button>
+</div>`;
+});
+});
+
+}
+
+const REMOVE_BG_API = "YOUR_API_KEY"; // GANTI
+
+async function removeBg(){
+const file = document.getElementById("bgRemoveFile").files[0];
+
+if(!file){
+showToast("⚠️ Pilih gambar dulu");
+return;
+}
+
+showToast("⏳ Memproses...");
+
+let formData = new FormData();
+formData.append("image_file", file);
+formData.append("size", "auto");
+
+try{
+let res = await fetch("https://api.remove.bg/v1.0/removebg", {
+method:"POST",
+headers:{ "X-Api-Key": REMOVE_BG_API },
+body:formData
+});
+
+if(!res.ok){
+showToast("❌ Gagal hapus background");
+return;
+}
+
+let blob = await res.blob();
+let url = URL.createObjectURL(blob);
+
+let preview = document.getElementById("previewRemove");
+preview.src = url;
+preview.style.display = "block";
+
+document.getElementById("downloadBtn").style.display = "inline-block";
+
+window.bgResult = blob;
+
+showToast("✅ Berhasil");
+
+}catch(e){
+showToast("❌ Error koneksi");
+}
+}
+
+function downloadImage(){
+let a = document.createElement("a");
+a.href = URL.createObjectURL(window.bgResult);
+a.download = "no-bg.png";
+a.click();
+}
+
+</script>
+
+</body>
+</html>
